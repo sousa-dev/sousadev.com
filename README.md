@@ -2,7 +2,7 @@
 
 Sousa Dev is a software engineering company founded by Henrique Sousa in Ponta Delgada, Azores, working globally. We deliver development, deployment, hosting and management with direct access to the lead engineer.
 
-This repository holds the rebuilt company website: an Astro static site in `src/` and `public/`, rendered in English at `/` and Portuguese at `/pt/`. The legacy site (`index.html`, `assets/`, `vendor/`) is still in place at the repository root and is still what the current host serves. Nothing has been deployed or cut over.
+This repository holds the rebuilt company website: an Astro static site in `src/` and `public/`, rendered in English at `/` and Portuguese at `/pt/`. The legacy site (`index.html`, `assets/`, `vendor/`) is still in place at the repository root and is still what the domain serves (GitHub Pages) until DNS is switched. The new site is deployed on the self-hosted machine described under [Deployment](#deployment), waiting for that DNS change.
 
 ## Start here
 
@@ -13,7 +13,7 @@ This repository holds the rebuilt company website: an Astro static site in `src/
 
 ## Commands
 
-Node 20.3+ (developed and verified on Node 22). Install once with `npm install`.
+Node 22.12+ (required by Astro 7). Install once with `npm install`.
 
 | Command | What it does |
 | --- | --- |
@@ -55,7 +55,8 @@ No component changes are needed for routine content work.
 | --- | --- |
 | `src/` | Astro application: pages, components, layouts, content, i18n, styles, route helpers |
 | `public/` | Production assets: logos, favicons, loader, social images, fonts (generated) |
-| `server/`, `functions/`, `api/` | Proposal form endpoint and its Cloudflare Pages and Vercel adapters. Not part of the static build |
+| `server/`, `functions/`, `api/` | Proposal form endpoint, its plain Node server (used by the self-hosted deploy) and Cloudflare Pages and Vercel adapters. Not part of the static build |
+| `deploy/` | Caddy and systemd config for the self-hosted deploy, installed by `scripts/deploy.sh` |
 | `scripts/` | Build helpers and the repeatable checks listed above |
 | `index.html`, `assets/`, `vendor/` | Existing legacy site, still in place until cutover |
 | `*-policy.html`, `terms-and-conditions.html`, `cloud-identifier-*.html` | Existing public legal documents, copied into `dist/` at the same URLs |
@@ -64,8 +65,26 @@ No component changes are needed for routine content work.
 
 ## The proposal form
 
-The site is static; delivery is a separate function in `server/proposal-handler.mjs`, adapted for Cloudflare Pages (`functions/api/proposal.js`) or Vercel (`api/proposal.mjs`). It validates the same contract the browser validates, checks a honeypot, rate limits per client, and sends through Resend when `RESEND_API_KEY`, `PROPOSAL_TO` and `PROPOSAL_FROM` are set. With no provider configured it answers 503 and the form says nothing was sent. It never reports a delivery it cannot prove, and it never logs message bodies. See `.env.example`.
+The site is static; delivery is a separate function in `server/proposal-handler.mjs`, served by a plain Node server (`server/node-server.mjs`) on the self-hosted machine, with unused adapters kept for Cloudflare Pages (`functions/api/proposal.js`) and Vercel (`api/proposal.mjs`). It validates the same contract the browser validates, checks a honeypot, rate limits per client, and sends through Resend when `RESEND_API_KEY`, `PROPOSAL_TO` and `PROPOSAL_FROM` are set. With no provider configured it answers 503 and the form says nothing was sent. It never reports a delivery it cannot prove, and it never logs message bodies. See `.env.example`.
+
+## Deployment
+
+The site is self-hosted on one Ubuntu machine. Caddy serves `dist/` with automatic HTTPS, redirects `www` to the apex, enforces the no-trailing-slash policy, serves `/pt/404` for unknown Portuguese paths and proxies `/api/proposal` to `server/node-server.mjs`, which runs as the `sousadev-proposal` systemd service. There is no process manager beyond systemd.
+
+| Command | What it does |
+| --- | --- |
+| `scripts/deploy.sh` | `git pull --ff-only`, `npm ci`, build, `check:output`, then publish a new release |
+| `scripts/deploy.sh --no-pull` | Publish the working tree as it is |
+| `scripts/deploy.sh rollback` | Switch back to the previous release and delete the current one |
+
+Each release is copied to `/srv/sousadev/releases/<time>-<commit>` and `/srv/sousadev/current` is switched atomically; the last five are kept. If the endpoint does not answer after a switch, the script restores the previous release. `deploy/Caddyfile` and `deploy/sousadev-proposal.service` are reinstalled on every run, so edit them in the repository, never on the server.
+
+Secrets live in `/etc/sousadev/proposal.env` (root-only, format as in `.env.example`) and are read by systemd. After changing it, run `sudo systemctl restart sousadev-proposal`.
+
+Useful checks: `systemctl status caddy sousadev-proposal`, `journalctl -u caddy -f`, `journalctl -u sousadev-proposal -f`.
+
+Cutover: point the `A` records for `sousadev.com` and `www.sousadev.com` at this machine (and remove any `AAAA` records that point elsewhere), then run `sudo systemctl reload caddy` so it retries the certificates immediately instead of waiting out its backoff.
 
 ## Status
 
-The site is built and verified locally, and it is not ready to launch. Real product screenshots, approved photography, client logos, the final privacy text, verified legal identity, a hosting choice and email credentials are still outstanding. [LAUNCH.md](docs/brand-revamp/LAUNCH.md) tracks all of them.
+The site is built and verified locally, and it is not ready to launch. Real product screenshots, approved photography, client logos, the final privacy text, verified legal identity, the DNS cutover and a verified Resend sender domain are still outstanding. [LAUNCH.md](docs/brand-revamp/LAUNCH.md) tracks all of them.

@@ -1,0 +1,71 @@
+# sousadev.com on a single self-hosted machine. Installed to /etc/caddy/Caddyfile
+# by scripts/deploy.sh; edit it here, not on the server.
+#
+# Caddy obtains and renews the HTTPS certificates itself once DNS for
+# sousadev.com and www.sousadev.com points at this machine.
+
+www.sousadev.com {
+	redir https://sousadev.com{uri} 308
+}
+
+sousadev.com {
+	root * /srv/sousadev/current/public
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Frame-Options "DENY"
+		-Server
+	}
+
+	# Proposal form endpoint: server/node-server.mjs under systemd.
+	handle /api/proposal {
+		request_body {
+			max_size 64KB
+		}
+		reverse_proxy 127.0.0.1:8787 {
+			header_up -Cf-Connecting-Ip
+			header_up X-Real-Ip {remote_host}
+		}
+	}
+
+	handle {
+		# Hashed build assets never change; everything else revalidates.
+		@hashed path /_astro/*
+		header @hashed Cache-Control "public, max-age=31536000, immutable"
+		header ?Cache-Control "public, max-age=0, must-revalidate"
+
+		# route keeps this exact order: Caddy would otherwise run try_files
+		# before redir and redirect its own rewritten /x/index.html paths.
+		route {
+			# Trailing-slash policy: none, except the site root (astro.config.mjs).
+			redir /index.html / 308
+			@index path_regexp index ^(/.+)/index\.html$
+			redir @index {re.index.1}{?query} 308
+			@slash path_regexp slash ^(/.+)/$
+			redir @slash {re.slash.1}{?query} 308
+
+			try_files {path} {path}/index.html
+			# The redirects above own URL shape; Caddy's own canonical
+			# redirects would bounce /services <-> /services/.
+			file_server {
+				disable_canonical_uris
+			}
+		}
+	}
+
+	handle_errors 404 {
+		header Cache-Control "no-store"
+		@pt path /pt /pt/*
+		handle @pt {
+			rewrite * /pt/404/index.html
+			file_server
+		}
+		handle {
+			rewrite * /404.html
+			file_server
+		}
+	}
+}

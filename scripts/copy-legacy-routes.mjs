@@ -18,6 +18,7 @@ const LEGACY = [
   'terms-and-conditions.html',
   'cloud-identifier-privacy-policy.html',
   'cloud-identifier-tos.html',
+  'app-ads.txt',
   'CNAME',
 ];
 

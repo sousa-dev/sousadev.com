@@ -1,7 +1,7 @@
 /**
  * Post-build checks against dist/, the bytes that would actually be published.
  *   - every expected route exists in both languages;
- *   - all four legacy legal URLs and the CNAME survive;
+ *   - all four legacy legal URLs, app-ads.txt and the CNAME survive;
  *   - one h1 per page, a single main landmark, a skip link;
  *   - canonical, hreflang (en, pt, x-default) and Organization JSON-LD present;
  *   - every marketing page ends with the proposal CTA block;
@@ -46,6 +46,7 @@ const LEGACY = [
   'terms-and-conditions.html',
   'cloud-identifier-privacy-policy.html',
   'cloud-identifier-tos.html',
+  'app-ads.txt',
   'CNAME',
   'robots.txt',
   'sitemap.xml',

@@ -13,8 +13,8 @@ These dependencies come from the handoff and repository audit. The website itsel
 | Product status and claims | Data supplied, not externally verified; Henrique | Confirm four live/two in development and specific claims before launch; derive counts |
 | Privacy copy EN/PT | New policy not supplied; Henrique | `/privacy` and `/pt/privacy` carry an explicit interim notice, a factual description of what the site does today and links to the preserved legacy documents. Replace `privacy.*` in both dictionaries with the reviewed policy, and name the processors once they are chosen |
 | Secondary copy, FAQ and articles | Only homepage copy supplied | Draft from known facts; flag factual gaps. No invented testimonials, delivery commitments or blog posts |
-| Hosting | Still no choice recorded | Adapters for both are in the repository: `functions/api/proposal.js` for Cloudflare Pages and `api/proposal.mjs` for Vercel. Delete the one that does not apply when the choice is made, set the build command to `npm run build` and the output directory to `dist` |
-| Email delivery | Resend integration written, no credentials | Set `RESEND_API_KEY`, `PROPOSAL_TO` and `PROPOSAL_FROM` in the host environment, verify the sender domain, then prove one staging delivery with test data. Until then the endpoint answers 503 and the form tells the visitor nothing was sent. The old `formsubmit.co` endpoint is not referenced anywhere |
+| Hosting | **Chosen: self-hosted.** Caddy and a systemd service on one Ubuntu machine; see Deployment in the README. Release deployed to `/srv/sousadev`, waiting for DNS | Point `sousadev.com` and `www` at the machine, reload Caddy, and verify HTTPS. The Cloudflare Pages and Vercel adapters are unused and can be deleted |
+| Email delivery | Credentials set in `/etc/sousadev/proposal.env` on the server; sender `noreply@sousadev.com` | Verify `sousadev.com` as a sending domain in Resend (SPF/DKIM records), then prove one delivery with test data. Until the domain is verified, sends fail and the form tells the visitor nothing was sent |
 | Analytics | Plausible or Umami suggested, no choice recorded | Optional integration until selected; avoid bringing forward Google Analytics. Privacy wording must match actual configuration |
 | Production fonts/licenses | **Resolved for development, confirm before launch.** Space Grotesk and IBM Plex are both SIL Open Font License 1.1. The WOFF2 files are taken from the `@fontsource` packages by `npm run fonts`, latin and latin-ext, Space Grotesk 500/600/700 and IBM Plex Sans 400/500/600 and Mono 400/500, with each licence copied to `public/fonts/*-LICENSE.txt` | Confirm the owner is content to use the OFL builds rather than a purchased package, and keep the licence files in the deploy |
 | OG images, ICO and web manifest | **Resolved.** `public/favicon.ico` is built from the supplied 16/32/48 PNGs, `public/site.webmanifest` exists, and `npm run og` generates 16 social images at 1200x630 from brand assets and page headings | Regenerate the social images with `npm run og` after any heading change |
@@ -27,8 +27,8 @@ The supplied email signature is separate collateral. It includes an HTTP booking
 | Item | Status | Required handling |
 | --- | --- | --- |
 | Rate limiting durability | In-memory per isolate in `server/proposal-handler.mjs` | Back it with the host's KV or a durable counter before launch. The current limiter slows a single client but is not a cluster-wide guarantee |
-| Portuguese 404 routing | `dist/404.html` is the English page; the Portuguese one is at `/pt/404` | Configure the host to serve `/pt/404` for unknown paths under `/pt/`. Cloudflare Pages and Vercel both need an explicit rule; verify it on the preview deployment |
-| Trailing slash policy | No trailing slash anywhere except the site root | Set the host to match, so `/services/` does not become a second URL |
+| Portuguese 404 routing | **Handled in `deploy/Caddyfile`**: unknown paths under `/pt/` get `/pt/404` | Verify after cutover |
+| Trailing slash policy | **Handled in `deploy/Caddyfile`**: `/x/` and `/x/index.html` redirect (308) to `/x` | Verify after cutover |
 | Article language pairing | Articles pair through `translationKey` | Publishing an article in one language only is supported and is handled honestly, but check the language switch on each new article |
 | Social image refresh | `public/og/` is generated and committed | Run `npm run og` whenever a page heading changes, and after real photography arrives if the template gains imagery |
 | Performance evidence | Lighthouse has only been run locally | Re-run against the preview deployment before launch, including a real INP measurement from interaction, and save the reports |
@@ -40,11 +40,12 @@ The following map is based on files in this repository, not on production access
 | Existing URL | Migration handling |
 | --- | --- |
 | `/` | Replace with new EN home when ready |
-| `/index.html` | Add a permanent redirect to `/` if currently addressable |
+| `/index.html` | Permanent redirect to `/` in `deploy/Caddyfile` |
 | `/privacy-policy.html` | Preserve initially; redirect to `/privacy` only when the new company policy is complete and the replacement is appropriate |
 | `/terms-and-conditions.html` | Preserve this URL/content until a reviewed replacement and destination are defined; no new `/terms` route was specified |
 | `/cloud-identifier-privacy-policy.html` | Preserve URL and Cloud Identifier-specific document; do not redirect to company privacy |
 | `/cloud-identifier-tos.html` | Preserve URL and Cloud Identifier-specific document, including its privacy link |
+| `/app-ads.txt` | Preserve: AdMob app-ads verification. Copied into `dist/` and checked by `npm run check:output` |
 
 When the host switches to `dist/`, files remaining at the repository root will not automatically be served. Explicitly include the retained legal documents in the build/public assets or create equivalent routes. Verify all four with HTTP checks against the preview deployment.
 
@@ -67,7 +68,7 @@ Legacy homepage section IDs include `top`, `services`, `free-quote`, `about`, `p
 - [x] Only selected production assets ship; the output check fails on any handoff bundle, preview runtime, third-party font request, analytics script or legacy template script.
 - [ ] Actual deployment source and custom-domain settings confirmed; `CNAME` alone is not proof of hosting configuration.
 - [ ] Preview deployment reviewed; DNS/HTTPS and www-to-apex behavior prepared for the selected host.
-- [ ] Rollback target and deployment procedure recorded before cutover; avoid overwriting the only working site.
+- [x] Rollback target and deployment procedure recorded before cutover: `scripts/deploy.sh rollback`, and GitHub Pages keeps serving the legacy site until DNS moves.
 - [ ] Domain and favicon cache behavior verified after an authorized release.
 
-No deployment, DNS change, form submission or external service configuration has been made. The legacy site is still in place at the repository root and is still what the domain serves.
+The new site is deployed on the self-hosted machine, but no DNS change, form submission or external service configuration has been made. The legacy site is still in place at the repository root and GitHub Pages is still what the domain serves.

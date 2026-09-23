@@ -1,0 +1,33 @@
+# Proposal form endpoint (server/node-server.mjs). Installed to
+# /etc/systemd/system/ by scripts/deploy.sh; edit it here, not on the server.
+# Secrets live in /etc/sousadev/proposal.env (root-only, never in the repo).
+[Unit]
+Description=sousadev.com proposal form endpoint
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/node /srv/sousadev/current/server/node-server.mjs
+EnvironmentFile=/etc/sousadev/proposal.env
+Environment=NODE_ENV=production HOST=127.0.0.1 PORT=8787
+Restart=always
+RestartSec=2
+
+# Runs as a throwaway unprivileged user with a read-only view of the system.
+DynamicUser=yes
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictNamespaces=yes
+LockPersonality=yes
+MemoryMax=256M
+
+[Install]
+WantedBy=multi-user.target
