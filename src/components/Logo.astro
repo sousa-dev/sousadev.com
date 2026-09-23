@@ -1,0 +1,138 @@
+---
+import { LOCKUP_VIEWBOX, LOCKUP_RATIO, MARK_VIEWBOX, lockupMarkup, markMarkup } from '../lib/logo';
+import loaderRaw from '../../public/loader/sousadev-loader.svg?raw';
+
+interface Props {
+  /** Lockup height in px. 30 in the footer, 34 in the nav, per the reference. */
+  height?: number;
+  variant?: 'lockup' | 'mark';
+  /** Shows the loader animation on hover. Nav and footer only. */
+  interactive?: boolean;
+  class?: string;
+}
+
+const { height = 34, variant = 'lockup', interactive = false, class: className } = Astro.props;
+const isLockup = variant === 'lockup';
+const width = isLockup ? Math.round(height * LOCKUP_RATIO * 100) / 100 : height;
+
+/*
+ * Each interactive logo instance needs a unique mask id so the loader's
+ * <mask id="sd-loader-hole"> does not collide between nav and footer.
+ */
+let loaderInner = '';
+if (interactive) {
+  const uid = Math.random().toString(36).slice(2, 8);
+  loaderInner = loaderRaw
+    .replace(/^[\s\S]*?<svg[^>]*>/, '')
+    .replace(/<\/svg>\s*$/, '')
+    .trim()
+    .replace(/id="sd-loader-hole"/g, `id="sd-loader-hole-${uid}"`)
+    .replace(/url\(#sd-loader-hole\)/g, `url(#sd-loader-hole-${uid})`);
+}
+---
+
+{
+  interactive ? (
+    <span class:list={['logo-wrap', className]}>
+      <svg
+        class="logo logo--interactive"
+        viewBox={isLockup ? LOCKUP_VIEWBOX : MARK_VIEWBOX}
+        width={width}
+        height={height}
+        role="presentation"
+        aria-hidden="true"
+        focusable="false"
+        set:html={isLockup ? lockupMarkup : `<g class="lockup__mark">${markMarkup}</g>`}
+      />
+      <svg
+        class="logo__loader"
+        viewBox="0 0 120 120"
+        width={height}
+        height={height}
+        role="presentation"
+        aria-hidden="true"
+        focusable="false"
+        set:html={loaderInner}
+      />
+    </span>
+  ) : (
+    <svg
+      class:list={['logo', className]}
+      viewBox={isLockup ? LOCKUP_VIEWBOX : MARK_VIEWBOX}
+      width={width}
+      height={height}
+      role="presentation"
+      aria-hidden="true"
+      focusable="false"
+      set:html={isLockup ? lockupMarkup : `<g class="lockup__mark">${markMarkup}</g>`}
+    />
+  )
+}
+
+<style>
+  .logo {
+    --mark-s: var(--text-on-ink);
+    --mark-d: var(--green);
+    overflow: visible;
+  }
+
+  .logo-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .logo-wrap .logo {
+    display: block;
+  }
+
+  /*
+   * The loader overlays the mark area (a square of `height` px at the left
+   * edge of the lockup). It is invisible by default and fades in on hover.
+   * Colors mirror the static logo's custom properties.
+   */
+  .logo__loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    --sd-loader-ink: var(--text-on-ink);
+    --sd-loader-green: var(--green);
+    transition: opacity var(--dur-fast) var(--ease-brand);
+  }
+
+  /* Fade out the static mark so the loader is not double-drawn. */
+  .logo--interactive :global(.lockup__mark) {
+    transition: opacity var(--dur-fast) var(--ease-brand);
+  }
+
+  :global(a:hover) > .logo-wrap .logo__loader,
+  :global(a:focus-visible) > .logo-wrap .logo__loader {
+    opacity: 1;
+  }
+
+  :global(a:hover) > .logo-wrap .logo--interactive :global(.lockup__mark),
+  :global(a:focus-visible) > .logo-wrap .logo--interactive :global(.lockup__mark) {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo__loader { display: none; }
+    .logo--interactive :global(.lockup__mark) { transition: none; opacity: 1 !important; }
+  }
+</style>
+
+<script>
+  // Restart the SMIL loader animation from the beginning on every hover so it
+  // always plays from frame one rather than wherever it is in its loop.
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<SVGSVGElement>('.logo__loader').forEach((loader) => {
+      const link = loader.closest('a');
+      if (!link) return;
+      link.addEventListener('pointerenter', () => {
+        loader.querySelectorAll<SVGAnimateElement>('animate').forEach((a) => a.beginElement());
+      });
+    });
+  }
+</script>

@@ -1,0 +1,134 @@
+---
+import Button from './Button.astro';
+import Eyebrow from './Eyebrow.astro';
+import ProjectFlow from './ProjectFlow.astro';
+import { useTranslations, type Locale } from '../lib/i18n';
+import { path } from '../lib/routes';
+import { productCounts } from '../lib/products';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+/*
+ * Audit D01: the reference design claims six products in production while the
+ * data says four are live and two are in development. The stat is derived from
+ * the status field, so it cannot drift from the data.
+ *
+ * It is shown as a floor ("4+") rather than an exact total: Sousa Dev runs more
+ * in production than the six products catalogued on this site, so a bare "4"
+ * would understate it while any specific larger number would be unverifiable
+ * from the data. The catalogue's own exact counts stay exact on /products.
+ */
+const stats = [
+  { value: `${productCounts.live}+`, label: t.hero.stat1 },
+  { value: t.hero.stat2Value, label: t.hero.stat2 },
+  { value: t.hero.stat3Value, label: t.hero.stat3 },
+];
+---
+
+<section class="hero">
+  <div class="texture"></div>
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <Eyebrow>{t.hero.eyebrow}</Eyebrow>
+      <h1 class="hero__title">
+        {t.hero.title1} <span class="hero__title-accent">{t.hero.title2}</span>
+      </h1>
+      <p class="hero__sub lead">{t.hero.sub}</p>
+      <div class="hero__actions">
+        <Button href={path(locale, 'contact')} size="lg">{t.cta}</Button>
+        <Button href={path(locale, 'products')} variant="secondary" size="lg">
+          {t.hero.secondary}
+        </Button>
+      </div>
+      <dl class="hero__stats">
+        {
+          stats.map((stat) => (
+            <div class="hero__stat">
+              <dd class="hero__stat-value">{stat.value}</dd>
+              <dt class="hero__stat-label label label--sm">{stat.label}</dt>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+    <div class="hero__panel">
+      <ProjectFlow locale={locale} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; overflow: hidden; }
+
+  .hero__inner {
+    position: relative;
+    padding-block: var(--s-hero-top) 96px;
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--s-9);
+    align-items: center;
+  }
+
+  .hero__text {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .hero__title { margin: 0; }
+  .hero__title-accent { color: var(--green); }
+
+  .hero__sub { max-width: 560px; }
+
+  .hero__actions {
+    display: flex;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+    padding-top: var(--s-1);
+  }
+
+  .hero__stats {
+    display: flex;
+    gap: var(--s-7);
+    flex-wrap: wrap;
+    padding-top: var(--s-5);
+    margin-top: var(--s-2);
+    border-top: 1px solid var(--rule);
+  }
+
+  .hero__stat { display: flex; flex-direction: column; gap: 2px; }
+
+  .hero__stat-value {
+    font-family: var(--font-display);
+    font-size: var(--text-stat);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  @media (max-width: 1023px) {
+    .hero__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-8);
+      padding-block: var(--s-9) var(--s-9);
+    }
+  }
+
+  @media (max-width: 639px) {
+    .hero__inner { padding-block: 40px var(--s-7); gap: var(--s-7); }
+    .hero__text { gap: var(--s-5); }
+    .hero__actions { flex-direction: column; }
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s-3);
+    }
+    .hero__stat-value { font-size: var(--text-stat-mobile); }
+  }
+</style>

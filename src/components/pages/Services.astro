@@ -1,0 +1,174 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import CTABlock from '../CTABlock.astro';
+import { useTranslations, type Locale } from '../../lib/i18n';
+import { services } from '../../lib/services';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<section class="intro">
+  <div class="texture"></div>
+  <div class="container intro__inner">
+    <Eyebrow>{t.services.eyebrow}</Eyebrow>
+    <h1>{t.services.pageHeading}</h1>
+    <p class="lead">{t.services.pageSub}</p>
+    <nav class="intro__jump" aria-label={t.services.pageTitle}>
+      <ul>
+        {
+          services.map((service) => (
+            <li>
+              <a href={`#${service.slug}`}>
+                <span class="intro__jump-num">{service.num}</span>
+                {service.title[locale]}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>
+
+{
+  services.map((service, index) => (
+    <section
+      class:list={['service-section', index % 2 === 1 && 'service-section--alt']}
+      id={service.slug}
+      aria-labelledby={`${service.slug}-heading`}
+    >
+      <div class="container service-section__inner">
+        <div class="service-section__head">
+          <Eyebrow num={service.num}>{service.tags[locale]}</Eyebrow>
+          <h2 id={`${service.slug}-heading`}>{service.title[locale]}</h2>
+          <p class="lead">{service.lead[locale]}</p>
+        </div>
+        <div class="service-section__lists">
+          <div class="service-section__list">
+            <h3 class="label label--sm">{t.services.includesLabel}</h3>
+            <ul>
+              {service.includes[locale].map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+          <div class="service-section__list">
+            <h3 class="label label--sm">{t.services.deliverablesLabel}</h3>
+            <ul>
+              {service.deliverables[locale].map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))
+}
+
+<section class="section section--rule runs">
+  <div class="container">
+    <h2 class="label label--sm runs__label">{t.services.runsLabel}</h2>
+    <p class="lead measure">{t.services.runsCopy}</p>
+  </div>
+</section>
+
+<CTABlock locale={locale} />
+
+<style>
+  .intro { position: relative; overflow: hidden; }
+  .intro__inner {
+    position: relative;
+    padding-block: var(--s-9) var(--s-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+  }
+  .intro__inner h1 { max-width: 900px; }
+  .intro__inner .lead { max-width: 640px; }
+
+  .intro__jump ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-top: var(--s-2);
+  }
+  .intro__jump a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-pill);
+    padding: 8px 14px;
+    font-size: var(--text-small);
+    color: var(--body-dark);
+    min-height: var(--tap-min);
+    transition: border-color var(--dur-fast) var(--ease-brand), color var(--dur-fast) var(--ease-brand);
+  }
+  .intro__jump a:hover { border-color: var(--green); color: var(--text-on-ink); }
+  .intro__jump-num {
+    font-family: var(--font-mono);
+    font-size: var(--text-label-sm);
+    color: var(--signal);
+  }
+
+  .service-section { border-top: 1px solid var(--rule); scroll-margin-top: calc(var(--nav-h) + var(--s-5)); }
+  .service-section--alt { background: var(--graphite); }
+
+  .service-section__inner {
+    padding-block: var(--s-9);
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--s-9);
+    align-items: start;
+  }
+
+  .service-section__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+  .service-section__head .lead { font-size: var(--text-lead-section); }
+
+  .service-section__lists {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-7);
+  }
+
+  .service-section__list ul {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--s-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    font-size: var(--text-ui);
+    color: var(--body-dark);
+  }
+  .service-section__list li { padding-left: var(--s-4); position: relative; }
+  .service-section__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 6px;
+    height: 2px;
+    background: var(--green);
+  }
+
+  .runs__label { margin-bottom: var(--s-3); }
+
+  @media (max-width: 1023px) {
+    .service-section__inner { grid-template-columns: minmax(0, 1fr); gap: var(--s-7); }
+  }
+
+  @media (max-width: 639px) {
+    .intro__inner { padding-block: var(--s-7) var(--s-7); }
+    .service-section__inner { padding-block: var(--section-pad-mobile); }
+    .service-section__lists { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
+  }
+</style>

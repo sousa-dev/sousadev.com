@@ -1,0 +1,184 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import ProductCard from '../ProductCard.astro';
+import CTABlock from '../CTABlock.astro';
+import { useTranslations, fill, type Locale } from '../../lib/i18n';
+import { products, productCounts } from '../../lib/products';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+// Counts come from the data, so the labels cannot contradict the cards.
+const filters = [
+  { value: 'all', label: t.products.filterAll, count: productCounts.all },
+  { value: 'live', label: t.products.filterLive, count: productCounts.live },
+  { value: 'in-development', label: t.products.filterDev, count: productCounts.inDevelopment },
+];
+const summary = [
+  fill(t.products.countAll, { n: productCounts.all }),
+  fill(t.products.countLive, { n: productCounts.live }),
+  fill(t.products.countDev, { n: productCounts.inDevelopment }),
+].join(' · ');
+---
+
+<section class="intro">
+  <div class="texture"></div>
+  <div class="container intro__inner">
+    <Eyebrow>{t.products.eyebrow}</Eyebrow>
+    <h1>{t.products.title}</h1>
+    <p class="lead">{t.products.pageSub}</p>
+    <p class="intro__count label label--sm">{summary}</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="catalogue-heading">
+  <div class="container">
+    <h2 class="visually-hidden" id="catalogue-heading">{t.products.pageTitle}</h2>
+
+    <!--
+      Filtering is a set of same-page links that work without JavaScript: each
+      one targets the matching anchor-labelled group. With JavaScript the group
+      headings stay and the list is filtered in place, announced politely.
+    -->
+    <div class="filter" role="group" aria-label={t.products.filterLabel} data-product-filter>
+      {
+        filters.map((filter, index) => (
+          <button
+            type="button"
+            class="filter__btn"
+            data-filter-value={filter.value}
+            aria-pressed={index === 0 ? 'true' : 'false'}
+          >
+            {filter.label}
+            <span class="filter__count">{filter.count}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <p class="filter__status visually-hidden" role="status" aria-live="polite" data-filter-status></p>
+
+    <ul class="catalogue" data-product-catalogue>
+      {
+        products.map((product, index) => (
+          <li class="catalogue__item" data-status={product.status}>
+            <ProductCard locale={locale} product={product} headingLevel="h3" priority={index === 0} />
+          </li>
+        ))
+      }
+    </ul>
+    <p class="catalogue__empty" data-filter-empty hidden>{t.products.empty}</p>
+  </div>
+</section>
+
+<CTABlock locale={locale} />
+
+<style>
+  .intro { position: relative; overflow: hidden; }
+  .intro__inner {
+    position: relative;
+    padding-block: var(--s-9) var(--s-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+  }
+  .intro__inner h1 { max-width: 900px; }
+  .intro__inner .lead { max-width: 640px; }
+  .intro__count { color: var(--label-dark); }
+
+  .filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin-bottom: var(--s-7);
+  }
+
+  .filter__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-pill);
+    color: var(--body-dark);
+    font-size: var(--text-small);
+    font-weight: 500;
+    padding: 9px 16px;
+    min-height: var(--tap-min);
+    cursor: pointer;
+    transition: border-color var(--dur-fast) var(--ease-brand), color var(--dur-fast) var(--ease-brand);
+  }
+  .filter__btn:hover { border-color: var(--green); color: var(--text-on-ink); }
+  .filter__btn[aria-pressed='true'] {
+    border-color: var(--green);
+    background: var(--graphite);
+    color: var(--text-on-ink);
+  }
+
+  .filter__count {
+    font-family: var(--font-mono);
+    font-size: var(--text-label-sm);
+    color: var(--label-dark);
+  }
+
+  .catalogue {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* Every row the same height, so all cards are the same size whatever the
+       length of their descriptions. */
+    grid-auto-rows: 1fr;
+    gap: var(--s-5);
+  }
+  .catalogue__item[hidden] { display: none; }
+
+  .catalogue__empty {
+    color: var(--body-dark);
+    font-size: var(--text-ui);
+    padding-top: var(--s-5);
+  }
+  .catalogue__empty[hidden] { display: none; }
+
+  @media (max-width: 1023px) {
+    .catalogue { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 639px) {
+    .intro__inner { padding-block: var(--s-7); }
+    .catalogue { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
+
+<script>
+  // Accessible in-place filtering. Without this script every product is listed.
+  document.querySelectorAll<HTMLElement>('[data-product-filter]').forEach((group) => {
+    const scope = group.closest('section');
+    const catalogue = scope?.querySelector<HTMLElement>('[data-product-catalogue]');
+    const status = scope?.querySelector<HTMLElement>('[data-filter-status]');
+    const empty = scope?.querySelector<HTMLElement>('[data-filter-empty]');
+    if (!catalogue) return;
+
+    const buttons = Array.from(group.querySelectorAll<HTMLButtonElement>('[data-filter-value]'));
+    const items = Array.from(catalogue.querySelectorAll<HTMLElement>('[data-status]'));
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const value = button.dataset.filterValue ?? 'all';
+        buttons.forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
+        let shown = 0;
+        items.forEach((item) => {
+          const match = value === 'all' || item.dataset.status === value;
+          item.hidden = !match;
+          if (match) shown += 1;
+        });
+        if (empty) empty.hidden = shown > 0;
+        if (status) status.textContent = `${button.textContent?.trim() ?? ''}: ${shown}`;
+      });
+    });
+  });
+</script>

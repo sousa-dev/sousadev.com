@@ -1,0 +1,92 @@
+[
+  {
+    "name": "São Miguel Bus",
+    "url": "https://saomiguelbus.com",
+    "domain": "saomiguelbus.com",
+    "status": "live",
+    "description": {
+      "en": "Live bus routes and timetables for São Miguel island.",
+      "pt": "Rotas e horários de autocarro em tempo real para São Miguel."
+    },
+    "image": "/images/products/saomiguelbus-com.webp",
+    "alt": {
+      "en": "Screenshot of the São Miguel Bus landing page",
+      "pt": "Captura de ecrã da página inicial do São Miguel Bus"
+    }
+  },
+  {
+    "name": "Your GenLab",
+    "url": "https://yourgenlab.com",
+    "domain": "yourgenlab.com",
+    "status": "live",
+    "description": {
+      "en": "Generative-AI tooling for teams that ship.",
+      "pt": "Ferramentas de IA generativa para equipas que desenvolvem produtos."
+    },
+    "image": "/images/products/yourgenlab-com.webp",
+    "alt": {
+      "en": "Screenshot of the Your GenLab landing page",
+      "pt": "Captura de ecrã da página inicial do Your GenLab"
+    }
+  },
+  {
+    "name": "djast.dev",
+    "url": "https://djast.dev",
+    "domain": "djast.dev",
+    "status": "live",
+    "description": {
+      "en": "A paid agentic boilerplate for developers.",
+      "pt": "Uma base de projeto paga para programadores desenvolverem software com agentes de IA."
+    },
+    "image": "/images/products/djast-dev.webp",
+    "alt": {
+      "en": "Screenshot of the djast.dev landing page",
+      "pt": "Captura de ecrã da página inicial do djast.dev"
+    }
+  },
+  {
+    "name": "Bluesky Copilot",
+    "url": "https://bskycopilot.com",
+    "domain": "bskycopilot.com",
+    "status": "live",
+    "description": {
+      "en": "Scheduling and analytics for Bluesky.",
+      "pt": "Agendamento de publicações e análise de resultados no Bluesky."
+    },
+    "image": "/images/products/bskycopilot-com.webp",
+    "alt": {
+      "en": "Screenshot of the Bluesky Copilot landing page",
+      "pt": "Captura de ecrã da página inicial do Bluesky Copilot"
+    }
+  },
+  {
+    "name": "Kunopilot",
+    "url": "https://kunopilot.com",
+    "domain": "kunopilot.com",
+    "status": "in-development",
+    "description": {
+      "en": "Draft, schedule and post across Bluesky, Threads and X from one composer, with an AI copilot grounded in your own history.",
+      "pt": "Escreva, agende e publique no Bluesky, Threads e X num único editor, com um assistente de IA que usa o seu histórico como referência."
+    },
+    "image": "/images/products/kunopilot-com.webp",
+    "alt": {
+      "en": "Screenshot of the Kunopilot landing page",
+      "pt": "Captura de ecrã da página inicial do Kunopilot"
+    }
+  },
+  {
+    "name": "AIssue",
+    "url": "https://aissue.yourgenlab.com",
+    "domain": "aissue.yourgenlab.com",
+    "status": "in-development",
+    "description": {
+      "en": "AI error resolution: turns stack traces into root causes and fixes in seconds, with a one-line integration.",
+      "pt": "Resolução de erros com IA: analisa rastos de execução, identifica a origem dos problemas e sugere correções. Integração com uma linha de código."
+    },
+    "image": "/images/products/aissue-yourgenlab-com.webp",
+    "alt": {
+      "en": "Screenshot of the AIssue landing page",
+      "pt": "Captura de ecrã da página inicial do AIssue"
+    }
+  }
+]

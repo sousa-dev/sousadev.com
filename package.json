@@ -1,0 +1,47 @@
+{
+  "name": "sousadev-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "sousadev.com company website (Astro, static output, EN/PT)",
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "node scripts/sync-fonts.mjs && node scripts/normalize-logos.mjs && astro build && node scripts/copy-legacy-routes.mjs",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "check:content": "node scripts/check-content.mjs",
+    "check:copy": "node scripts/check-copy-rules.mjs",
+    "check:tokens": "node scripts/check-tokens.mjs",
+    "check:handoff": "python3 scripts/audit_handoff.py",
+    "fonts": "node scripts/sync-fonts.mjs",
+    "verify": "npm run check:tokens && npm run check:content && npm run check:copy && npm run check && npm run test:server && npm run build && npm run check:output",
+    "check:output": "node scripts/check-output.mjs",
+    "test:browser": "node scripts/browser-checks.mjs",
+    "test:a11y": "node scripts/a11y-check.mjs",
+    "og": "node scripts/build-og-images.mjs",
+    "logos": "node scripts/normalize-logos.mjs",
+    "test:lighthouse": "node scripts/lighthouse-check.mjs",
+    "test:server": "node --test \"server/**/*.test.mjs\"",
+    "shots": "node scripts/build-product-shots.mjs"
+  },
+  "dependencies": {
+    "astro": "7.3.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.4",
+    "@axe-core/playwright": "4.11.1",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/ibm-plex-sans": "5.3.0",
+    "@fontsource/space-grotesk": "5.3.0",
+    "axe-core": "4.11.1",
+    "lighthouse": "^13.5.0",
+    "playwright": "1.56.1",
+    "sharp": "^0.35.4",
+    "typescript": "5.9.2"
+  }
+}

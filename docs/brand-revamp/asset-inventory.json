@@ -1,0 +1,528 @@
+{
+  "schema_version": 1,
+  "root": "lda",
+  "files": [
+    {
+      "path": "lda/CLAUDE.md",
+      "category": "handoff-instructions",
+      "bytes": 1973,
+      "sha256": "545fad38a4a40f3f98961bfd580d8622a2dc1a7e4f311a740bb8efeaca5c813b"
+    },
+    {
+      "path": "lda/README.md",
+      "category": "handoff-instructions",
+      "bytes": 11264,
+      "sha256": "8255190015bd4b09e38ad458f55f197fc20c9d2f9ca89910b515763fb888422f"
+    },
+    {
+      "path": "lda/_src/Sousa Dev Brand Guidelines.dc.html",
+      "category": "design-source-only",
+      "bytes": 50098,
+      "sha256": "c583b8fa71aee191edec58d1d178faf47c6739969c8d3c981ae5a7b22813e3de"
+    },
+    {
+      "path": "lda/_src/Website Developer Spec.dc.html",
+      "category": "design-source-only",
+      "bytes": 33333,
+      "sha256": "5d03bc068431a2cef7a4b36f2668b46dd5a394e444f3ab45a9fa27664e42e4a4"
+    },
+    {
+      "path": "lda/_src/Website Homepage Mobile.dc.html",
+      "category": "design-source-only",
+      "bytes": 19078,
+      "sha256": "7ad6efcf04c17539ce73eed9fedcdf5aee568cf8c5e5c17c2078deb705abe36b"
+    },
+    {
+      "path": "lda/_src/Website Homepage.dc.html",
+      "category": "design-source-only",
+      "bytes": 35308,
+      "sha256": "e58f81ad2e472d2918f335a477327ded7d61d90414c211b3aca7849e9184ff53"
+    },
+    {
+      "path": "lda/_src/ios-frame.jsx",
+      "category": "design-source-only",
+      "bytes": 16507,
+      "sha256": "24642b887be3d26ab5d1ff445ad98c363cffd33746c539a117da570ac7b6eb54"
+    },
+    {
+      "path": "lda/_src/support.js",
+      "category": "design-source-only",
+      "bytes": 69150,
+      "sha256": "8fe7df74405f3c55f49b7249c74ea1397e65d07dea2b1bd3b4a489bec2e28cbe"
+    },
+    {
+      "path": "lda/brand-kit/README.md",
+      "category": "brand-asset-or-instructions",
+      "bytes": 530,
+      "sha256": "3fc30927fd95677ca88d9423c515d1340941e0cb084092b53e9ef7ae5d2d3030"
+    },
+    {
+      "path": "lda/brand-kit/Sousa Dev Brand Guidelines.html",
+      "category": "design-reference-only",
+      "bytes": 512907,
+      "sha256": "03e0d620ea8663339287aa04ce7ae4651a7ecb0b212b5416b4795233b29f38be",
+      "bundled_resources": {
+        "font/woff2": 19,
+        "text/javascript": 3
+      }
+    },
+    {
+      "path": "lda/brand-kit/email/README.md",
+      "category": "email-collateral",
+      "bytes": 512,
+      "sha256": "ea73ff43d31c8a09c605736208cc013230cd732978f0c96058b7b7c0b046e01b"
+    },
+    {
+      "path": "lda/brand-kit/email/mark-88.png",
+      "category": "email-collateral",
+      "bytes": 6991,
+      "sha256": "89574e6872060beead07be58d7092926b16687ee7a8ac2ca98b1eacde9f48c50",
+      "dimensions": [
+        88,
+        88
+      ]
+    },
+    {
+      "path": "lda/brand-kit/email/sousadev-signature-henrique.html",
+      "category": "email-collateral",
+      "bytes": 3702,
+      "sha256": "6afa0cf25b4b642f1f451be92a7c00c5b85a51b65f80ffce411051ebcb02e166"
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-16.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 6328,
+      "sha256": "528b463d09ad549bd64cf6e40a499f0c25db286915fdd0b4f42791bffd5f27c4",
+      "dimensions": [
+        16,
+        16
+      ]
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-180.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 9810,
+      "sha256": "d3dcffd59e9ccc2bfa7e3375439c0b3eb3dda8e1a1aa805ab64a7563faec8a17",
+      "dimensions": [
+        180,
+        180
+      ]
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-192.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 10099,
+      "sha256": "ff7d005f1981cfb7c658c338e66e4a47a39556b75defbf83e9313cfbc58644b6",
+      "dimensions": [
+        192,
+        192
+      ]
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-32.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 6682,
+      "sha256": "66c1eaf0eae7c86c14c6f03c0cc8ca880ad22a8d3f98548a20dc5e7c48f9869b",
+      "dimensions": [
+        32,
+        32
+      ]
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-48.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 6845,
+      "sha256": "a7e744b3fc96cc7d04686170c7edb0266d16002d1cee2074f28b91c5be97af6a",
+      "dimensions": [
+        48,
+        48
+      ]
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-512.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 20741,
+      "sha256": "19fc0839262051f3fc26259752acbff9b2dcfcafc14715d47792962b78907335",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-ink-16.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 6330,
+      "sha256": "13ea35363b7d32cb21066a66a92164c1ee7911af95d1f11ae6d3348e95aad0c4",
+      "dimensions": [
+        16,
+        16
+      ]
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-ink-180.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 9762,
+      "sha256": "78ae5105d75b587c6ac0c49224d3db19336a349d884e94ed9a95af2db6bc9b3a",
+      "dimensions": [
+        180,
+        180
+      ]
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-ink-192.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 10121,
+      "sha256": "70d0182541137bee1fa4113ded610a4c7647a3785de2b10ff35ec97b0114d3a0",
+      "dimensions": [
+        192,
+        192
+      ]
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-ink-32.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 6674,
+      "sha256": "42a0db9f1e5c75ecea8246daa8c49d6def1b9155565e28c55d978f221fc1a223",
+      "dimensions": [
+        32,
+        32
+      ]
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-ink-48.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 6847,
+      "sha256": "3b71dedd9bb7aada8d87e26629671edc55c1f86e935d3b05bea865df5b780a70",
+      "dimensions": [
+        48,
+        48
+      ]
+    },
+    {
+      "path": "lda/brand-kit/favicon/favicon-ink-512.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 20741,
+      "sha256": "d906c40515aeb6b45f2265509ccfe81b703a05d2fe4c11e5adaae0c668c07ea0",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "path": "lda/brand-kit/loader/README.md",
+      "category": "brand-asset-or-instructions",
+      "bytes": 563,
+      "sha256": "f587841ef89402254b640c627e229077e4b28d6ae7f612cb6403a40fde10fb3a"
+    },
+    {
+      "path": "lda/brand-kit/loader/embed-example.html",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8721,
+      "sha256": "97ad47cf2ca31d146afe2c4c55f0fc104657c6cd87ac2a9edb5c172b2c8b0776"
+    },
+    {
+      "path": "lda/brand-kit/loader/sousadev-loader.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8588,
+      "sha256": "b81c21bfdab8fa936962b14c8bad0f8260bed8a29f3f14cf4147dff4350a8dcd",
+      "viewBox": "0 0 120 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/app-icon/app-icon-green.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8214,
+      "sha256": "cf6d6778b1b9d324f2e334184cf510bc32ca398431ca35f90210205b222458f9",
+      "viewBox": "0 0 120 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/app-icon/app-icon-ink.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8214,
+      "sha256": "54dc4cc9ac40f642f6f4770e7e2fd11cf4d13183c90b477f2fb3299a566f9ca2",
+      "viewBox": "0 0 120 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/app-icon/app-icon-paper.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8214,
+      "sha256": "b635b41c0bc0d12577584fc2473e8bb2a117292ccc13f61513f6fcdc681b9198",
+      "viewBox": "0 0 120 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/app-icon/avatar-circle-ink.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8214,
+      "sha256": "581eaad47e0229e9dc447e4e7b1f7af0996ad5178cf41cb3d6c37d9638517d86",
+      "viewBox": "0 0 120 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/app-icon/avatar-circle-paper.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8214,
+      "sha256": "933fbbc25099ce96ae3ee094fa51b3f065a56812ec79ad1bf783fbdb5857d66b",
+      "viewBox": "0 0 120 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/horizontal/horizontal-mono-ink.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 13277,
+      "sha256": "674a6cab46a70c70e24c984b4ab1b4de0d582d4d82a7437e97c92f1636220883",
+      "viewBox": "0 0 534.3152709359606 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/horizontal/horizontal-mono-paper.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 13277,
+      "sha256": "5703c2cff5279f5f3e1d462dc7f6a52ca2633129b4b49e0a1702ced5f99f1535",
+      "viewBox": "0 0 534.3152709359606 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/horizontal/horizontal-two-tone-on-dark.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 13277,
+      "sha256": "b43955365166d301a38f9d712e83da24f2ab60a4d49dc5841ba365a4d29dc6e4",
+      "viewBox": "0 0 534.3152709359606 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/horizontal/horizontal-two-tone-on-light.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 13277,
+      "sha256": "7c89f56637d59ff50640f8721a32f5c2ea07c7a1da42a56ac5ac0f91537083aa",
+      "viewBox": "0 0 534.3152709359606 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/mark/mark-mono-green.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8086,
+      "sha256": "353c794571de105633884c94e1ab0d6c29ed1bc08edfca53ecf68d1a6030fac0",
+      "viewBox": "0 0 120 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/mark/mark-mono-ink.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8086,
+      "sha256": "65a85b8897cbeb322c5f403caac737bd44354c5190ab3ee291c4919f09fdb0c2",
+      "viewBox": "0 0 120 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/mark/mark-mono-paper.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8086,
+      "sha256": "51d6670137c3520104b185ab48192ae3914df91cd6caef11c212af78bae46330",
+      "viewBox": "0 0 120 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/mark/mark-two-tone-on-dark.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8086,
+      "sha256": "284410037570d820e3f46a24d2194bb2991d54fe3b45716d186bd33e4e0e7450",
+      "viewBox": "0 0 120 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/mark/mark-two-tone-on-light.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 8086,
+      "sha256": "2501cd61a702a7deb051e5298b0f00ba4b83295e223d5caa5a01b99c649fb021",
+      "viewBox": "0 0 120 120"
+    },
+    {
+      "path": "lda/brand-kit/logo/mark/png/mark-mono-ink-1024.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 38435,
+      "sha256": "7947488e0939ba1c6f2076133a3101d4b605ceb349e1252ce4830690d72f3b17",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "lda/brand-kit/logo/mark/png/mark-mono-ink-256.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 9751,
+      "sha256": "3572a10b9e98ca4b1087ce4804f7ed1a0282d15fd5a7ba939c5e350dcfaf83f2",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "lda/brand-kit/logo/mark/png/mark-two-tone-on-dark-1024.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 38991,
+      "sha256": "a57060a350cb30b7dd3ab4e6a782596661c4e97b1490eb2d2471420f8cf0e571",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "lda/brand-kit/logo/mark/png/mark-two-tone-on-dark-256.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 9808,
+      "sha256": "4e4189bc578a12f273a3eaf271ef80a1a6ad06f14a0db072e8e8bbd5bef6041b",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "lda/brand-kit/logo/mark/png/mark-two-tone-on-light-1024.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 38766,
+      "sha256": "59a180d5cd5a243aad93a1d6d41b8081f883d334d0ff895284f3ce96dd966b9b",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    {
+      "path": "lda/brand-kit/logo/mark/png/mark-two-tone-on-light-256.png",
+      "category": "brand-asset-or-instructions",
+      "bytes": 9729,
+      "sha256": "1c4b090cdc4f2176b629b1d316823fa8e028db5e172eb92f5622ea441096b317",
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "lda/brand-kit/logo/stacked/stacked-mono-ink.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 13243,
+      "sha256": "baa934c1cc31313cba88a2b99554f520f5cffb7b41da2eddbde877245a45cd1a",
+      "viewBox": "0 0 276.8669950738916 210"
+    },
+    {
+      "path": "lda/brand-kit/logo/stacked/stacked-mono-paper.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 13243,
+      "sha256": "677c92f551bd89d44db589ab813a60cf6e4714fae679bd7cd191ba747abc4a6f",
+      "viewBox": "0 0 276.8669950738916 210"
+    },
+    {
+      "path": "lda/brand-kit/logo/stacked/stacked-two-tone-on-dark.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 13243,
+      "sha256": "8c786ab928f79369868f75590d36548b99ab6d98bfaeeb34573d966d48119588",
+      "viewBox": "0 0 276.8669950738916 210"
+    },
+    {
+      "path": "lda/brand-kit/logo/stacked/stacked-two-tone-on-light.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 13243,
+      "sha256": "500ec194672ee637394b59e78d41b8aacef57100448eb08971d1fac6734a0eee",
+      "viewBox": "0 0 276.8669950738916 210"
+    },
+    {
+      "path": "lda/brand-kit/logo/wordmark/wordmark-mono-ink.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 12973,
+      "sha256": "4b6474da03eb7f320bd1c9d6db6cd5163cdda3a50f2c935c5cdae3a2f136fa58",
+      "viewBox": "0 0 428.2857142857143 80"
+    },
+    {
+      "path": "lda/brand-kit/logo/wordmark/wordmark-mono-paper.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 12973,
+      "sha256": "c59825334bb66db69585c16e24c2964ea297ace639f6250c939bb8e67ee32e14",
+      "viewBox": "0 0 428.2857142857143 80"
+    },
+    {
+      "path": "lda/brand-kit/logo/wordmark/wordmark-two-tone-on-dark.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 12973,
+      "sha256": "cee812f97076c55f4cab037b873952ff899716d43b588c2a007d019806516519",
+      "viewBox": "0 0 428.2857142857143 80"
+    },
+    {
+      "path": "lda/brand-kit/logo/wordmark/wordmark-two-tone-on-light.svg",
+      "category": "brand-asset-or-instructions",
+      "bytes": 12973,
+      "sha256": "1afa874ab4809fb19dd2fc0a02556e70733610ed8ec0dc39ea62b2e0acb6d117",
+      "viewBox": "0 0 428.2857142857143 80"
+    },
+    {
+      "path": "lda/brand-kit/tokens.css",
+      "category": "brand-asset-or-instructions",
+      "bytes": 456,
+      "sha256": "13a5b170b5b45431e906c00acfaf9aebf93eef73a79eee2be35643e6f5a4b0d2"
+    },
+    {
+      "path": "lda/content/i18n/en.json",
+      "category": "content-source",
+      "bytes": 4892,
+      "sha256": "4b3b3ec96b33135cb71fd9c0682eddc1953ce406106a60ee44095b0963fa2fba"
+    },
+    {
+      "path": "lda/content/i18n/pt.json",
+      "category": "content-source",
+      "bytes": 5198,
+      "sha256": "bdf44f99a5adedbd9d398fcb0a3690fc93a7ff502e0657dd73cf5e5592032a2e"
+    },
+    {
+      "path": "lda/content/products.json",
+      "category": "content-source",
+      "bytes": 1993,
+      "sha256": "9fff510dcea5751d4e32776afd475e68cbc6401d915fe5f1f4aa1bcffe19209c"
+    },
+    {
+      "path": "lda/content/services.json",
+      "category": "content-source",
+      "bytes": 2000,
+      "sha256": "26230eb3d9163faa716770f821793e5e6788555dd3435041214267669c46367a"
+    },
+    {
+      "path": "lda/design/brand-guidelines.html",
+      "category": "design-reference-only",
+      "bytes": 512927,
+      "sha256": "1f254bec469244acdf3c66f0f2284669be11f1e4c9bb42d95c670d692a703793",
+      "bundled_resources": {
+        "font/woff2": 19,
+        "text/javascript": 3
+      }
+    },
+    {
+      "path": "lda/design/developer-spec.html",
+      "category": "design-reference-only",
+      "bytes": 492956,
+      "sha256": "d1f082e2fe721443af18d3e315bee180ea909689be31e4798414027c83da3039",
+      "bundled_resources": {
+        "font/woff2": 19,
+        "text/javascript": 3
+      }
+    },
+    {
+      "path": "lda/design/homepage-desktop.html",
+      "category": "design-reference-only",
+      "bytes": 495428,
+      "sha256": "6354e0489341aca4d010921f5a2c30834fd0557c9f4c2faf1af087a4293631b0",
+      "bundled_resources": {
+        "font/woff2": 19,
+        "text/javascript": 3
+      }
+    },
+    {
+      "path": "lda/design/homepage-mobile.html",
+      "category": "design-reference-only",
+      "bytes": 1374446,
+      "sha256": "4dd39e384458e163ac2b0a94f515831be95d90ad4275998d68aec71895b1fcee",
+      "bundled_resources": {
+        "application/javascript": 1,
+        "font/woff2": 19,
+        "text/javascript": 4
+      }
+    },
+    {
+      "path": "lda/tokens/tokens.css",
+      "category": "web-tokens",
+      "bytes": 1986,
+      "sha256": "a35c5d85a6cbc941c87cf7a8483e227cd32f55c770ee9a148559215378e49ec5"
+    },
+    {
+      "path": "lda/tokens/tokens.json",
+      "category": "web-tokens",
+      "bytes": 2026,
+      "sha256": "3dc66c5bc08cc4329984269980115a2abd5894e14a2879f066b2694b0a543135"
+    }
+  ]
+}

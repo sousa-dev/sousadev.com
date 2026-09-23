@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Privacy from '../../components/pages/Privacy.astro';
+import { useTranslations } from '../../lib/i18n';
+
+const locale = 'pt' as const;
+const t = useTranslations(locale);
+---
+
+<Base
+  locale={locale}
+  route="privacy"
+  title={t.seo.privacy.title}
+  description={t.seo.privacy.description}
+>
+  <Privacy locale={locale} />
+</Base>

@@ -1,0 +1,159 @@
+---
+import { useTranslations, type Locale } from '../lib/i18n';
+import type { Product } from '../lib/products';
+
+interface Props {
+  locale: Locale;
+  product: Product;
+  headingLevel?: 'h3' | 'h2';
+  /** Set on the first card of a page where the grid is above the fold, so its
+   *  screenshot is not lazy-loaded and does not become the LCP bottleneck. */
+  priority?: boolean;
+}
+
+const { locale, product, headingLevel: Heading = 'h3', priority = false } = Astro.props;
+const t = useTranslations(locale);
+const isLive = product.status === 'live';
+const statusLabel = isLive ? t.products.statusLive : t.products.statusDev;
+---
+
+<a
+  class="product"
+  href={product.url}
+  target="_blank"
+  rel="noopener"
+  data-status={product.status}
+>
+  <div class="product__preview">
+    {
+      product.image ? (
+        <img
+          class="product__shot"
+          src={product.image}
+          alt={product.alt[locale] ?? ''}
+          width="880"
+          height="416"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchpriority={priority ? 'high' : 'auto'}
+          decoding="async"
+        />
+      ) : (
+        /*
+         * No approved product screenshots have been supplied yet
+         * (docs/brand-revamp/LAUNCH.md). The card shows a plain brand plate
+         * rather than the reference design's mock browser window, which would
+         * be a fabricated screenshot.
+         */
+        <span class="product__plate" aria-hidden="true">
+          <img src="/logo/mark-mono-paper.svg" alt="" width="44" height="44" />
+        </span>
+      )
+    }
+  </div>
+  <div class="product__body">
+    <div class="product__head">
+      <Heading class="product__name">{product.name}</Heading>
+      <span class:list={['product__status', isLive ? 'is-live' : 'is-dev']}>{statusLabel}</span>
+    </div>
+    <p class="product__desc">{product.description[locale]}</p>
+    <p class="product__domain label label--sm">
+      {product.domain} ↗<span class="visually-hidden"> {t.products.visit}</span>
+    </p>
+  </div>
+</a>
+
+<style>
+  .product {
+    /* Fill the grid row: every card in a row ends at the same height, whatever
+       the length of its description. */
+    position: relative;
+    height: 100%;
+    background: var(--graphite);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-on-ink);
+    transition: border-color var(--dur-fast) var(--ease-brand);
+  }
+  .product:hover { border-color: var(--green); color: var(--text-on-ink); }
+
+  .product__preview {
+    height: 160px;
+    flex: 0 0 auto;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Only the placeholder plate is inset; a screenshot runs edge to edge. */
+  .product__preview:has(.product__plate) { padding: var(--s-5); }
+
+  .product__shot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Landing-page screenshots read from the top, not the middle. */
+    object-position: top center;
+    transition: transform var(--dur-fast) var(--ease-brand);
+  }
+  .product:hover .product__shot { transform: scale(1.02); }
+
+  .product__plate { opacity: 0.16; }
+
+  .product__body {
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    flex: 1;
+  }
+
+  .product__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .product__name {
+    font-family: var(--font-display);
+    font-size: var(--text-card-title);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .product__status {
+    font-family: var(--font-mono);
+    font-size: var(--text-label-sm);
+    letter-spacing: var(--track-label-sm);
+    border-radius: var(--r-pill);
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+  .product__status.is-live { color: var(--signal); border: 1px solid var(--status-live-border); }
+  .product__status.is-dev { color: var(--amber-on-ink); border: 1px solid var(--status-dev-border); }
+
+  .product__desc {
+    color: var(--body-dark);
+    font-size: var(--text-ui);
+    flex: 1;
+  }
+
+  .product__domain { padding-top: 6px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product:hover .product__shot { transform: none; }
+  }
+
+  @media (max-width: 639px) {
+    .product__preview { height: 132px; }
+    .product__body { padding: 18px; }
+    .product__name { font-size: 18px; }
+    .product__desc { font-size: var(--text-small); }
+  }
+</style>

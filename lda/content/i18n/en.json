@@ -1,0 +1,134 @@
+{
+  "nav": {
+    "services": "Services",
+    "process": "How we work",
+    "products": "Products",
+    "about": "About",
+    "insights": "Insights"
+  },
+  "cta": "Request a proposal",
+  "hero": {
+    "eyebrow": "Software engineering · Consulting · Systems architecture",
+    "title1": "Software your business can",
+    "title2": "depend on.",
+    "sub": "Sousa Dev designs, builds, deploys and runs the systems companies depend on. Custom software, architecture and IT consulting, end to end, with direct access to the engineer building it.",
+    "secondary": "See our products",
+    "stat1": "PRODUCTS IN PRODUCTION",
+    "stat2": "BASED · WORKING",
+    "stat3": "OWNERSHIP",
+    "diagramLabel": "HOW A PROJECT RUNS",
+    "covers": [
+      "DEVELOPMENT",
+      "DEPLOYMENT",
+      "HOSTING",
+      "MANAGEMENT"
+    ],
+    "steps": [
+      {
+        "title": "Meet and analyse",
+        "tag": "DISCOVERY",
+        "desc": "We sit down with you, understand the problem and what it costs you today."
+      },
+      {
+        "title": "Propose solutions",
+        "tag": "ARCHITECTURE",
+        "desc": "Options with trade-offs, a recommended path and a fixed quote."
+      },
+      {
+        "title": "Build",
+        "tag": "DEVELOPMENT",
+        "desc": "Working software on staging, reviewed with you as it grows."
+      },
+      {
+        "title": "Deliver end to end",
+        "tag": "OPERATE",
+        "desc": "Deployment, hosting and ongoing management. You get one accountable partner."
+      }
+    ]
+  },
+  "logos": "TRUSTED BY",
+  "services": {
+    "title": "Four things we focus on.",
+    "sub": "If what you need isn't here, we'll tell you, or find someone who does it well.",
+    "items": [
+      {
+        "num": "01",
+        "title": "Custom Software Solutions",
+        "desc": "Internal tools, platforms and integrations built to your process, not the other way around.",
+        "tags": "WEB · API · AUTOMATION"
+      },
+      {
+        "num": "02",
+        "title": "IT Consulting",
+        "desc": "Independent technical advice: audits, vendor selection, roadmaps and due diligence.",
+        "tags": "AUDIT · ROADMAP · DUE DILIGENCE"
+      },
+      {
+        "num": "03",
+        "title": "Systems Architecture",
+        "desc": "Designing systems that scale and survive: data models, infrastructure, security and cost.",
+        "tags": "CLOUD · DATA · SECURITY"
+      },
+      {
+        "num": "04",
+        "title": "Website Development",
+        "desc": "Fast, accessible, maintainable company sites and web apps. Measured, not guessed.",
+        "tags": "ASTRO · PERFORMANCE · SEO"
+      }
+    ]
+  },
+  "process": {
+    "title": "A process you can hold us to.",
+    "sub": "Every engagement follows the same four steps. You know the deliverable and the price before we write a line, and you talk to the engineer doing the work.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Discovery",
+        "desc": "We map the problem, the constraints and what success looks like in numbers.",
+        "out": "Scope & fixed quote"
+      },
+      {
+        "num": "02",
+        "title": "Architecture",
+        "desc": "Data model, integrations, infrastructure and risks, reviewed with your team.",
+        "out": "Technical design doc"
+      },
+      {
+        "num": "03",
+        "title": "Build",
+        "desc": "Regular demos on a staging environment. No surprises at the end.",
+        "out": "Working software"
+      },
+      {
+        "num": "04",
+        "title": "Run",
+        "desc": "Deployment, hosting and management. Documentation and training if you'd rather take over.",
+        "out": "Deploy, host, manage"
+      }
+    ]
+  },
+  "products": {
+    "title": "We run our own products too.",
+    "sub": "The people who build for you also ship and operate software with real users. That's how we know what breaks."
+  },
+  "about": {
+    "photo": "TEAM / WORKSPACE PHOTO\ndesaturated · cool cast",
+    "title": "Built in the Azores. Working globally.",
+    "p1": "Sousa Dev is an engineering company founded by Henrique Sousa. Wherever you are, you get a direct relationship with the people behind your project, starting with the founder and lead engineer himself.",
+    "p2": "No account managers, no hand-offs. The person who scopes your project is the one you call when something matters."
+  },
+  "contact": {
+    "title": "Tell us what you need to build.",
+    "sub": "Send a few lines about the problem. Your message goes straight to the lead engineer, not to a sales inbox.",
+    "name": "Name",
+    "email": "Work email",
+    "msg": "What are you building?",
+    "note": "DIRECT LINE TO THE LEAD ENGINEER · NDA ON REQUEST"
+  },
+  "footer": {
+    "tag": "Custom software, consulting and systems architecture, built, deployed and run end to end.",
+    "company": "COMPANY",
+    "contact": "CONTACT",
+    "privacy": "Privacy"
+  }
+}

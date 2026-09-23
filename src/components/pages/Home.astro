@@ -1,0 +1,155 @@
+---
+import Hero from '../Hero.astro';
+import LogoRow from '../LogoRow.astro';
+import SectionHead from '../SectionHead.astro';
+import ServiceCard from '../ServiceCard.astro';
+import ProcessStep from '../ProcessStep.astro';
+import ProductGrid from '../ProductGrid.astro';
+import CTABlock from '../CTABlock.astro';
+import Eyebrow from '../Eyebrow.astro';
+import { useTranslations, type Locale } from '../../lib/i18n';
+import { services } from '../../lib/services';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<Hero locale={locale} />
+
+<LogoRow locale={locale} />
+
+<section class="section" id="services" aria-labelledby="services-heading">
+  <div class="container">
+    <SectionHead
+      num="01"
+      eyebrow={t.nav.services}
+      title={t.services.title}
+      lead={t.services.sub}
+      id="services-heading"
+    />
+    <div class="cards">
+      {services.map((service) => <ServiceCard locale={locale} service={service} />)}
+    </div>
+  </div>
+</section>
+
+<section class="section on-paper" id="process" aria-labelledby="process-heading">
+  <div class="container">
+    <SectionHead
+      num="02"
+      eyebrow={t.nav.process}
+      title={t.process.title}
+      lead={t.process.sub}
+      variant="paper"
+      id="process-heading"
+    />
+    <div class="steps">
+      {
+        t.process.steps.map((step, index) => (
+          <ProcessStep num={step.num} title={step.title} desc={step.desc} out={step.out} first={index === 0} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section" id="products" aria-labelledby="products-heading">
+  <div class="container">
+    <SectionHead
+      num="03"
+      eyebrow={t.nav.products}
+      title={t.products.title}
+      lead={t.products.sub}
+      id="products-heading"
+    />
+    <ProductGrid locale={locale} />
+  </div>
+</section>
+
+<section class="section section--rule" id="about" aria-labelledby="about-heading">
+  <div class="container about">
+    <div class="about__head">
+      <Eyebrow num="04">{t.nav.about}</Eyebrow>
+      <h2 id="about-heading">{t.about.title}</h2>
+    </div>
+    <div class="about__body">
+      <p class="lead">{t.about.p1}</p>
+      <p class="about__p">{t.about.p2}</p>
+      <ul class="about__meta">
+        {t.about.meta.map((item) => <li class="label label--sm">{item}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<CTABlock locale={locale} />
+
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--s-6);
+  }
+
+  /*
+   * The reference puts a 4:3 photo in the left column. No approved company
+   * photography has been supplied (docs/brand-revamp/LAUNCH.md), and a labelled
+   * placeholder plate must not ship, so the section runs as a 5:7 text layout
+   * until the real photo exists.
+   */
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--s-9);
+    align-items: start;
+  }
+
+  .about__head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .about__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+  }
+
+  .about__p { color: var(--body-dark); }
+
+  .about__meta {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    padding-top: var(--s-2);
+  }
+
+  @media (max-width: 1023px) {
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-7); }
+    .about { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
+  }
+
+  @media (max-width: 639px) {
+    .cards { grid-template-columns: minmax(0, 1fr); border-radius: var(--r-lg); }
+    .steps { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .about__meta { gap: var(--s-3); flex-direction: column; }
+  }
+</style>

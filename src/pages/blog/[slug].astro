@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import Article from '../../components/pages/Article.astro';
+import { getArticles, getTranslation, articleSlug } from '../../lib/blog';
+import { articlePath, path, absolute } from '../../lib/routes';
+import { articleOgImage } from '../../lib/og';
+
+export async function getStaticPaths() {
+  const articles = await getArticles('en');
+  return articles.map((article) => ({
+    params: { slug: articleSlug(article) },
+    props: { article },
+  }));
+}
+
+const locale = 'en' as const;
+const { article } = Astro.props;
+const translation = await getTranslation(article, 'pt');
+const translatedSlug = translation ? articleSlug(translation) : undefined;
+
+// Only routes that exist are advertised: an untranslated article emits a single
+// hreflang and sends the language switch to the other language's index.
+const alternates = translatedSlug
+  ? [
+      { locale, href: articlePath(locale, articleSlug(article)) },
+      { locale: 'pt' as const, href: articlePath('pt', translatedSlug) },
+    ]
+  : [{ locale, href: articlePath(locale, articleSlug(article)) }];
+
+const ogImage = articleOgImage(locale, articleSlug(article), article.data.ogImage);
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.data.title,
+    description: article.data.description,
+    datePublished: article.data.pubDate.toISOString(),
+    ...(article.data.updatedDate ? { dateModified: article.data.updatedDate.toISOString() } : {}),
+    inLanguage: locale,
+    image: absolute(ogImage),
+    mainEntityOfPage: absolute(articlePath(locale, articleSlug(article))),
+    publisher: { '@type': 'Organization', name: 'Sousa Dev' },
+  },
+];
+---
+
+<Base
+  locale={locale}
+  route="blog"
+  canonical={articlePath(locale, articleSlug(article))}
+  langHref={translatedSlug ? articlePath('pt', translatedSlug) : path('pt', 'blog')}
+  alternates={alternates}
+  title={`${article.data.title}, Sousa Dev`}
+  description={article.data.description}
+  ogImage={ogImage}
+  structuredData={structuredData}
+>
+  <Article locale={locale} article={article} untranslated={!translatedSlug} />
+</Base>

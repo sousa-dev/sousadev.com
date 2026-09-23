@@ -1,0 +1,106 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import CTABlock from '../CTABlock.astro';
+import { useTranslations, type Locale } from '../../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+/*
+ * Legacy legal documents kept at their original URLs. The Cloud Identifier pair
+ * covers a separate product and must never redirect to this page
+ * (docs/brand-revamp/LAUNCH.md).
+ */
+const legacyDocuments = [
+  { href: '/terms-and-conditions.html', label: 'Terms and conditions' },
+  { href: '/privacy-policy.html', label: 'Privacy policy (2024)' },
+  { href: '/cloud-identifier-privacy-policy.html', label: 'Cloud Identifier privacy policy' },
+  { href: '/cloud-identifier-tos.html', label: 'Cloud Identifier terms of service' },
+];
+---
+
+<section class="doc">
+  <div class="container doc__inner">
+    <div class="doc__head">
+      <Eyebrow>{t.privacy.title}</Eyebrow>
+      <h1>{t.privacy.title}</h1>
+      <p class="lead">{t.privacy.sub}</p>
+    </div>
+
+    <!--
+      Honest interim notice. The owner-supplied EN/PT policy is a launch
+      dependency; nothing below is presented as the final legal text.
+    -->
+    <p class="doc__notice">{t.privacy.pending}</p>
+
+    <div class="doc__body measure">
+      {
+        t.privacy.sections.map((section) => (
+          <section class="doc__section">
+            <h2>{section.title}</h2>
+            <p>{section.body}</p>
+          </section>
+        ))
+      }
+      <section class="doc__section">
+        <h2>{t.privacy.processorsTitle}</h2>
+        <p>{t.privacy.processorsPending}</p>
+      </section>
+      <section class="doc__section">
+        <h2>{t.privacy.otherDocs}</h2>
+        <ul class="doc__list">
+          {legacyDocuments.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </section>
+    </div>
+  </div>
+</section>
+
+<CTABlock locale={locale} />
+
+<style>
+  .doc__inner {
+    padding-block: var(--s-9) var(--s-9);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-7);
+  }
+
+  .doc__head { display: flex; flex-direction: column; gap: var(--s-4); }
+
+  .doc__notice {
+    border: 1px solid var(--status-dev-border);
+    border-radius: var(--r-md);
+    background: var(--graphite);
+    color: var(--body-dark);
+    padding: var(--s-4) var(--s-5);
+    font-size: var(--text-ui);
+    max-width: var(--container-text);
+  }
+
+  .doc__body { display: flex; flex-direction: column; gap: var(--s-7); }
+  .doc__section h2 {
+    font-size: var(--text-h3);
+    font-weight: 600;
+    margin-bottom: var(--s-3);
+  }
+  .doc__section p { color: var(--body-dark); font-size: var(--text-ui); }
+
+  .doc__list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    font-size: var(--text-ui);
+  }
+  .doc__list a { color: var(--signal); }
+
+  @media (max-width: 639px) {
+    .doc__inner { padding-block: var(--s-7); }
+  }
+</style>

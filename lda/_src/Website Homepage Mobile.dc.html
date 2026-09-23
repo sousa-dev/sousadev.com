@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#0A1014"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#0A1014"/><g transform="translate(60 60) scale(0.6) translate(-60 -60)"><path d="M58 20 L26 52 L58 84" fill="none" stroke="#F6F8F7" stroke-width="16" stroke-linejoin="miter"/><path d="M62 36 L94 68 L62 100" fill="none" stroke="#0FA347" stroke-width="16" stroke-linejoin="miter"/></g></svg></template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#0E1519; }
+  .sd-mark { --s:#F6F8F7; --d:#0FA347; transition: transform .6s cubic-bezier(.65,0,.35,1); }
+  .sd-mark path { transition: stroke .6s cubic-bezier(.65,0,.35,1); }
+  .sd-mark path:first-child { stroke: var(--s); }
+  .sd-mark path:last-child { stroke: var(--d); }
+  .sd-mark:hover { transform: rotate(180deg); --s:#0FA347; --d:#F6F8F7; }
+  a { color:#F6F8F7; text-decoration:none; }
+  a:hover { color:#37D97A; }
+</style>
+</helmet>
+<div style="background:#0E1519;min-height:100vh;padding:48px 24px;display:flex;flex-wrap:wrap;gap:40px;justify-content:center;align-items:flex-start;font-family:'IBM Plex Sans',system-ui,sans-serif">
+
+  <!-- Screen 1: top of page -->
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="393px,852px" dark="{{ true }}">
+    <div data-screen-label="Mobile · Hero" style="background:#0A1014;color:#F6F8F7;min-height:100%;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
+      <div style="height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid #1A2227;position:sticky;top:0;background:rgba(10,16,20,0.9);backdrop-filter:blur(10px)">
+        <div style="display:flex;align-items:center;gap:10px"><svg class="sd-mark" viewBox="0 0 120 120" width="28" height="28"><path d="M58 20 L26 52 L58 84" fill="none" strokeWidth="16" strokeLinejoin="miter"></path><path d="M62 36 L94 68 L62 100" fill="none" strokeWidth="16" strokeLinejoin="miter"></path></svg><span style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:500;letter-spacing:0.02em">Sousa <span style="font-weight:700;color:#0FA347">Dev</span></span></div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="border:1px solid #2A3439;color:#AFBDBE;border-radius:6px;padding:5px 8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em">EN</div>
+          <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#F6F8F7" strokeWidth="1.5"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></div>
+        </div>
+      </div>
+      <div style="padding:40px 20px 32px;display:flex;flex-direction:column;gap:20px;position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#0FA347 0 2px,transparent 2px 14px);opacity:0.05;pointer-events:none"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#37D97A;position:relative">SOFTWARE · CONSULTING · ARCHITECTURE</div>
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-size:40px;line-height:1.0;font-weight:500;letter-spacing:-0.03em;margin:0;position:relative;text-wrap:pretty">Software your business can <span style="color:#0FA347">depend on.</span></h1>
+        <p style="margin:0;font-size:17px;line-height:1.5;color:#AFBDBE;position:relative;text-wrap:pretty">Custom software, architecture and IT consulting, built, deployed and run end to end. Direct access to the engineer building it.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;position:relative">
+          <a href="#" style="background:#0FA347;color:#0A1014;font-weight:600;font-size:16px;padding:15px;border-radius:8px;text-align:center;min-height:48px;box-sizing:border-box">Request a proposal</a>
+          <a href="#" style="border:1px solid #2A3439;color:#F6F8F7;font-weight:600;font-size:16px;padding:15px;border-radius:8px;text-align:center;min-height:48px;box-sizing:border-box">See our products</a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-top:20px;border-top:1px solid #1A2227;position:relative">
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:500;letter-spacing:-0.02em">6</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#8FA3A8">PRODUCTS LIVE</div></div>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:500;letter-spacing:-0.02em">Global</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#8FA3A8">WORKING</div></div>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:500;letter-spacing:-0.02em">End to end</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#8FA3A8">OWNERSHIP</div></div>
+        </div>
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;position:relative">
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8FA3A8">HOW A PROJECT RUNS</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#37D97A">02 / 04</div></div>
+          <div style="display:flex;flex-direction:column">
+            <div style="display:grid;grid-template-columns:24px 1fr;gap:12px"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:12px;height:12px;border-radius:50%;background:#0FA347;margin-top:4px"></div><div style="width:2px;flex:1;min-height:20px;background:#0FA347"></div></div><div style="padding-bottom:14px"><div style="display:flex;justify-content:space-between;gap:8px"><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600">Meet and analyse</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#8FA3A8">DISCOVERY</div></div><div style="font-size:13px;color:#AFBDBE;line-height:1.45">We understand the problem and what it costs you today.</div></div></div>
+            <div style="display:grid;grid-template-columns:24px 1fr;gap:12px"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:12px;height:12px;border-radius:50%;border:2px solid #0FA347;background:#0A1014;box-sizing:border-box;margin-top:4px"></div><div style="width:2px;flex:1;min-height:20px;background:#2A3439"></div></div><div style="padding-bottom:14px"><div style="display:flex;justify-content:space-between;gap:8px"><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:#37D97A">Propose solutions</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#37D97A">ARCHITECTURE</div></div><div style="font-size:13px;color:#AFBDBE;line-height:1.45">Options with trade-offs, a recommended path, a fixed quote.</div></div></div>
+            <div style="display:grid;grid-template-columns:24px 1fr;gap:12px;opacity:0.45"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:12px;height:12px;border-radius:50%;border:2px solid #2A3439;background:#111A1E;box-sizing:border-box;margin-top:4px"></div><div style="width:2px;flex:1;min-height:20px;background:#2A3439"></div></div><div style="padding-bottom:14px"><div style="display:flex;justify-content:space-between;gap:8px"><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600">Build</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#8FA3A8">DEVELOPMENT</div></div><div style="font-size:13px;color:#AFBDBE;line-height:1.45">Working software on staging, reviewed with you.</div></div></div>
+            <div style="display:grid;grid-template-columns:24px 1fr;gap:12px;opacity:0.45"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:12px;height:12px;border-radius:50%;border:2px solid #2A3439;background:#111A1E;box-sizing:border-box;margin-top:4px"></div></div><div><div style="display:flex;justify-content:space-between;gap:8px"><div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600">Deliver end to end</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#8FA3A8">OPERATE</div></div><div style="font-size:13px;color:#AFBDBE;line-height:1.45">Deployment, hosting and ongoing management.</div></div></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;border-top:1px solid #1E272C;padding-top:12px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#F6F8F7;border:1px solid #2A3439;border-radius:999px;padding:4px 8px">DEVELOPMENT</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#F6F8F7;border:1px solid #2A3439;border-radius:999px;padding:4px 8px">DEPLOYMENT</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#F6F8F7;border:1px solid #2A3439;border-radius:999px;padding:4px 8px">HOSTING</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#F6F8F7;border:1px solid #2A3439;border-radius:999px;padding:4px 8px">MANAGEMENT</div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:20px;border-top:1px solid #1A2227;border-bottom:1px solid #1A2227;display:flex;flex-direction:column;gap:14px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8FA3A8">TRUSTED BY</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <div style="height:32px;border:1px dashed #2A3439;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:#5C6F77">LOGO</div>
+          <div style="height:32px;border:1px dashed #2A3439;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:#5C6F77">LOGO</div>
+          <div style="height:32px;border:1px dashed #2A3439;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.1em;color:#5C6F77">LOGO</div>
+        </div>
+      </div>
+      <div style="padding:40px 20px;display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#0FA347">01 / SERVICES</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:30px;line-height:1.05;font-weight:500;letter-spacing:-0.025em;margin:0">Four things we focus on.</h2>
+        <div style="display:flex;flex-direction:column;gap:1px;background:#1E272C;border:1px solid #1E272C;border-radius:14px;overflow:hidden">
+          <div style="background:#0A1014;padding:20px;display:flex;flex-direction:column;gap:8px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#37D97A">01</div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600">Custom Software Solutions</div><div style="color:#AFBDBE;font-size:14px">Internal tools, platforms and integrations built to your process.</div></div>
+          <div style="background:#0A1014;padding:20px;display:flex;flex-direction:column;gap:8px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#37D97A">02</div><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600">IT Consulting</div><div style="color:#AFBDBE;font-size:14px">Audits, vendor selection, roadmaps and due diligence.</div></div>
+        </div>
+      </div>
+    </div>
+  </x-import>
+
+  <!-- Screen 2: process + products + CTA -->
+  <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" hint-size="393px,852px" dark="{{ true }}">
+    <div data-screen-label="Mobile · Products & CTA" style="background:#0A1014;color:#F6F8F7;min-height:100%;font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
+      <div style="background:#F6F8F7;color:#0A1014;padding:40px 20px;display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#08662F">02 / HOW WE WORK</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:30px;line-height:1.05;font-weight:500;letter-spacing:-0.025em;margin:0">A process you can hold us to.</h2>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div style="display:grid;grid-template-columns:48px 1fr;gap:12px;padding-top:14px;border-top:2px solid #0A1014"><div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.03em">01</div><div><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600">Discovery</div><div style="color:#3D4A4F;font-size:14px">Scope, constraints, success in numbers.</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#08662F;margin-top:6px">→ SCOPE &amp; FIXED QUOTE</div></div></div>
+          <div style="display:grid;grid-template-columns:48px 1fr;gap:12px;padding-top:14px;border-top:1px solid #C3CECB"><div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.03em">02</div><div><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600">Architecture</div><div style="color:#3D4A4F;font-size:14px">Data, integrations, infra, risks.</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#08662F;margin-top:6px">→ TECHNICAL DESIGN DOC</div></div></div>
+          <div style="display:grid;grid-template-columns:48px 1fr;gap:12px;padding-top:14px;border-top:1px solid #C3CECB"><div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.03em">03</div><div><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600">Build</div><div style="color:#3D4A4F;font-size:14px">Regular demos on staging.</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#08662F;margin-top:6px">→ WORKING SOFTWARE</div></div></div>
+          <div style="display:grid;grid-template-columns:48px 1fr;gap:12px;padding-top:14px;border-top:1px solid #C3CECB"><div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.03em">04</div><div><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600">Run</div><div style="color:#3D4A4F;font-size:14px">Deployment, hosting and management.</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#08662F;margin-top:6px">→ DEPLOY, HOST, MANAGE</div></div></div>
+        </div>
+      </div>
+      <div style="padding:40px 20px;display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#0FA347">03 / PRODUCTS</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:30px;line-height:1.05;font-weight:500;letter-spacing:-0.025em;margin:0">We run our own products too.</h2>
+        <div style="display:flex;gap:12px;overflow:hidden">
+          <div style="min-width:240px;background:#111A1E;border:1px solid #1E272C;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;align-items:center"><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600">São Miguel Bus</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#37D97A;border:1px solid #1E4D2F;border-radius:999px;padding:3px 7px">LIVE</div></div><div style="color:#AFBDBE;font-size:14px">Live bus routes and timetables for São Miguel.</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#8FA3A8">saomiguelbus.com ↗</div></div>
+          <div style="min-width:240px;background:#111A1E;border:1px solid #1E272C;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;align-items:center"><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600">Your GenLab</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#37D97A;border:1px solid #1E4D2F;border-radius:999px;padding:3px 7px">LIVE</div></div><div style="color:#AFBDBE;font-size:14px">Generative-AI tooling for teams.</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#8FA3A8">yourgenlab.com ↗</div></div>
+        </div>
+        <div style="display:flex;gap:6px;justify-content:center"><span style="width:16px;height:4px;border-radius:2px;background:#0FA347"></span><span style="width:4px;height:4px;border-radius:2px;background:#2A3439"></span><span style="width:4px;height:4px;border-radius:2px;background:#2A3439"></span><span style="width:4px;height:4px;border-radius:2px;background:#2A3439"></span><span style="width:4px;height:4px;border-radius:2px;background:#2A3439"></span><span style="width:4px;height:4px;border-radius:2px;background:#2A3439"></span></div>
+      </div>
+      <div style="padding:0 20px 40px">
+        <div style="background:#0FA347;border-radius:16px;padding:28px 22px;display:flex;flex-direction:column;gap:14px;color:#0A1014">
+          <h2 style="font-family:'Space Grotesk',sans-serif;font-size:28px;line-height:1.02;font-weight:500;letter-spacing:-0.03em;margin:0">Tell us what you need to build.</h2>
+          <p style="margin:0;font-size:15px;color:#08361C">Your message goes straight to the lead engineer.</p>
+          <a href="#" style="background:#0A1014;color:#F6F8F7;font-weight:600;font-size:16px;padding:15px;border-radius:8px;text-align:center;min-height:48px;box-sizing:border-box">Request a proposal</a>
+        </div>
+      </div>
+    </div>
+  </x-import>
+</div>
+</x-dc>
+</body>
+</html>

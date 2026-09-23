@@ -1,0 +1,162 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import CTABlock from '../CTABlock.astro';
+import SectionHead from '../SectionHead.astro';
+import { useTranslations, type Locale } from '../../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<section class="intro">
+  <div class="texture"></div>
+  <div class="container intro__inner">
+    <Eyebrow>{t.about.eyebrow}</Eyebrow>
+    <h1>{t.about.title}</h1>
+    <p class="lead">{t.about.pageSub}</p>
+    <ul class="intro__meta">
+      {t.about.meta.map((item) => <li class="label label--sm">{item}</li>)}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--rule" aria-labelledby="company-heading">
+  <div class="container company">
+    <h2 class="visually-hidden" id="company-heading">{t.about.pageTitle}</h2>
+    <div class="company__text">
+      <p class="lead">{t.about.p1}</p>
+      <p class="company__p">{t.about.p2}</p>
+    </div>
+    <div class="company__founder">
+      <h3 class="label label--sm">{t.about.founderTitle}</h3>
+      <p class="company__name">{t.about.founderName}</p>
+      <p class="company__p">{t.about.founderCopy}</p>
+      <ul class="company__links">
+        <li>
+          <a href="https://www.linkedin.com/in/henriquecsousa/" target="_blank" rel="noopener">
+            {t.common.linkedin}<span class="visually-hidden"> ({t.common.externalLink})</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/sousa-dev" target="_blank" rel="noopener">
+            {t.common.github}<span class="visually-hidden"> ({t.common.externalLink})</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section on-paper" aria-labelledby="how-heading">
+  <div class="container">
+    <SectionHead eyebrow={t.about.eyebrow} title={t.about.howTitle} variant="paper" id="how-heading" />
+    <div class="how">
+      {
+        t.about.how.map((item) => (
+          <div class="how__item">
+            <h3 class="how__title">{item.title}</h3>
+            <p class="how__desc">{item.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<div class="about__proposal">
+  <CTABlock locale={locale} />
+</div>
+
+<style>
+  .intro { position: relative; overflow: hidden; }
+  .intro__inner {
+    position: relative;
+    padding-block: var(--s-9) var(--s-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+  }
+  .intro__inner h1 { max-width: 900px; }
+  .intro__inner .lead { max-width: 640px; }
+  .intro__meta {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+  }
+
+  /*
+   * The reference About section pairs the copy with a 4:3 photo. No approved
+   * photography exists yet (docs/brand-revamp/LAUNCH.md), so the page runs as
+   * two text columns and the image slot is added with the real photo.
+   */
+  .company {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--s-9);
+    align-items: start;
+  }
+  .company__text { display: flex; flex-direction: column; gap: var(--s-5); }
+  .company__p { color: var(--body-dark); }
+
+  .company__founder {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    background: var(--graphite);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: var(--s-7);
+  }
+  .company__name {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 600;
+  }
+  .company__links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: var(--s-5);
+    font-size: var(--text-small);
+    padding-top: var(--s-2);
+  }
+  .company__links a { color: var(--signal); }
+
+  .how {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-7);
+  }
+  .how__item {
+    border-top: 2px solid var(--ink);
+    padding-top: var(--s-5);
+  }
+  .how__title {
+    font-family: var(--font-display);
+    font-size: var(--text-step-title);
+    font-weight: 600;
+    margin-bottom: var(--s-3);
+  }
+  .how__desc { color: var(--body-light); font-size: var(--text-ui); }
+
+  /* Separate the inset CTA from the preceding full-width Paper surface. */
+  .about__proposal { padding-block-start: var(--section-pad); }
+
+  @media (max-width: 1023px) {
+    .company { grid-template-columns: minmax(0, 1fr); gap: var(--s-7); }
+  }
+
+  @media (max-width: 639px) {
+    .about__proposal { padding-block-start: var(--section-pad-mobile); }
+    .intro__inner { padding-block: var(--s-7); }
+    .intro__meta { flex-direction: column; gap: var(--s-3); }
+    .how { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
+    .company__founder { padding: var(--s-5); }
+  }
+</style>

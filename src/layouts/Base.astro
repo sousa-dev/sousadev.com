@@ -1,0 +1,180 @@
+---
+import '../styles/fonts.css';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import PageLoader from '../components/PageLoader.astro';
+import { useTranslations, otherLocale, LOCALES, type Locale } from '../lib/i18n';
+import { path, absolute, SITE_URL, type RouteKey } from '../lib/routes';
+
+interface Props {
+  locale: Locale;
+  /** Route key drives canonical, hreflang, nav active state and the OG image. */
+  route: RouteKey;
+  title: string;
+  description: string;
+  /** Overrides the computed link to the other language (used by articles). */
+  langHref?: string;
+  /** Overrides the hreflang set (used by articles with no translation). */
+  alternates?: { locale: Locale; href: string }[];
+  canonical?: string;
+  ogImage?: string;
+  /** Extra JSON-LD, merged after the Organization node every page carries. */
+  structuredData?: Record<string, unknown>[];
+  noindex?: boolean;
+  /**
+   * Send visitors whose browser prefers Portuguese from this EN page to its
+   * PT equivalent. Off for pages with no true equivalent, such as the 404.
+   */
+  detectLocale?: boolean;
+}
+
+const {
+  locale,
+  route,
+  title,
+  description,
+  langHref,
+  alternates,
+  canonical,
+  ogImage,
+  structuredData = [],
+  noindex = false,
+  detectLocale = true,
+} = Astro.props;
+
+const t = useTranslations(locale);
+const other = otherLocale(locale);
+
+const canonicalPath = canonical ?? path(locale, route);
+const canonicalUrl = absolute(canonicalPath);
+const switchHref = langHref ?? path(other, route);
+
+const hreflangs = alternates ?? LOCALES.map((code) => ({ locale: code, href: path(code, route) }));
+const ogPath = ogImage ?? `/og/${locale}-${route || 'home'}.png`;
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Sousa Dev',
+  url: SITE_URL,
+  logo: absolute('/logo/horizontal-two-tone-on-dark.svg'),
+  email: `mailto:${t.common.email}`,
+  founder: { '@type': 'Person', name: 'Henrique Sousa' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Ponta Delgada',
+    addressRegion: 'Azores',
+    addressCountry: 'PT',
+  },
+  areaServed: 'Worldwide',
+  knowsLanguage: ['en', 'pt'],
+  sameAs: ['https://www.linkedin.com/in/henriquecsousa/', 'https://github.com/sousa-dev'],
+};
+
+const jsonLd = [organization, ...structuredData];
+
+// Browser-language redirect, EN pages only, and only towards a PT page that
+// really exists (an untranslated article advertises no PT alternate). PT pages
+// never redirect away, so a shared /pt/ link and a crawler always get the page
+// they asked for. The visitor's own choice on the language switch wins over the
+// browser setting and is kept in localStorage under `sd-lang`.
+const ptAlternate = hreflangs.find((alt) => alt.locale === 'pt')?.href;
+const ptHref = locale === 'en' && detectLocale ? ptAlternate : undefined;
+---
+
+<!doctype html>
+<html lang={t.meta.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    {hreflangs.map((alt) => <link rel="alternate" hreflang={alt.locale} href={absolute(alt.href)} />)}
+    <link rel="alternate" hreflang="x-default" href={absolute(hreflangs[0].href)} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={t.seo.siteName} />
+    <meta property="og:locale" content={locale === 'pt' ? 'pt_PT' : 'en_GB'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={absolute(ogPath)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon/favicon-512.png" type="image/png" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/favicon/favicon-180.png" />
+    <link rel="manifest" href={locale === 'pt' ? '/site.pt.webmanifest' : '/site.webmanifest'} />
+    <meta name="theme-color" content="#0A1014" />
+
+    <!-- Self-hosted fonts: display and body faces preloaded, no third-party request. -->
+    <link
+      rel="preload"
+      href="/fonts/space-grotesk-latin-500-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/ibm-plex-sans-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+
+    <!--
+      Runs before paint so a Portuguese visitor never sees the English page
+      flash first. Progressive enhancement: with JavaScript off, every page is
+      still reachable through the language switch and the hreflang links.
+    -->
+    <script is:inline define:vars={{ ptHref }}>
+      (function () {
+        var KEY = 'sd-lang';
+        var read = function () {
+          try {
+            return localStorage.getItem(KEY);
+          } catch (_) {
+            return null;
+          }
+        };
+        document.addEventListener('click', function (event) {
+          var target = event.target;
+          var link = target && target.closest ? target.closest('[data-lang-switch]') : null;
+          if (!link) return;
+          try {
+            localStorage.setItem(KEY, link.getAttribute('data-lang-switch'));
+          } catch (_) {
+            // Storage unavailable: the switch still navigates normally.
+          }
+        });
+        if (!ptHref) return;
+        var chosen = read();
+        if (chosen === 'en') return;
+        var languages = navigator.languages || [navigator.language || ''];
+        var prefersPt = false;
+        for (var i = 0; i < languages.length; i += 1) {
+          if (/^pt(-|_|$)/i.test(languages[i])) prefersPt = true;
+        }
+        if (chosen === 'pt' || prefersPt) location.replace(ptHref + location.hash);
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.nav.skipToContent}</a>
+    <Nav locale={locale} active={route} langHref={switchHref} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <PageLoader />
+  </body>
+</html>

@@ -1,0 +1,156 @@
+---
+import Logo from './Logo.astro';
+import { useTranslations, fill, type Locale } from '../lib/i18n';
+import { FOOTER_KEYS, path } from '../lib/routes';
+import { products } from '../lib/products';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const year = new Date().getUTCFullYear();
+
+const companyLinks = FOOTER_KEYS.map((key) => ({
+  href: path(locale, key),
+  label: t.nav[key],
+}));
+
+// Live products only, in data order. Names and URLs are never translated.
+const productLinks = products.filter((product) => product.status === 'live');
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href={path(locale, 'home')} aria-label={t.nav.homeLabel} class="footer__logo-link">
+        <Logo height={30} interactive />
+      </a>
+      <p class="footer__tag">{t.footer.tag}</p>
+    </div>
+
+    <div class="footer__col footer__col--company">
+      <h2 class="footer__heading label label--sm">{t.footer.company}</h2>
+      <ul>
+        {companyLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div class="footer__col footer__col--products">
+      <h2 class="footer__heading label label--sm">{t.footer.products}</h2>
+      <ul>
+        {
+          productLinks.map((product) => (
+            <li>
+              <a href={product.url} target="_blank" rel="noopener">
+                {product.name}
+                <span class="visually-hidden"> ({t.common.externalLink})</span>
+              </a>
+            </li>
+          ))
+        }
+        <li><a href={path(locale, 'products')}>{t.nav.products}</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col footer__col--contact">
+      <h2 class="footer__heading label label--sm">{t.footer.contact}</h2>
+      <ul>
+        <li><a href={`mailto:${t.common.email}`}>{t.common.email}</a></li>
+        <li>
+          <a href="https://www.linkedin.com/in/henriquecsousa/" target="_blank" rel="noopener">
+            {t.common.linkedin}<span class="visually-hidden"> ({t.common.externalLink})</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/sousa-dev" target="_blank" rel="noopener">
+            {t.common.github}<span class="visually-hidden"> ({t.common.externalLink})</span>
+          </a>
+        </li>
+        <li><a href={path(locale, 'privacy')}>{t.footer.privacy}</a></li>
+      </ul>
+    </div>
+    <p class="footer__legal label label--sm">{fill(t.footer.rights, { year })}</p>
+  </div>
+</footer>
+
+<style>
+  .footer { border-top: 1px solid var(--rule); }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+      'brand company products contact'
+      'legal company products contact';
+    column-gap: 40px;
+    row-gap: var(--s-4);
+    padding-block: var(--s-8) 40px;
+  }
+
+  .footer__brand {
+    grid-area: brand;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+  .footer__logo-link { display: inline-flex; width: fit-content; }
+
+  .footer__tag {
+    color: var(--label-dark);
+    font-size: var(--text-small);
+    max-width: 300px;
+  }
+
+  /* Audit D10: Slate on Ink is ~3.64:1, so the legal line uses label-dark. */
+  .footer__legal { grid-area: legal; color: var(--label-dark); }
+
+  .footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+  .footer__col--company { grid-area: company; }
+  .footer__col--products { grid-area: products; }
+  .footer__col--contact { grid-area: contact; }
+  .footer__heading {
+    font-weight: 400;
+    letter-spacing: var(--track-label-sm);
+    margin-bottom: 2px;
+  }
+  .footer__col ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: var(--text-small);
+  }
+  .footer__col a { color: var(--body-dark); }
+  .footer__col a:hover { color: var(--signal); }
+
+  @media (max-width: 1023px) {
+    .footer__inner {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas:
+        'brand company'
+        'products contact'
+        'legal legal';
+      gap: var(--s-7);
+      padding-block: var(--s-8) var(--s-7);
+    }
+  }
+
+  @media (max-width: 639px) {
+    .footer__inner {
+      grid-template-areas:
+        'brand brand'
+        'company products'
+        'contact contact'
+        'legal legal';
+      column-gap: var(--s-4);
+      row-gap: var(--s-7);
+    }
+  }
+</style>

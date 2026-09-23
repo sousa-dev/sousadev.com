@@ -1,0 +1,103 @@
+---
+import Button from './Button.astro';
+import ProposalForm from './ProposalForm.astro';
+import { useTranslations, type Locale } from '../lib/i18n';
+import { path } from '../lib/routes';
+
+interface Props {
+  locale: Locale;
+  /**
+   * `auto`: form on tablet and desktop, a link to the contact page on mobile.
+   * `form`: the actual form at every width. Used by the contact route so a
+   * mobile visitor is never sent to the page they are already on (audit D09).
+   */
+  mode?: 'auto' | 'form';
+  id?: string;
+}
+
+const { locale, mode = 'auto', id = 'proposal' } = Astro.props;
+const t = useTranslations(locale);
+const headingId = `${id}-heading`;
+---
+
+<section class="cta section--tight" aria-labelledby={headingId} id="proposal">
+  <div class="container">
+    <div class="cta__block">
+      <div class="texture texture--cta"></div>
+      <div class="cta__text">
+        <h2 class="cta__title" id={headingId}>{t.contact.title}</h2>
+        <p class="cta__lead">{t.contact.sub}</p>
+      </div>
+      <div class:list={['cta__form', mode === 'form' && 'cta__form--always']}>
+        <ProposalForm locale={locale} id={id} />
+      </div>
+      {
+        mode === 'auto' && (
+          <div class="cta__link">
+            <Button href={path(locale, 'contact')} variant="on-green" size="lg" block>
+              {t.contact.mobileCta}
+            </Button>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta { padding-block: 0 var(--section-pad); }
+
+  .cta__block {
+    position: relative;
+    overflow: hidden;
+    background: var(--green);
+    border-radius: var(--r-2xl);
+    padding: 72px 64px;
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--s-8);
+    align-items: center;
+    /* Audit D10: Ink on Green, never --green-ink, for body-size copy. */
+    color: var(--text-on-green);
+  }
+
+  .cta__text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .cta__title {
+    font-size: var(--text-h2-cta);
+    line-height: 1.02;
+    letter-spacing: var(--track-display);
+  }
+
+  .cta__lead {
+    font-size: var(--text-lead-section);
+    max-width: 520px;
+    color: var(--body-on-green);
+  }
+
+  .cta__form { position: relative; }
+  .cta__link { display: none; position: relative; }
+
+  @media (max-width: 1023px) {
+    .cta__block {
+      grid-template-columns: minmax(0, 1fr);
+      padding: var(--s-8) var(--s-7);
+      gap: var(--s-7);
+    }
+  }
+
+  @media (max-width: 639px) {
+    .cta { padding-block: 0 var(--section-pad-mobile); }
+    .cta__block { padding: 28px 22px; gap: var(--s-5); }
+    .cta__form { display: none; }
+    .cta__form--always { display: block; }
+    .cta__link { display: block; }
+    /* When the form is shown on mobile there is no duplicate link button. */
+    .cta__form--always ~ .cta__link { display: none; }
+  }
+</style>

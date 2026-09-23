@@ -1,0 +1,28 @@
+---
+interface Props {
+  /** Optional section number, rendered as `01 / Services`. */
+  num?: string;
+  variant?: 'ink' | 'paper';
+  as?: 'div' | 'p' | 'span';
+  class?: string;
+}
+
+const { num, variant = 'ink', as: Tag = 'div', class: className } = Astro.props;
+---
+
+<Tag class:list={['eyebrow', `eyebrow--${variant}`, className]}>
+  {num && <span class="eyebrow__num">{`${num} / `}</span>}<slot />
+</Tag>
+
+<style>
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: var(--track-label);
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  .eyebrow--ink { color: var(--signal); }
+  .eyebrow--paper { color: var(--forest); }
+  .eyebrow__num { color: inherit; }
+</style>

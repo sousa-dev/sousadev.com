@@ -1,0 +1,49 @@
+---
+import { otherLocale, useTranslations, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+  /** Equivalent route in the other language. Always a real, existing page. */
+  href: string;
+  class?: string;
+}
+
+const { locale, href, class: className } = Astro.props;
+const t = useTranslations(locale);
+const other = otherLocale(locale);
+const otherT = useTranslations(other);
+---
+
+<a
+  class:list={['lang', className]}
+  href={href}
+  lang={otherT.meta.htmlLang}
+  hreflang={otherT.meta.htmlLang}
+  aria-label={t.lang.switchTo}
+  data-lang-switch={other}
+>
+  <span class="lang__current" aria-hidden="true">{t.lang.current}</span>
+  <span class="lang__sep" aria-hidden="true">·</span>
+  <span class="lang__other" aria-hidden="true">{t.lang.other}</span>
+</a>
+
+<style>
+  .lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-sm);
+    padding: 6px 10px;
+    min-height: var(--tap-min);
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: 0.1em;
+    color: var(--label-dark);
+    transition: border-color var(--dur-fast) var(--ease-brand);
+  }
+  .lang:hover { border-color: var(--green); color: var(--label-dark); }
+  .lang__current { color: var(--text-on-ink); }
+  .lang__sep { color: var(--border-strong); }
+  .lang__other { color: var(--label-dark); }
+</style>

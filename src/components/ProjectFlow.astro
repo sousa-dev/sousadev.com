@@ -1,0 +1,375 @@
+---
+import { useTranslations, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const steps = t.hero.steps;
+---
+
+<div class="flow" data-flow data-play-label={t.hero.flowPlayShort}>
+  <div class="flow__head">
+    <p class="flow__label label label--sm">{t.hero.diagramLabel}</p>
+    <p class="flow__counter" data-flow-counter>{`0${steps.length} / 0${steps.length}`}</p>
+  </div>
+
+  <!--
+    Rendered complete and fully legible with no JavaScript: an ordered list of
+    the four steps. The script adds the progression and the pause control.
+  -->
+  <ol class="flow__steps" aria-label={t.hero.flowRegion}>
+    {
+      steps.map((step, index) => (
+        <li class="flow__step is-done" data-flow-step={index} data-last={index === steps.length - 1 ? 'true' : undefined}>
+          <span class="flow__rail" aria-hidden="true">
+            <span class="flow__dot"></span>
+            {index < steps.length - 1 && <span class="flow__line"></span>}
+          </span>
+          <span class="flow__body">
+            <span class="flow__row">
+              <span class="flow__title">{step.title}</span>
+              <span class="flow__tag">{step.tag}</span>
+            </span>
+            <span class="flow__desc">{step.desc}</span>
+          </span>
+        </li>
+      ))
+    }
+  </ol>
+
+  <div class="flow__foot">
+    <ul class="flow__chips" role="list">
+      {t.hero.covers.map((cover) => <li class="label label--sm">{cover}</li>)}
+    </ul>
+    <button
+      type="button"
+      class="flow__pause"
+      data-flow-pause
+      aria-pressed="false"
+      aria-label={t.hero.flowPause}
+      data-pause-label={t.hero.flowPause}
+      data-play-label={t.hero.flowPlay}
+      hidden
+    >
+      <span data-flow-pause-label>{t.hero.flowPauseShort}</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .flow {
+    background: var(--graphite);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+  }
+
+  .flow__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--s-3);
+  }
+
+  .flow__counter {
+    font-family: var(--font-mono);
+    font-size: var(--text-label-sm);
+    letter-spacing: 0.1em;
+    color: var(--signal);
+  }
+
+  .flow__steps {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flow__step {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: var(--s-4);
+    align-items: start;
+  }
+
+  .flow__rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+
+  .flow__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin-top: 6px;
+    border: 2px solid var(--border-strong);
+    background: var(--graphite);
+    transition:
+      background-color var(--dur-base) var(--ease-brand),
+      border-color var(--dur-base) var(--ease-brand);
+  }
+
+  .flow__line {
+    width: 2px;
+    flex: 1;
+    min-height: 34px;
+    background: var(--border-strong);
+    transition: background-color var(--dur-base) var(--ease-brand);
+  }
+
+  .flow__body {
+    padding-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-1);
+  }
+
+  .flow__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--s-3);
+  }
+
+  .flow__title {
+    font-family: var(--font-display);
+    font-size: var(--text-flow-title);
+    font-weight: 600;
+    color: var(--text-on-ink);
+    transition: color var(--dur-base) var(--ease-brand);
+  }
+
+  .flow__tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-label-sm);
+    letter-spacing: 0.12em;
+    color: var(--label-dark);
+    white-space: nowrap;
+    transition: color var(--dur-base) var(--ease-brand);
+  }
+
+  .flow__desc {
+    font-size: var(--text-small);
+    color: var(--body-dark);
+    line-height: var(--leading-tight);
+  }
+
+  /*
+   * Audit D11: the reference fades upcoming steps, text included, to 45%. Text
+   * keeps full contrast in production; only the rail indicators are dimmed, so
+   * the sequence still reads as progress.
+   */
+  .flow__step.is-upcoming .flow__dot,
+  .flow__step.is-upcoming .flow__line { opacity: 0.55; }
+
+  .flow__step.is-done .flow__dot { background: var(--green); border-color: var(--green); }
+  .flow__step.is-done .flow__line { background: var(--green); }
+
+  .flow__step.is-active .flow__dot { background: var(--ink); border-color: var(--green); }
+  .flow__step.is-active .flow__title,
+  .flow__step.is-active .flow__tag { color: var(--signal); }
+
+  .flow__foot {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border);
+    padding-top: var(--s-4);
+  }
+
+  /*
+   * The chips take part in the footer's own flex row, so the pause control sits
+   * beside them instead of forcing a third line. The 12px label floor (audit
+   * D02) makes the chips wider than the 10px reference, so they wrap to two
+   * rows at this panel width.
+   */
+  .flow__chips {
+    list-style: none;
+    padding: 0;
+    display: contents;
+  }
+  .flow__chips li {
+    color: var(--text-on-ink);
+    font-family: var(--font-mono);
+    font-size: var(--text-label-sm);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-pill);
+    padding: 5px 9px;
+    letter-spacing: 0.1em;
+  }
+
+  /*
+   * The pause control carries no visual weight: the panel already pauses on
+   * hover and on focus, so a permanently visible chip was just noise beside the
+   * four coverage chips. It stays in the document and in the tab order, because
+   * WCAG 2.2 SC 2.2.2 requires a mechanism to stop content that auto-advances
+   * for longer than five seconds, and it becomes visible the moment it is
+   * focused, so anyone who tabs to it can see what they are operating.
+   */
+  .flow__pause {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    background: transparent;
+    color: var(--label-dark);
+    cursor: pointer;
+  }
+
+  .flow__pause:focus-visible {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+    border: 1px solid var(--green);
+    border-radius: var(--r-pill);
+    font-family: var(--font-mono);
+    font-size: var(--text-label-sm);
+    letter-spacing: var(--track-label-sm);
+    text-transform: uppercase;
+    padding: 5px 10px;
+    min-height: 30px;
+    color: var(--text-on-ink);
+  }
+
+  @media (max-width: 639px) {
+    .flow { padding: var(--s-5); border-radius: var(--r-lg); gap: 14px; }
+    .flow__step { grid-template-columns: 24px minmax(0, 1fr); gap: var(--s-3); }
+    .flow__body { padding-bottom: 14px; }
+    .flow__title { font-size: var(--text-ui); }
+    .flow__desc { font-size: 13px; }
+    .flow__row { flex-direction: column; gap: 2px; align-items: flex-start; }
+  }
+</style>
+
+<script>
+  // ProjectFlow progression. The markup already shows every step complete, so
+  // this script only animates; with JS off, or under reduced motion, the static
+  // all-complete state is what stays on screen.
+  const STEP_MS = 1800;
+
+  document.querySelectorAll<HTMLElement>('[data-flow]').forEach((flow) => {
+    const steps = Array.from(flow.querySelectorAll<HTMLElement>('[data-flow-step]'));
+    const counter = flow.querySelector<HTMLElement>('[data-flow-counter]');
+    const pause = flow.querySelector<HTMLButtonElement>('[data-flow-pause]');
+    const pauseLabel = flow.querySelector<HTMLElement>('[data-flow-pause-label]');
+    if (steps.length === 0) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const strings = {
+      pause: pauseLabel?.textContent?.trim() ?? '',
+      play: flow.dataset.playLabel ?? '',
+      pauseTitle: pause?.dataset.pauseLabel ?? '',
+      playTitle: pause?.dataset.playLabel ?? '',
+    };
+
+    let index = 0;
+    let timer: number | undefined;
+    let pausedByUser = false;
+    let hovering = false;
+
+    function paint(current: number) {
+      steps.forEach((step, i) => {
+        // One extra beat at the end of the loop shows every step complete.
+        const done = current >= steps.length ? true : i < current;
+        const active = current < steps.length && i === current;
+        step.classList.toggle('is-done', done);
+        step.classList.toggle('is-active', active);
+        step.classList.toggle('is-upcoming', !done && !active);
+      });
+      const shown = Math.min(current + 1, steps.length);
+      if (counter) counter.textContent = `0${shown} / 0${steps.length}`;
+    }
+
+    function complete() {
+      paint(steps.length);
+    }
+
+    function stop() {
+      if (timer !== undefined) window.clearInterval(timer);
+      timer = undefined;
+    }
+
+    function start() {
+      stop();
+      if (reduceMotion.matches || pausedByUser || hovering) return;
+      timer = window.setInterval(() => {
+        index = (index + 1) % (steps.length + 1);
+        paint(index);
+      }, STEP_MS);
+    }
+
+    function apply() {
+      if (reduceMotion.matches) {
+        stop();
+        complete();
+        if (pause) pause.hidden = true;
+        return;
+      }
+      if (pause) pause.hidden = false;
+      index = 0;
+      paint(index);
+      start();
+    }
+
+    pause?.addEventListener('click', () => {
+      pausedByUser = !pausedByUser;
+      pause.setAttribute('aria-pressed', String(pausedByUser));
+      if (pauseLabel && strings.play) {
+        pauseLabel.textContent = pausedByUser ? strings.play : strings.pause;
+      }
+      pause.setAttribute('aria-label', pausedByUser ? strings.playTitle : strings.pauseTitle);
+      if (pausedByUser) {
+        stop();
+        complete();
+      } else {
+        index = 0;
+        paint(index);
+        start();
+      }
+    });
+
+    flow.addEventListener('pointerenter', () => {
+      hovering = true;
+      stop();
+    });
+    flow.addEventListener('pointerleave', () => {
+      hovering = false;
+      start();
+    });
+    flow.addEventListener('focusin', () => {
+      hovering = true;
+      stop();
+    });
+    flow.addEventListener('focusout', () => {
+      hovering = false;
+      start();
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop();
+      else start();
+    });
+
+    reduceMotion.addEventListener('change', apply);
+    apply();
+  });
+</script>

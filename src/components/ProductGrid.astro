@@ -1,0 +1,117 @@
+---
+import ProductCard from './ProductCard.astro';
+import { useTranslations, type Locale } from '../lib/i18n';
+import { products } from '../lib/products';
+
+interface Props {
+  locale: Locale;
+  /** `scroll` gives the mobile scroll-snap row from the mobile reference. */
+  layout?: 'grid' | 'scroll';
+}
+
+const { locale, layout = 'scroll' } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<div class:list={['products', `products--${layout}`]} data-product-carousel={layout === 'scroll' ? '' : undefined}>
+  <ul class="products__list" data-product-list>
+    {
+      products.map((product) => (
+        <li class="products__item">
+          <ProductCard locale={locale} product={product} />
+        </li>
+      ))
+    }
+  </ul>
+  {
+    layout === 'scroll' && (
+      <p class="products__dots" aria-hidden="true" data-product-dots hidden>
+        {products.map(() => <span class="products__dot"></span>)}
+      </p>
+    )
+  }
+  <p class="visually-hidden">{t.products.carouselLabel}</p>
+</div>
+
+<style>
+  .products__list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* Every row the same height, so all cards are the same size. */
+    grid-auto-rows: 1fr;
+    gap: var(--s-5);
+  }
+
+  .products__dots {
+    display: none;
+    justify-content: center;
+    gap: 6px;
+    margin-top: var(--s-4);
+  }
+  .products__dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border-strong);
+    transition: width var(--dur-fast) var(--ease-brand), background-color var(--dur-fast) var(--ease-brand);
+  }
+  .products__dot.is-current { width: 16px; background: var(--green); }
+
+  @media (max-width: 1023px) {
+    .products__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 639px) {
+    .products--scroll .products__list {
+      display: flex;
+      gap: var(--s-3);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--gutter-mobile);
+      margin-inline: calc(var(--gutter-mobile) * -1);
+      padding-inline: var(--gutter-mobile);
+      padding-bottom: var(--s-1);
+      -webkit-overflow-scrolling: touch;
+    }
+    .products--scroll .products__item {
+      flex: 0 0 min(280px, 78vw);
+      scroll-snap-align: start;
+    }
+    .products--scroll .products__dots[hidden] { display: none; }
+    .products--scroll .products__dots { display: flex; }
+    .products--grid .products__list { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
+
+<script>
+  // Decorative position indicator for the mobile product row. The row itself
+  // scrolls with touch, the keyboard and the scrollbar without this script.
+  document.querySelectorAll<HTMLElement>('[data-product-carousel]').forEach((carousel) => {
+    const list = carousel.querySelector<HTMLElement>('[data-product-list]');
+    const dotsWrap = carousel.querySelector<HTMLElement>('[data-product-dots]');
+    if (!list || !dotsWrap) return;
+    const dots = Array.from(dotsWrap.querySelectorAll<HTMLElement>('.products__dot'));
+    const items = Array.from(list.children) as HTMLElement[];
+    if (dots.length === 0) return;
+    dotsWrap.hidden = false;
+
+    const update = () => {
+      const left = list.scrollLeft;
+      let closest = 0;
+      let distance = Number.POSITIVE_INFINITY;
+      items.forEach((item, index) => {
+        const offset = Math.abs(item.offsetLeft - list.offsetLeft - left);
+        if (offset < distance) {
+          distance = offset;
+          closest = index;
+        }
+      });
+      dots.forEach((dot, index) => dot.classList.toggle('is-current', index === closest));
+    };
+
+    update();
+    list.addEventListener('scroll', () => window.requestAnimationFrame(update), { passive: true });
+  });
+</script>

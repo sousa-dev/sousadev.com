@@ -1,0 +1,29 @@
+{
+  "name": "Sousa Dev",
+  "short_name": "Sousa Dev",
+  "description": "Sousa Dev designs, builds, deploys, hosts and manages the software companies depend on. Custom software, systems architecture and IT consulting, with direct access to the lead engineer.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0A1014",
+  "theme_color": "#0A1014",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo/app-icon-green.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

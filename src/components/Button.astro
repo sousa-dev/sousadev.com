@@ -1,0 +1,115 @@
+---
+interface Props {
+  href?: string;
+  type?: 'button' | 'submit';
+  variant?: 'primary' | 'secondary' | 'on-green';
+  size?: 'md' | 'lg';
+  block?: boolean;
+  external?: boolean;
+  id?: string;
+  class?: string;
+  'aria-label'?: string;
+  'data-testid'?: string;
+}
+
+const {
+  href,
+  type = 'button',
+  variant = 'primary',
+  size = 'md',
+  block = false,
+  external = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = ['btn', `btn--${variant}`, `btn--${size}`, block && 'btn--block', className];
+const externalAttrs = external ? { target: '_blank', rel: 'noopener' } : {};
+---
+
+{
+  href ? (
+    <a href={href} class:list={classes} {...externalAttrs} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={classes} {...rest}>
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-2);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-ui);
+    line-height: 1.2;
+    text-align: center;
+    padding: 11px 20px;
+    border: 1px solid transparent;
+    border-radius: var(--r-md);
+    cursor: pointer;
+    min-height: var(--tap-min);
+    transition:
+      background-color var(--dur-fast) var(--ease-brand),
+      border-color var(--dur-fast) var(--ease-brand),
+      color var(--dur-fast) var(--ease-brand);
+  }
+
+  .btn--lg {
+    font-size: 16px;
+    padding: 15px 26px;
+  }
+
+  .btn--primary {
+    background: var(--green);
+    color: var(--ink);
+  }
+  .btn--primary:hover {
+    background: var(--signal);
+    color: var(--ink);
+  }
+
+  .btn--secondary {
+    background: transparent;
+    border-color: var(--border-strong);
+    color: var(--text-on-ink);
+  }
+  .btn--secondary:hover {
+    border-color: var(--green);
+    color: var(--text-on-ink);
+  }
+
+  /* Inside the green CTA block: Ink fill, Paper label. */
+  .btn--on-green {
+    background: var(--ink);
+    color: var(--text-on-ink);
+  }
+  .btn--on-green:hover {
+    background: var(--graphite);
+    color: var(--signal);
+  }
+
+  .btn--block {
+    display: flex;
+    width: 100%;
+  }
+
+  .btn[disabled],
+  .btn[aria-disabled='true'] {
+    opacity: 0.4;
+    cursor: progress;
+  }
+
+  @media (max-width: 639px) {
+    .btn {
+      width: 100%;
+      min-height: var(--control-min);
+    }
+  }
+</style>

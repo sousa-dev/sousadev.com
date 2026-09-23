@@ -1,0 +1,47 @@
+:root {
+  /* colour · surfaces */
+  --ink:#0A1014;  --graphite:#111A1E;  --panel:#0E1519;
+  --paper:#F6F8F7;  --mist:#E8EDEB;
+  /* colour · borders */
+  --border:#1E272C;  --border-strong:#2A3439;  --rule:#1A2227;  --paper-border:#DDE4E2;  --paper-border-strong:#C3CECB;
+  /* colour · green */
+  --green:#0FA347;  --forest:#08662F;  --signal:#37D97A;  --green-ink:#08361C;
+  --status-live-border:#1E4D2F;  --status-dev-border:#4A3A14;
+  /* colour · text */
+  --text-on-ink:#F6F8F7;  --body-dark:#AFBDBE;  --label-dark:#8FA3A8;
+  --text-on-paper:#0A1014;  --body-light:#3D4A4F;  --slate:#5C6F77;
+  /* colour · functional */
+  --amber:#C4881B;  --steel:#1F7FC2;
+
+  /* type */
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'IBM Plex Sans',system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --text-display:clamp(44px,5.4vw,76px);
+  --text-h2:clamp(32px,4vw,48px);
+  --text-h3:24px;  --text-lead:20px;  --text-body:17px;
+  --text-ui:15px;  --text-small:14px;  --text-label:12px;  --text-label-sm:11px;
+  --track-label:0.16em;  --track-label-sm:0.14em;  --track-tight:-0.025em;  --track-wordmark:0.02em;
+  --leading-display:1.0;  --leading-h2:1.05;  --leading-body:1.6;
+
+  /* space (4px base) */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px;
+  --s-6:24px; --s-7:32px; --s-8:48px; --s-9:64px; --s-10:104px;
+
+  /* shape */
+  --r-sm:6px; --r-md:8px; --r-lg:14px; --r-xl:16px; --r-2xl:20px; --r-pill:999px;
+
+  /* layout */
+  --container:1200px;  --gutter:32px;  --gutter-tablet:24px;  --gutter-mobile:20px;
+  --nav-h:72px;  --nav-h-mobile:56px;
+  --section-pad:104px;  --section-pad-mobile:48px;
+
+  /* motion */
+  --ease-brand:cubic-bezier(.65,0,.35,1);
+  --dur-fast:200ms;  --dur-base:400ms;  --dur-slow:600ms;
+  --flow-step:1800ms;
+
+  /* texture */
+  --texture-45:repeating-linear-gradient(45deg, var(--green) 0 2px, transparent 2px 14px);
+  --texture-45-ink:repeating-linear-gradient(45deg, var(--ink) 0 2px, transparent 2px 14px);
+}

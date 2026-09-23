@@ -1,0 +1,39 @@
+{
+  "1-tecnovia-acores.png": {
+    "name": "Tecnovia Açores",
+    "relationship": { "en": "Client project", "pt": "Projeto de cliente" }
+  },
+  "2-atnog.png": {
+    "name": "ATNOG",
+    "relationship": { "en": "Research collaboration", "pt": "Colaboração em investigação" }
+  },
+  "3-webtugalogo.png": {
+    "name": "Webtuga",
+    "relationship": { "en": "Hosting provider", "pt": "Fornecedor de alojamento" }
+  },
+  "4-logo-tecnovia-angola-1.png": {
+    "name": "Tecnovia Angola"
+  },
+  "5-iot22.png": {
+    "name": "IoT 2022",
+    "relationship": { "en": "Published research", "pt": "Investigação publicada" }
+  },
+  "6-aveiro-tech-city-living-lab.png": {
+    "name": "Aveiro Tech City Living Lab",
+    "relationship": { "en": "Integration work", "pt": "Trabalho de integração" }
+  },
+  "6-logo-tecnovia-sgps-1.png": {
+    "name": "Tecnovia SGPS"
+  },
+  "7-erocks-logo.png": {
+    "name": "e-rocks"
+  },
+  "8-it.png": {
+    "name": "Instituto de Telecomunicações",
+    "relationship": { "en": "Research collaboration", "pt": "Colaboração em investigação" }
+  },
+  "9-abb-logo.png": {
+    "name": "ABB 2024",
+    "relationship": { "en": "Published research", "pt": "Investigação publicada" }
+  }
+}

@@ -1,0 +1,277 @@
+---
+import { Image } from 'astro:assets';
+import { useTranslations, type Locale } from '../lib/i18n';
+import { logos, showLogoRow } from '../lib/logos';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+/*
+ * The strip repeats the same logos and slides left by exactly one copy, so the
+ * loop is seamless. The track has to stay wider than the viewport plus the
+ * distance it travels, or a gap would open at the seam; five copies of eight
+ * logos covers displays past 4K. The shift is derived from the copy count here
+ * so the two cannot drift apart.
+ */
+const COPIES = 5;
+const copies = Array.from({ length: COPIES }, (_, index) => index);
+const shift = `-${(100 / COPIES).toFixed(4)}%`;
+---
+
+{
+  /*
+   * Every image in src/assets/companies/ is shown here. The row is hidden
+   * entirely below four logos, and the label says "partners and
+   * collaborations" rather than "trusted by", because these are research
+   * partners, conferences, a hosting supplier and client work, not a client
+   * list (brand rules, audit D12).
+   */
+  showLogoRow && (
+    <section class="logos" aria-label={t.logos.label}>
+      <div class="container">
+        <p class="logos__label label label--sm">{t.logos.label}</p>
+      </div>
+
+      <div class="logos__viewport" data-marquee style={`--logos-shift: ${shift}`}>
+        {/*
+          Only the first copy is exposed to assistive technology: the repeats
+          are a visual device, and a screen reader should hear the eight
+          companies once. With JavaScript off, or under reduced motion, the
+          track simply does not move and the logos stay readable.
+
+          The first copy loads eagerly: its last logos start just past the
+          right edge, and lazy loading them would leave a blank slot sliding
+          in. The repeats use the same URLs, so they come from cache.
+        */}
+        <div class="logos__track" data-marquee-track>
+          {copies.map((copy) => (
+            <ul class="logos__set" role="list" aria-hidden={copy === 0 ? undefined : 'true'}>
+              {logos.map((logo) => (
+                <li class="logos__item" style={`--logo-ratio: ${logo.image.width / logo.image.height}`}>
+                  <Image
+                    src={logo.image}
+                    alt={copy === 0 ? logo.name : ''}
+                    height={128}
+                    densities={[1, 2]}
+                    format="webp"
+                    loading={copy === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+      </div>
+
+      {/*
+        WCAG 2.2 SC 2.2.2: content that moves by itself for more than five
+        seconds needs a mechanism to stop it. The strip also pauses on hover
+        and on focus, but those are not a mechanism for someone who is neither
+        hovering nor tabbing through it. The control carries no visual weight
+        until it is focused, matching ProjectFlow's.
+      */}
+      <button
+        type="button"
+        class="logos__pause"
+        data-marquee-pause
+        aria-pressed="false"
+        aria-label={t.logos.pause}
+        data-pause-label={t.logos.pause}
+        data-play-label={t.logos.play}
+        data-pause-short={t.logos.pauseShort}
+        data-play-short={t.logos.playShort}
+        hidden
+      >
+        <span data-marquee-pause-label>{t.logos.pauseShort}</span>
+      </button>
+    </section>
+  )
+}
+
+<style>
+  .logos {
+    --logos-height: 40px;
+    position: relative;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding-block: var(--s-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+  .logos__label { margin: 0; }
+
+  /*
+   * Full bleed, so the logos run off both edges instead of stopping inside the
+   * container: the strip should read as continuous, not as a list that happens
+   * to be moving. The mask fades it out at both ends.
+   */
+  .logos__viewport {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+
+  .logos__track {
+    display: flex;
+    width: max-content;
+    animation: logos-scroll 62s linear infinite;
+  }
+  /* CSS fallback keeps the current frame on hover/focus when JavaScript is off. */
+  .logos:not(.is-enhanced):hover .logos__track,
+  .logos:not(.is-enhanced) .logos__viewport:focus-within .logos__track {
+    animation-play-state: paused;
+  }
+
+  @keyframes logos-scroll {
+    from { transform: translate3d(0, 0, 0); }
+    /* Exactly one copy, so the strip lands back where it began. */
+    to { transform: translate3d(var(--logos-shift, -20%), 0, 0); }
+  }
+
+  .logos__set {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--s-9);
+    padding-inline: calc(var(--s-9) / 2);
+  }
+
+  /*
+   * The artwork is normalised to a single Paper silhouette by
+   * scripts/normalize-logos.mjs, so nothing here needs a plate behind it and
+   * the set reads as one on Ink.
+   */
+  .logos__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Reserve the same geometry before and after lazy images decode. The
+     * percentage-based loop must never change length when an image loads. */
+    flex: 0 0 auto;
+    width: min(180px, calc(var(--logos-height) * var(--logo-ratio)));
+    height: var(--logos-height);
+    opacity: 0.72;
+    transition: opacity var(--dur-fast) var(--ease-brand);
+  }
+  .logos__item:hover { opacity: 1; }
+  .logos__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .logos__pause {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    background: transparent;
+    color: var(--label-dark);
+    cursor: pointer;
+  }
+  .logos__pause:focus-visible {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0 0 0 var(--gutter);
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+    align-self: flex-start;
+    border: 1px solid var(--green);
+    border-radius: var(--r-pill);
+    font-family: var(--font-mono);
+    font-size: var(--text-label-sm);
+    letter-spacing: var(--track-label-sm);
+    text-transform: uppercase;
+    padding: 5px 10px;
+    min-height: 30px;
+    color: var(--text-on-ink);
+  }
+
+  @media (max-width: 1023px) {
+    .logos { --logos-height: 34px; }
+    .logos__set { gap: var(--s-8); padding-inline: calc(var(--s-8) / 2); }
+  }
+
+  @media (max-width: 639px) {
+    .logos { --logos-height: 30px; padding-block: var(--s-5); }
+    .logos__set { gap: var(--s-7); padding-inline: calc(var(--s-7) / 2); }
+    .logos__pause:focus-visible { margin-left: var(--gutter-mobile); }
+  }
+
+  /*
+   * Reduced motion: the strip stops entirely and sits at its starting
+   * position. The logos stay visible and legible, which is the point of the
+   * section; nothing about it depends on the movement.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    .logos__track { animation: none; }
+  }
+</style>
+
+<script>
+  // The animation exists in CSS without JavaScript. With JavaScript, pause the
+  // animation object itself so its current time survives hover and resume.
+  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach((viewport) => {
+    const section = viewport.closest<HTMLElement>('.logos');
+    const track = viewport.querySelector<HTMLElement>('[data-marquee-track]');
+    const button = section?.querySelector<HTMLButtonElement>('[data-marquee-pause]');
+    const label = button?.querySelector<HTMLElement>('[data-marquee-pause-label]');
+    if (!section || !track || !button) return;
+
+    // Under reduced motion nothing moves, so there is nothing to pause and the
+    // control stays hidden rather than offering a no-op.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const animation = track.getAnimations()[0];
+    if (!animation) return;
+
+    button.hidden = false;
+    let paused = false;
+    let hovering = section.matches(':hover');
+    let hoveringButton = button.matches(':hover');
+    const sync = () => {
+      if (paused || (hovering && !hoveringButton) || viewport.matches(':focus-within')) {
+        animation.pause();
+      } else {
+        animation.play();
+      }
+    };
+
+    section.addEventListener('pointerenter', () => { hovering = true; sync(); });
+    section.addEventListener('pointerleave', () => { hovering = false; sync(); });
+    button.addEventListener('pointerenter', () => { hoveringButton = true; sync(); });
+    button.addEventListener('pointerleave', () => { hoveringButton = false; sync(); });
+    viewport.addEventListener('focusin', sync);
+    viewport.addEventListener('focusout', sync);
+    section.classList.add('is-enhanced');
+    sync();
+
+    button.addEventListener('click', () => {
+      paused = !paused;
+      sync();
+      button.setAttribute('aria-pressed', String(paused));
+      button.setAttribute(
+        'aria-label',
+        (paused ? button.dataset.playLabel : button.dataset.pauseLabel) ?? '',
+      );
+      if (label) {
+        label.textContent = (paused ? button.dataset.playShort : button.dataset.pauseShort) ?? '';
+      }
+    });
+  });
+</script>

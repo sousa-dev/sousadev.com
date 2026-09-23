@@ -1,0 +1,162 @@
+[
+  {
+    "slug": "custom-software",
+    "num": "01",
+    "tags": { "en": "WEB · API · AUTOMATION", "pt": "WEB · API · AUTOMAÇÃO" },
+    "title": { "en": "Custom Software Solutions", "pt": "Soluções de Software à Medida" },
+    "description": {
+      "en": "Internal tools, platforms and integrations built to your process, not the other way around.",
+      "pt": "Ferramentas internas, plataformas e integrações adaptadas à forma como a sua empresa trabalha."
+    },
+    "lead": {
+      "en": "When off the shelf software forces your company to work around it, the software is the problem. We build the tool your process actually needs, put it into production and keep it running.",
+      "pt": "Se o software que utiliza obriga a contornar limitações todos os dias, pode precisar de uma solução à medida. Desenvolvemos a ferramenta certa para o seu trabalho, colocamo-la em produção e asseguramos o seu funcionamento."
+    },
+    "includes": {
+      "en": [
+        "Internal tools and back offices that match how your people already work",
+        "Web applications and customer facing platforms",
+        "APIs and integrations between systems that do not talk to each other",
+        "Automation of manual, repeated work, with the audit trail it needs"
+      ],
+      "pt": [
+        "Ferramentas internas e áreas de gestão adaptadas à sua equipa",
+        "Aplicações web e plataformas para os seus clientes",
+        "APIs e integrações entre sistemas que não comunicam entre si",
+        "Automatização de tarefas manuais e repetitivas, com registo das operações"
+      ]
+    },
+    "deliverables": {
+      "en": [
+        "Working software in production, deployed, hosted and managed by us if you want that",
+        "The source code and infrastructure configuration, in your own accounts",
+        "Technical documentation and a handover whenever you want to take it in-house"
+      ],
+      "pt": [
+        "Software em produção, com alojamento e gestão assegurados por nós, se assim o pretender",
+        "Código-fonte e configuração da infraestrutura nas suas contas",
+        "Documentação técnica e transmissão de conhecimentos para assumir a gestão internamente"
+      ]
+    }
+  },
+  {
+    "slug": "it-consulting",
+    "num": "02",
+    "tags": { "en": "AUDIT · ROADMAP · DUE DILIGENCE", "pt": "AUDITORIA · PLANEAMENTO · ANÁLISE" },
+    "title": { "en": "IT Consulting", "pt": "Consultoria Informática" },
+    "description": {
+      "en": "Independent technical advice: audits, vendor selection, roadmaps and due diligence.",
+      "pt": "Apoio técnico independente para avaliar sistemas, escolher fornecedores e planear investimentos em tecnologia."
+    },
+    "lead": {
+      "en": "Advice from engineers who also build and operate systems, with nothing to sell you except the work itself. You get a written opinion you can act on, including when the answer is to change nothing.",
+      "pt": "Ajudamos a tomar decisões técnicas com base na experiência de quem desenvolve e gere sistemas. Recebe uma análise escrita, com recomendações concretas, incluindo quando a melhor opção é manter o que já funciona."
+    },
+    "includes": {
+      "en": [
+        "Technical audits of an existing system, its code, infrastructure and deployment",
+        "Vendor and platform selection, with the trade-offs written down",
+        "Roadmaps that sequence work by risk and cost, not by wish list",
+        "Technical due diligence before an acquisition or an investment"
+      ],
+      "pt": [
+        "Auditorias técnicas ao código, à infraestrutura e ao processo de colocação em produção",
+        "Seleção de fornecedores e plataformas, com as vantagens e limitações de cada opção",
+        "Planos de evolução que definem prioridades com base no risco e no custo",
+        "Avaliação técnica antes de uma aquisição ou de um investimento"
+      ]
+    },
+    "deliverables": {
+      "en": [
+        "A written report with findings, risks and a recommended order of work",
+        "A review session with your own people, in English or Portuguese",
+        "An optional scope and fixed quote if you want us to carry out the work"
+      ],
+      "pt": [
+        "Relatório com conclusões, riscos e prioridades recomendadas",
+        "Sessão de análise das recomendações com a sua equipa, em português ou inglês",
+        "Proposta com o trabalho a realizar e orçamento fixo, caso pretenda avançar connosco"
+      ]
+    }
+  },
+  {
+    "slug": "systems-architecture",
+    "num": "03",
+    "tags": { "en": "CLOUD · DATA · SECURITY", "pt": "INFRAESTRUTURA · DADOS · SEGURANÇA" },
+    "title": { "en": "Systems Architecture", "pt": "Arquitetura de Sistemas" },
+    "description": {
+      "en": "Designing systems that scale and survive: data models, infrastructure, security and cost.",
+      "pt": "Planeamento de sistemas preparados para crescer: dados, infraestrutura, segurança e custos."
+    },
+    "lead": {
+      "en": "Most expensive software problems are decisions made early and discovered late. We design the data model, the infrastructure and the failure behaviour before the build, and write down what we chose and why.",
+      "pt": "Uma decisão técnica mal avaliada no início pode sair cara mais tarde. Antes do desenvolvimento, definimos o modelo de dados, a infraestrutura e a resposta a falhas. Cada escolha fica documentada, com a respetiva justificação."
+    },
+    "includes": {
+      "en": [
+        "Data models and the migration path from whatever exists today",
+        "Infrastructure design, environments and deployment pipelines",
+        "Security, access control and data protection by design",
+        "Capacity, failure behaviour and running cost, estimated before the build"
+      ],
+      "pt": [
+        "Modelos de dados e plano de migração dos sistemas existentes",
+        "Planeamento da infraestrutura, dos ambientes e dos processos de publicação",
+        "Segurança, controlo de acessos e proteção de dados desde a conceção",
+        "Estimativas de capacidade e custos de operação, com análise da resposta a falhas"
+      ]
+    },
+    "deliverables": {
+      "en": [
+        "A technical design document with the options and the trade-offs of each",
+        "Diagrams of the system, its data and its environments",
+        "A build plan your own developers can execute, if you prefer that"
+      ],
+      "pt": [
+        "Documento técnico com as opções disponíveis, as suas vantagens e limitações",
+        "Diagramas do sistema, dos dados e dos ambientes de execução",
+        "Plano de desenvolvimento que a sua equipa pode executar, se assim o preferir"
+      ]
+    }
+  },
+  {
+    "slug": "website-development",
+    "num": "04",
+    "tags": { "en": "ASTRO · PERFORMANCE · SEO", "pt": "ASTRO · DESEMPENHO · SEO" },
+    "title": { "en": "Website Development", "pt": "Desenvolvimento de Sites" },
+    "description": {
+      "en": "Fast, accessible, maintainable company sites and web apps. Measured, not guessed.",
+      "pt": "Sites e aplicações web rápidos, acessíveis e fáceis de manter, com desempenho verificado."
+    },
+    "lead": {
+      "en": "A company website is infrastructure, not a brochure. We build sites that load fast on a phone, work with a keyboard and a screen reader, and stay editable by the people who own the content.",
+      "pt": "Um site deve servir a empresa no dia a dia. Desenvolvemos sites que carregam rapidamente no telemóvel, podem ser usados com teclado e leitor de ecrã, e permitem a quem gere os conteúdos mantê-los atualizados."
+    },
+    "includes": {
+      "en": [
+        "Company sites, landing pages and web applications",
+        "Multilingual sites with real localised routes, not browser guessing",
+        "Performance and accessibility measured against a stated budget",
+        "Structured content, so copy, products and articles are edited without a developer"
+      ],
+      "pt": [
+        "Sites institucionais, páginas de apresentação e aplicações web",
+        "Sites multilingues com endereços próprios para cada idioma",
+        "Avaliação do desempenho e da acessibilidade com critérios definidos",
+        "Conteúdos organizados para editar textos, produtos e artigos sem recorrer a um programador"
+      ]
+    },
+    "deliverables": {
+      "en": [
+        "The site in production, with deployment, hosting and management if you want it",
+        "Performance and accessibility results, with the method used to measure them",
+        "A short guide for editing content yourself"
+      ],
+      "pt": [
+        "Site publicado, com alojamento e gestão, se assim o pretender",
+        "Resultados das avaliações de desempenho e acessibilidade, com os métodos utilizados",
+        "Guia prático para atualizar os conteúdos"
+      ]
+    }
+  }
+]

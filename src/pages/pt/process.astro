@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Process from '../../components/pages/Process.astro';
+import { useTranslations } from '../../lib/i18n';
+
+const locale = 'pt' as const;
+const t = useTranslations(locale);
+---
+
+<Base
+  locale={locale}
+  route="process"
+  title={t.seo.process.title}
+  description={t.seo.process.description}
+>
+  <Process locale={locale} />
+</Base>

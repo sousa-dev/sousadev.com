@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Blog from '../../components/pages/Blog.astro';
+import { useTranslations } from '../../lib/i18n';
+
+const locale = 'en' as const;
+const t = useTranslations(locale);
+---
+
+<Base
+  locale={locale}
+  route="blog"
+  title={t.seo.blog.title}
+  description={t.seo.blog.description}
+>
+  <Blog locale={locale} />
+</Base>

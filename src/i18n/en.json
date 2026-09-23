@@ -1,0 +1,348 @@
+{
+  "meta": {
+    "localeName": "English",
+    "otherLocaleName": "Português",
+    "htmlLang": "en"
+  },
+  "nav": {
+    "services": "Services",
+    "process": "How we work",
+    "products": "Products",
+    "about": "About",
+    "blog": "Blog",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "primary": "Primary",
+    "skipToContent": "Skip to content",
+    "home": "Home",
+    "homeLabel": "Sousa Dev, home"
+  },
+  "cta": "Request a proposal",
+  "lang": {
+    "label": "Language",
+    "switchTo": "Ver em Português",
+    "current": "EN",
+    "other": "PT"
+  },
+  "hero": {
+    "eyebrow": "Software engineering · Consulting · Systems architecture",
+    "title1": "Software your business can",
+    "title2": "depend on.",
+    "sub": "Sousa Dev designs, builds, deploys and runs the systems companies depend on. Custom software, architecture and IT consulting, end to end, with direct access to the engineer building it.",
+    "secondary": "See our products",
+    "stat1": "PRODUCTS IN PRODUCTION",
+    "stat2": "BASED · WORKING",
+    "stat2Value": "PT · Global",
+    "stat3": "OWNERSHIP",
+    "stat3Value": "End to end",
+    "diagramLabel": "HOW A PROJECT RUNS",
+    "covers": [
+      "DEVELOPMENT",
+      "DEPLOYMENT",
+      "HOSTING",
+      "MANAGEMENT"
+    ],
+    "flowRegion": "How a project runs, four steps",
+    "flowPause": "Pause the sequence",
+    "flowPlay": "Play the sequence",
+    "flowPauseShort": "PAUSE",
+    "flowPlayShort": "PLAY",
+    "flowStepOf": "Step {n} of 4",
+    "steps": [
+      {
+        "title": "Meet and analyse",
+        "tag": "DISCOVERY",
+        "desc": "We sit down with you, understand the problem and what it costs you today."
+      },
+      {
+        "title": "Propose solutions",
+        "tag": "ARCHITECTURE",
+        "desc": "Options with trade-offs, a recommended path and a fixed quote."
+      },
+      {
+        "title": "Build",
+        "tag": "DEVELOPMENT",
+        "desc": "Working software on staging, reviewed with you as it grows."
+      },
+      {
+        "title": "Deliver end to end",
+        "tag": "OPERATE",
+        "desc": "Deployment, hosting and ongoing management. You get one accountable partner."
+      }
+    ]
+  },
+  "logos": {
+    "label": "Trusted by",
+    "region": "Trusted by, scrolling",
+    "pause": "Pause the scrolling logos",
+    "play": "Resume the scrolling logos",
+    "pauseShort": "PAUSE",
+    "playShort": "PLAY"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "title": "Four things we focus on.",
+    "sub": "If what you need isn't here, we'll tell you, or find someone who does it well.",
+    "readMore": "What this covers",
+    "pageTitle": "Services",
+    "pageHeading": "Development, deployment, hosting and management.",
+    "pageSub": "Four services, one accountable partner. We design and build the system, put it into production, host it and keep it running.",
+    "includesLabel": "WHAT IT INCLUDES",
+    "deliverablesLabel": "WHAT YOU GET",
+    "runsLabel": "AFTER LAUNCH",
+    "runsCopy": "Every service can continue into deployment, hosting and ongoing management, with the same engineer accountable for it."
+  },
+  "process": {
+    "eyebrow": "How we work",
+    "title": "A process you can hold us to.",
+    "sub": "Every engagement follows the same four steps. You know the deliverable and the price before we write a line, and you talk to the engineer doing the work.",
+    "pageTitle": "How we work",
+    "pageSub": "The same four steps on every engagement, from the first conversation to running the system in production.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Discovery",
+        "desc": "We map the problem, the constraints and what success looks like in numbers.",
+        "out": "Scope and fixed quote",
+        "detail": "We start with the problem, not a feature list. We look at how the work is done today, what it costs, which systems are already in place and what has to stay. You get a written scope and a fixed quote for the next step."
+      },
+      {
+        "num": "02",
+        "title": "Architecture",
+        "desc": "Data model, integrations, infrastructure and risks, reviewed with your team.",
+        "out": "Technical design doc",
+        "detail": "Before any feature work, we write down the data model, the integrations, the infrastructure and the risks, with the trade-offs of each option. You review it with your own people and sign off on a path."
+      },
+      {
+        "num": "03",
+        "title": "Build",
+        "desc": "Regular demos on a staging environment. No surprises at the end.",
+        "out": "Working software",
+        "detail": "The software goes onto a staging environment early and stays there. You see it as it grows, and change direction while changing direction is still cheap."
+      },
+      {
+        "num": "04",
+        "title": "Run",
+        "desc": "Deployment, hosting and management. Documentation and training if you'd rather take over.",
+        "out": "Deploy, host, manage",
+        "detail": "We deploy it, host it and manage it: monitoring, updates, backups and changes. If you would rather run it yourself, you get the documentation and the handover instead."
+      }
+    ],
+    "faqTitle": "Questions we get asked",
+    "faqEyebrow": "FAQ",
+    "faq": [
+      {
+        "q": "Who will I actually be talking to?",
+        "a": "Henrique Sousa, the founder and lead engineer, is in the conversation from the first call. You talk to the person doing the engineering work, not to an account manager."
+      },
+      {
+        "q": "Do you work with companies outside Portugal?",
+        "a": "Yes. Sousa Dev is based in Ponta Delgada, Azores, and works globally. We work in English and Portuguese."
+      },
+      {
+        "q": "How is a project priced?",
+        "a": "Discovery produces a written scope and a fixed quote for the work that follows, so you know the deliverable and the price before development starts. Ongoing hosting and management are quoted separately from build work."
+      },
+      {
+        "q": "Can you take over a system somebody else built?",
+        "a": "Often, yes. It starts with a review of the code, the infrastructure and the deployment setup, after which we tell you honestly what can be kept, what needs replacing and what we would not take responsibility for."
+      },
+      {
+        "q": "Do you host what you build?",
+        "a": "Yes. Deployment, hosting and management are part of what we do, on infrastructure chosen for the system in question. You can also take the system in-house, with documentation and a handover."
+      },
+      {
+        "q": "What if we already know what we want built?",
+        "a": "We still write the scope down and agree it with you. It is short when the problem is already clear, and it is what protects both sides later."
+      },
+      {
+        "q": "Will we own the code?",
+        "a": "Yes. The code and the infrastructure configuration are yours, in your own repositories and accounts wherever you prefer that."
+      },
+      {
+        "q": "Do you sign an NDA?",
+        "a": "Yes, on request, before you share anything confidential."
+      }
+    ]
+  },
+  "products": {
+    "eyebrow": "Products",
+    "title": "We run our own products too.",
+    "sub": "The people who build for you also ship and operate software with real users. That's how we know what breaks.",
+    "pageTitle": "Products",
+    "pageSub": "Software we build, deploy, host and manage ourselves. Same process, same accountability as client work.",
+    "statusLive": "LIVE",
+    "statusDev": "IN DEVELOPMENT",
+    "filterLabel": "Filter products by status",
+    "filterAll": "All",
+    "filterLive": "Live",
+    "filterDev": "In development",
+    "countAll": "{n} products",
+    "countLive": "{n} live",
+    "countDev": "{n} in development",
+    "visit": "Opens in a new tab",
+    "carouselLabel": "Products",
+    "empty": "No products match this filter."
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "Built in the Azores. Working globally.",
+    "p1": "Sousa Dev is an engineering company founded by Henrique Sousa. Wherever you are, you get a direct relationship with the people behind your project, starting with the founder and lead engineer himself.",
+    "p2": "No account managers, no hand-offs. The person who scopes your project is the one you call when something matters.",
+    "meta": [
+      "PONTA DELGADA · AZORES",
+      "WORKING GLOBALLY",
+      "EN · PT"
+    ],
+    "pageTitle": "About Sousa Dev",
+    "pageSub": "An engineering company that stays accountable for the system after it ships.",
+    "howTitle": "How working with us works",
+    "how": [
+      {
+        "title": "One accountable partner",
+        "desc": "Development, deployment, hosting and management sit with the same company, so nobody can point at somebody else when a system misbehaves."
+      },
+      {
+        "title": "Direct line to the engineer",
+        "desc": "You talk to the founder and lead engineer about scope, trade-offs and problems. Nothing is relayed through a sales layer."
+      },
+      {
+        "title": "Written before built",
+        "desc": "Scope, architecture and price are written down and agreed before development starts, and revisited in the open when reality changes."
+      },
+      {
+        "title": "Your code, your infrastructure",
+        "desc": "The code and configuration are yours. If you want to take the system in-house, you get documentation and a handover instead of a lock-in."
+      }
+    ],
+    "founderTitle": "Founder and lead engineer",
+    "founderName": "Henrique Sousa",
+    "founderCopy": "Henrique founded Sousa Dev and leads its engineering work. He also builds and operates the company's own products, which is where a lot of the operational experience comes from."
+  },
+  "blog": {
+    "eyebrow": "Blog",
+    "title": "Blog",
+    "pageSub": "Notes on building, deploying and running software. Written by the engineers doing the work.",
+    "empty": "There are no articles published yet. When we publish, they appear here.",
+    "emptyCta": "In the meantime, tell us what you are building.",
+    "readingTime": "{n} min read",
+    "publishedOn": "Published",
+    "updatedOn": "Updated",
+    "backToIndex": "All articles",
+    "notTranslated": "This article is only available in English."
+  },
+  "contact": {
+    "title": "Tell us what you need to build.",
+    "sub": "Send a few lines about the problem. Your message goes straight to the lead engineer, not to a sales inbox.",
+    "name": "Name",
+    "email": "Work email",
+    "msg": "What are you building?",
+    "note": "DIRECT LINE TO THE LEAD ENGINEER · NDA ON REQUEST",
+    "pageTitle": "Request a proposal",
+    "pageSub": "Tell us what you need to build, deploy or take over. You will be talking to the engineer who would do the work.",
+    "mobileCta": "Request a proposal",
+    "company": "Company",
+    "companyOptional": "Company (optional)",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@company.com",
+    "msgPlaceholder": "The problem, the system involved and any deadline you are working to.",
+    "submit": "Request a proposal",
+    "sending": "Sending",
+    "required": "Required",
+    "errName": "Please tell us your name.",
+    "errEmail": "Please enter a valid work email address.",
+    "errMsg": "Please describe what you need, in at least a few words.",
+    "errGeneric": "Something in the form needs fixing. Please check the fields marked below.",
+    "errServer": "We could not send your message. Please try again, or email hello@sousadev.com directly.",
+    "errThrottled": "That is a lot of messages in a short time. Please wait a moment and try again, or email hello@sousadev.com.",
+    "errUnconfigured": "The form is not connected to a delivery service on this deployment, so nothing was sent. Please email hello@sousadev.com directly.",
+    "successTitle": "Received.",
+    "successBody": "It went straight to the lead engineer.",
+    "directEmail": "Or email us directly",
+    "otherWays": "OTHER WAYS TO REACH US"
+  },
+  "footer": {
+    "tag": "Custom software, consulting and systems architecture, built, deployed and run end to end.",
+    "company": "COMPANY",
+    "contact": "CONTACT",
+    "privacy": "Privacy",
+    "products": "PRODUCTS",
+    "rights": "© {year} Sousa Dev"
+  },
+  "privacy": {
+    "title": "Privacy",
+    "sub": "How this website and our proposal form handle your data.",
+    "pending": "The final privacy policy for Sousa Dev, in English and Portuguese, has not been supplied yet. The summary below describes only what this website itself does today and is not a substitute for that policy.",
+    "sections": [
+      {
+        "title": "What this website collects",
+        "body": "The website serves static pages. It sets no cookies, loads no third-party fonts and runs no advertising or analytics scripts. If you pick a language with the language switch, that choice is kept in your browser's local storage, only so the site can show you that language."
+      },
+      {
+        "title": "The proposal form",
+        "body": "If you send the proposal form, the name, email address, optional company name and message you type are used to answer you. The form is submitted to our own endpoint and forwarded to hello@sousadev.com."
+      },
+      {
+        "title": "Your rights",
+        "body": "You can ask what we hold about you, ask for it to be corrected or ask for it to be deleted, by writing to hello@sousadev.com."
+      }
+    ],
+    "processorsTitle": "Processors and retention",
+    "processorsPending": "The hosting provider, the email delivery provider and the retention period are not fixed yet, so they are not named here. They will be named in this policy before launch.",
+    "otherDocs": "Other documents on this domain"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "That page does not exist.",
+    "sub": "The link may be old, or the address may have a typo. These are the pages that do exist.",
+    "home": "Go to the homepage"
+  },
+  "seo": {
+    "siteName": "Sousa Dev",
+    "home": {
+      "title": "Sousa Dev | software built, deployed, hosted and managed",
+      "description": "Sousa Dev designs, builds, deploys, hosts and manages the software companies depend on. Custom software, systems architecture and IT consulting, with direct access to the lead engineer."
+    },
+    "services": {
+      "title": "Services, Sousa Dev",
+      "description": "Custom software, IT consulting, systems architecture and website development, from first scope through deployment, hosting and ongoing management."
+    },
+    "process": {
+      "title": "How we work, Sousa Dev",
+      "description": "Discovery, architecture, build and run. The four steps behind every Sousa Dev engagement, plus answers to the questions companies ask first."
+    },
+    "products": {
+      "title": "Products, Sousa Dev",
+      "description": "Software Sousa Dev builds, deploys, hosts and manages itself, from live products to work in development."
+    },
+    "about": {
+      "title": "About, Sousa Dev",
+      "description": "An engineering company in Ponta Delgada, Azores, working globally, with a direct relationship between clients and the lead engineer."
+    },
+    "blog": {
+      "title": "Blog, Sousa Dev",
+      "description": "Notes on building, deploying and running software, written by the engineers doing the work."
+    },
+    "contact": {
+      "title": "Request a proposal, Sousa Dev",
+      "description": "Tell Sousa Dev what you need to build, deploy or take over. Your message reaches the lead engineer directly."
+    },
+    "privacy": {
+      "title": "Privacy, Sousa Dev",
+      "description": "How the Sousa Dev website and proposal form handle your data."
+    },
+    "notFound": {
+      "title": "Page not found, Sousa Dev",
+      "description": "That page does not exist on sousadev.com."
+    }
+  },
+  "common": {
+    "location": "Ponta Delgada, Azores",
+    "global": "Working globally",
+    "email": "hello@sousadev.com",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "externalLink": "Opens in a new tab"
+  }
+}

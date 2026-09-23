@@ -1,0 +1,112 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import Button from '../Button.astro';
+import CTABlock from '../CTABlock.astro';
+import { useTranslations, formatDate, type Locale } from '../../lib/i18n';
+import { path, articlePath } from '../../lib/routes';
+import { getArticles, articleSlug } from '../../lib/blog';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const articles = await getArticles(locale);
+---
+
+<section class="intro">
+  <div class="texture"></div>
+  <div class="container intro__inner">
+    <Eyebrow>{t.blog.eyebrow}</Eyebrow>
+    <h1>{t.blog.title}</h1>
+    <p class="lead">{t.blog.pageSub}</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="articles-heading">
+  <div class="container">
+    <h2 class="visually-hidden" id="articles-heading">{t.blog.title}</h2>
+    {
+      articles.length === 0 ? (
+        /* Honest empty state: no articles have been written yet. */
+        <div class="empty">
+          <p class="empty__text">{t.blog.empty}</p>
+          <p class="empty__cta">{t.blog.emptyCta}</p>
+          <Button href={path(locale, 'contact')} size="lg">{t.cta}</Button>
+        </div>
+      ) : (
+        <ul class="list">
+          {articles.map((article) => (
+            <li class="list__item">
+              <a href={articlePath(locale, articleSlug(article))}>
+                <p class="list__date label label--sm">
+                  <time datetime={article.data.pubDate.toISOString()}>
+                    {formatDate(article.data.pubDate, locale)}
+                  </time>
+                </p>
+                <h3 class="list__title">{article.data.title}</h3>
+                <p class="list__desc">{article.data.description}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</section>
+
+<CTABlock locale={locale} />
+
+<style>
+  .intro { position: relative; overflow: hidden; }
+  .intro__inner {
+    position: relative;
+    padding-block: var(--s-9) var(--s-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+  }
+  .intro__inner .lead { max-width: 640px; }
+
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-4);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    background: var(--graphite);
+    padding: var(--s-8);
+    max-width: 640px;
+  }
+  .empty__text { font-size: var(--text-lead); }
+  .empty__cta { color: var(--body-dark); font-size: var(--text-ui); }
+
+  .list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--rule);
+  }
+  .list__item { border-bottom: 1px solid var(--rule); }
+  .list__item a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    padding: var(--s-6) 0;
+  }
+  .list__item a:hover .list__title { color: var(--signal); }
+  .list__title {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 600;
+  }
+  .list__desc { color: var(--body-dark); font-size: var(--text-ui); max-width: 760px; }
+
+  @media (max-width: 639px) {
+    .intro__inner { padding-block: var(--s-7); }
+    .empty { padding: var(--s-5); }
+  }
+</style>

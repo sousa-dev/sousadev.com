@@ -1,0 +1,81 @@
+---
+interface Props {
+  num: string;
+  title: string;
+  desc: string;
+  out: string;
+  /** The first step keeps the 2px Ink rule; later steps use a hairline. */
+  first?: boolean;
+}
+
+const { num, title, desc, out, first = false } = Astro.props;
+---
+
+<div class:list={['step', first && 'step--first']}>
+  <div class="step__num">{num}</div>
+  <div class="step__body">
+    <h3 class="step__title">{title}</h3>
+    <p class="step__desc">{desc}</p>
+    <p class="step__out">→ {out}</p>
+  </div>
+</div>
+
+<style>
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+    padding-top: var(--s-5);
+    border-top: 2px solid var(--ink);
+  }
+
+  .step__num {
+    font-family: var(--font-display);
+    font-size: var(--text-step-num);
+    font-weight: 500;
+    letter-spacing: var(--track-display);
+    color: var(--text-on-paper);
+    line-height: 1;
+  }
+
+  .step__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+
+  .step__title {
+    font-family: var(--font-display);
+    font-size: var(--text-step-title);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .step__desc {
+    color: var(--body-light);
+    font-size: var(--text-ui);
+  }
+
+  .step__out {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: 0.1em;
+    color: var(--forest);
+  }
+
+  @media (max-width: 639px) {
+    .step {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: var(--s-3);
+      padding-top: 14px;
+      border-top-width: 1px;
+      border-top-color: var(--paper-border-strong);
+    }
+    .step--first { border-top: 2px solid var(--ink); }
+    .step__num { font-size: var(--text-step-num-mobile); }
+    .step__title { font-size: 18px; }
+    .step__desc { font-size: var(--text-small); }
+    .step__body { gap: var(--s-2); }
+  }
+</style>

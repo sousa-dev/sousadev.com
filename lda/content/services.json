@@ -1,0 +1,66 @@
+[
+  {
+    "slug": "custom-software",
+    "num": "01",
+    "tags": {
+      "en": "WEB · API · AUTOMATION",
+      "pt": "WEB · API · AUTOMAÇÃO"
+    },
+    "title": {
+      "en": "Custom Software Solutions",
+      "pt": "Custom Software Solutions"
+    },
+    "description": {
+      "en": "Internal tools, platforms and integrations built to your process, not the other way around.",
+      "pt": "Ferramentas internas, plataformas e integrações construídas à medida do seu processo."
+    }
+  },
+  {
+    "slug": "it-consulting",
+    "num": "02",
+    "tags": {
+      "en": "AUDIT · ROADMAP · DUE DILIGENCE",
+      "pt": "AUDITORIA · ROADMAP · DUE DILIGENCE"
+    },
+    "title": {
+      "en": "IT Consulting",
+      "pt": "Consultoria Informática"
+    },
+    "description": {
+      "en": "Independent technical advice: audits, vendor selection, roadmaps and due diligence.",
+      "pt": "Aconselhamento técnico independente: auditorias, seleção de fornecedores, roadmaps e due diligence."
+    }
+  },
+  {
+    "slug": "systems-architecture",
+    "num": "03",
+    "tags": {
+      "en": "CLOUD · DATA · SECURITY",
+      "pt": "CLOUD · DADOS · SEGURANÇA"
+    },
+    "title": {
+      "en": "Systems Architecture",
+      "pt": "Arquitetura de Sistemas"
+    },
+    "description": {
+      "en": "Designing systems that scale and survive: data models, infrastructure, security and cost.",
+      "pt": "Sistemas que escalam e sobrevivem: modelos de dados, infraestrutura, segurança e custo."
+    }
+  },
+  {
+    "slug": "website-development",
+    "num": "04",
+    "tags": {
+      "en": "ASTRO · PERFORMANCE · SEO",
+      "pt": "ASTRO · PERFORMANCE · SEO"
+    },
+    "title": {
+      "en": "Website Development",
+      "pt": "Desenvolvimento de Websites"
+    },
+    "description": {
+      "en": "Fast, accessible, maintainable company sites and web apps. Measured, not guessed.",
+      "pt": "Sites e web apps rápidos, acessíveis e fáceis de manter. Medidos, não adivinhados."
+    }
+  }
+]

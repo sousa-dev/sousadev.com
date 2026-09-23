@@ -1,0 +1,134 @@
+{
+  "nav": {
+    "services": "Serviços",
+    "process": "Como trabalhamos",
+    "products": "Produtos",
+    "about": "Sobre",
+    "insights": "Insights"
+  },
+  "cta": "Pedir proposta",
+  "hero": {
+    "eyebrow": "Engenharia de software · Consultoria · Arquitetura de sistemas",
+    "title1": "Software em que a sua empresa pode",
+    "title2": "confiar.",
+    "sub": "A Sousa Dev desenha, constrói, implementa e opera os sistemas de que as empresas dependem. Software à medida, arquitetura e consultoria informática, de ponta a ponta, com acesso direto ao engenheiro que o constrói.",
+    "secondary": "Ver produtos",
+    "stat1": "PRODUTOS EM PRODUÇÃO",
+    "stat2": "SEDE · ATUAÇÃO",
+    "stat3": "RESPONSABILIDADE",
+    "diagramLabel": "COMO DECORRE UM PROJETO",
+    "covers": [
+      "DESENVOLVIMENTO",
+      "DEPLOYMENT",
+      "ALOJAMENTO",
+      "GESTÃO"
+    ],
+    "steps": [
+      {
+        "title": "Reunir e analisar",
+        "tag": "DESCOBERTA",
+        "desc": "Sentamo-nos consigo, percebemos o problema e o que lhe custa hoje."
+      },
+      {
+        "title": "Propor soluções",
+        "tag": "ARQUITETURA",
+        "desc": "Opções com trade-offs, um caminho recomendado e um orçamento fixo."
+      },
+      {
+        "title": "Construir",
+        "tag": "DESENVOLVIMENTO",
+        "desc": "Software a funcionar em staging, revisto consigo à medida que cresce."
+      },
+      {
+        "title": "Entregar de ponta a ponta",
+        "tag": "OPERAR",
+        "desc": "Deployment, alojamento e gestão contínua. Um único parceiro responsável."
+      }
+    ]
+  },
+  "logos": "CONFIAM EM NÓS",
+  "services": {
+    "title": "Quatro áreas em que nos focamos.",
+    "sub": "Se o que precisa não está aqui, dizemos-lhe, ou encontramos quem o faça bem.",
+    "items": [
+      {
+        "num": "01",
+        "title": "Custom Software Solutions",
+        "desc": "Ferramentas internas, plataformas e integrações construídas à medida do seu processo.",
+        "tags": "WEB · API · AUTOMAÇÃO"
+      },
+      {
+        "num": "02",
+        "title": "Consultoria Informática",
+        "desc": "Aconselhamento técnico independente: auditorias, seleção de fornecedores, roadmaps e due diligence.",
+        "tags": "AUDITORIA · ROADMAP · DUE DILIGENCE"
+      },
+      {
+        "num": "03",
+        "title": "Arquitetura de Sistemas",
+        "desc": "Sistemas que escalam e sobrevivem: modelos de dados, infraestrutura, segurança e custo.",
+        "tags": "CLOUD · DADOS · SEGURANÇA"
+      },
+      {
+        "num": "04",
+        "title": "Desenvolvimento de Websites",
+        "desc": "Sites e web apps rápidos, acessíveis e fáceis de manter. Medidos, não adivinhados.",
+        "tags": "ASTRO · PERFORMANCE · SEO"
+      }
+    ]
+  },
+  "process": {
+    "title": "Um processo pelo qual nos pode responsabilizar.",
+    "sub": "Todos os projetos seguem os mesmos quatro passos. Sabe o entregável e o preço antes de escrevermos uma linha, e fala com o engenheiro que faz o trabalho.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Descoberta",
+        "desc": "Mapeamos o problema, as restrições e o que é sucesso, em números.",
+        "out": "Âmbito e orçamento fixo"
+      },
+      {
+        "num": "02",
+        "title": "Arquitetura",
+        "desc": "Modelo de dados, integrações, infraestrutura e riscos, revistos com a sua equipa.",
+        "out": "Documento técnico"
+      },
+      {
+        "num": "03",
+        "title": "Construção",
+        "desc": "Demos regulares em ambiente de staging. Sem surpresas no fim.",
+        "out": "Software a funcionar"
+      },
+      {
+        "num": "04",
+        "title": "Operação",
+        "desc": "Deployment, alojamento e gestão. Documentação e formação se preferir assumir.",
+        "out": "Deploy, alojar, gerir"
+      }
+    ]
+  },
+  "products": {
+    "title": "Também operamos os nossos próprios produtos.",
+    "sub": "Quem constrói para si também lança e opera software com utilizadores reais. É assim que sabemos o que falha."
+  },
+  "about": {
+    "photo": "FOTO EQUIPA / ESPAÇO\ndessaturada · tom frio",
+    "title": "Feita nos Açores. A trabalhar globalmente.",
+    "p1": "A Sousa Dev é uma empresa de engenharia fundada por Henrique Sousa. Onde quer que esteja, tem uma relação direta com as pessoas por trás do seu projeto, a começar pelo próprio fundador e engenheiro principal.",
+    "p2": "Sem gestores de conta, sem passagens de testemunho. Quem define o âmbito do projeto é quem atende quando algo importa."
+  },
+  "contact": {
+    "title": "Diga-nos o que precisa de construir.",
+    "sub": "Envie algumas linhas sobre o problema. A sua mensagem vai diretamente para o engenheiro principal, não para uma caixa comercial.",
+    "name": "Nome",
+    "email": "Email profissional",
+    "msg": "O que está a construir?",
+    "note": "LINHA DIRETA COM O ENGENHEIRO PRINCIPAL · NDA A PEDIDO"
+  },
+  "footer": {
+    "tag": "Software à medida, consultoria e arquitetura de sistemas, construídos, implementados e operados de ponta a ponta.",
+    "company": "EMPRESA",
+    "contact": "CONTACTO",
+    "privacy": "Privacidade"
+  }
+}

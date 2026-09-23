@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Products from '../components/pages/Products.astro';
+import { useTranslations } from '../lib/i18n';
+import { products } from '../lib/products';
+
+const locale = 'en' as const;
+const t = useTranslations(locale);
+
+// One SoftwareApplication per product, from the data file. Only the supplied
+// name, URL, description and status are stated; nothing about ratings, prices
+// or user numbers is claimed.
+const structuredData = products.map((product) => ({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: product.name,
+  url: product.url,
+  description: product.description[locale],
+  applicationCategory: 'WebApplication',
+  operatingSystem: 'Web',
+  publisher: { '@type': 'Organization', name: 'Sousa Dev' },
+}));
+---
+
+<Base
+  locale={locale}
+  route="products"
+  title={t.seo.products.title}
+  description={t.seo.products.description}
+  structuredData={structuredData}
+>
+  <Products locale={locale} />
+</Base>

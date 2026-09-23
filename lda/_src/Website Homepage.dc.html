@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#0A1014"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#0A1014"/><g transform="translate(60 60) scale(0.6) translate(-60 -60)"><path d="M58 20 L26 52 L58 84" fill="none" stroke="#F6F8F7" stroke-width="16" stroke-linejoin="miter"/><path d="M62 36 L94 68 L62 100" fill="none" stroke="#0FA347" stroke-width="16" stroke-linejoin="miter"/></g></svg></template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#0A1014; }
+  a { color:#F6F8F7; text-decoration:none; }
+  a:hover { color:#37D97A; }
+  ::selection { background:#0FA347; color:#0A1014; }
+  .sd-mark { --s:#F6F8F7; --d:#0FA347; transition: transform .6s cubic-bezier(.65,0,.35,1); }
+  .sd-mark path { transition: stroke .6s cubic-bezier(.65,0,.35,1); }
+  .sd-mark path:first-child { stroke: var(--s); }
+  .sd-mark path:last-child { stroke: var(--d); }
+  a:hover > .sd-mark { transform: rotate(180deg); --s:#0FA347; --d:#F6F8F7; }
+  @media (prefers-reduced-motion: reduce) { .sd-mark, .sd-mark path { transition: none; } }
+  @keyframes sd-flow { to { stroke-dashoffset: -28; } }
+  @keyframes sd-pulse { 0%,100% { opacity:.35 } 50% { opacity:1 } }
+</style>
+</helmet>
+
+<div style="background:#0A1014;color:#F6F8F7;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased">
+
+  <!-- NAV -->
+  <header data-screen-label="Nav" style="position:sticky;top:0;z-index:20;background:rgba(10,16,20,0.88);backdrop-filter:blur(12px);border-bottom:1px solid #1A2227">
+    <div style="max-width:1200px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="#" style="display:flex;align-items:center;gap:14px">
+        <svg class="sd-mark" viewBox="0 0 120 120" width="34" height="34"><path d="M58 20 L26 52 L58 84" fill="none" strokeWidth="16" strokeLinejoin="miter"></path><path d="M62 36 L94 68 L62 100" fill="none" strokeWidth="16" strokeLinejoin="miter"></path></svg>
+        <span style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:500;letter-spacing:0.02em">Sousa <span style="font-weight:700;color:#0FA347">Dev</span></span>
+      </a>
+      <nav style="display:flex;gap:32px;font-size:15px;font-weight:500;color:#AFBDBE">
+        <a href="#services" style="color:#AFBDBE">{{ t.nav.services }}</a><a href="#process" style="color:#AFBDBE">{{ t.nav.process }}</a><a href="#products" style="color:#AFBDBE">{{ t.nav.products }}</a><a href="#about" style="color:#AFBDBE">{{ t.nav.about }}</a><a href="#" style="color:#AFBDBE">{{ t.nav.insights }}</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:16px">
+        <button onClick="{{ toggleLang }}" style="background:transparent;border:1px solid #2A3439;color:#AFBDBE;border-radius:6px;padding:6px 10px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;cursor:pointer">{{ langLabel }}</button>
+        <a href="#contact" style="background:#0FA347;color:#0A1014;font-weight:600;font-size:15px;padding:11px 20px;border-radius:8px" style-hover="background:#37D97A;color:#0A1014">{{ t.cta }}</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section data-screen-label="Hero" style="position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#0FA347 0 2px,transparent 2px 14px);opacity:0.05;pointer-events:none"></div>
+    <div style="max-width:1200px;margin:0 auto;padding:112px 32px 96px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:center;position:relative">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#37D97A;text-transform:uppercase">{{ t.hero.eyebrow }}</div>
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(44px,5.4vw,76px);line-height:1.0;font-weight:500;letter-spacing:-0.03em;margin:0;text-wrap:pretty">{{ t.hero.title1 }} <span style="color:#0FA347">{{ t.hero.title2 }}</span></h1>
+        <p style="margin:0;font-size:20px;line-height:1.55;color:#AFBDBE;max-width:560px;text-wrap:pretty">{{ t.hero.sub }}</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;padding-top:4px">
+          <a href="#contact" style="background:#0FA347;color:#0A1014;font-weight:600;font-size:16px;padding:15px 26px;border-radius:8px" style-hover="background:#37D97A;color:#0A1014">{{ t.cta }}</a>
+          <a href="#products" style="border:1px solid #2A3439;color:#F6F8F7;font-weight:600;font-size:16px;padding:15px 26px;border-radius:8px" style-hover="border-color:#0FA347;color:#F6F8F7">{{ t.hero.secondary }}</a>
+        </div>
+        <div style="display:flex;gap:32px;flex-wrap:wrap;padding-top:20px;border-top:1px solid #1A2227;margin-top:8px">
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.02em">6</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8">{{ t.hero.stat1 }}</div></div>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.02em">PT · Global</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8">{{ t.hero.stat2 }}</div></div>
+          <div><div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.02em">End to end</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8">{{ t.hero.stat3 }}</div></div>
+        </div>
+      </div>
+      <!-- end-to-end process -->
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8">{{ t.hero.diagramLabel }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#37D97A">{{ stepCounter }}</div></div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <sc-for list="{{ heroSteps }}" as="hs" hint-placeholder-count="4">
+            <div style="display:grid;grid-template-columns:28px minmax(0,1fr);gap:16px;align-items:start">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:0;height:100%">
+                <div style="width:12px;height:12px;border-radius:50%;border:2px solid {{ hs.dotBorder }};background:{{ hs.dotFill }};box-sizing:border-box;margin-top:6px;transition:all .4s"></div>
+                <div style="width:2px;flex:1;min-height:34px;background:{{ hs.lineColor }};transition:background .4s"></div>
+              </div>
+              <div style="padding-bottom:22px;display:flex;flex-direction:column;gap:4px;opacity:{{ hs.opacity }};transition:opacity .4s">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><div style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;color:{{ hs.titleColor }}">{{ hs.title }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:{{ hs.tagColor }}">{{ hs.tag }}</div></div>
+                <div style="font-size:14px;color:#AFBDBE;line-height:1.5">{{ hs.desc }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid #1E272C;padding-top:16px">
+          <sc-for list="{{ t.hero.covers }}" as="cv" hint-placeholder-count="4">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#F6F8F7;border:1px solid #2A3439;border-radius:999px;padding:5px 10px">{{ cv }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGOS -->
+  <section data-screen-label="Client logos" style="border-top:1px solid #1A2227;border-bottom:1px solid #1A2227">
+    <div style="max-width:1200px;margin:0 auto;padding:36px 32px;display:flex;align-items:center;gap:40px;flex-wrap:wrap">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8;white-space:nowrap">{{ t.logos }}</div>
+      <div style="display:flex;gap:40px;flex-wrap:wrap;align-items:center;flex:1">
+        <sc-for list="{{ clientSlots }}" as="c" hint-placeholder-count="6">
+          <div style="height:28px;min-width:110px;border:1px dashed #2A3439;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#5C6F77;padding:0 14px">{{ c }}</div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" data-screen-label="Services" style="max-width:1200px;margin:0 auto;padding:104px 32px">
+    <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:end;margin-bottom:56px">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;text-transform:uppercase">01 / {{ t.nav.services }}</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,4vw,48px);line-height:1.05;font-weight:500;letter-spacing:-0.025em;margin:0;text-wrap:pretty">{{ t.services.title }}</h2>
+      </div>
+      <p style="margin:0;color:#AFBDBE;font-size:18px;max-width:520px;text-wrap:pretty">{{ t.services.sub }}</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#1E272C;border:1px solid #1E272C;border-radius:16px;overflow:hidden">
+      <sc-for list="{{ t.services.items }}" as="s" hint-placeholder-count="4">
+        <a href="#" style="background:#0A1014;padding:32px 28px;display:flex;flex-direction:column;gap:20px;min-height:300px;color:#F6F8F7" style-hover="background:#111A1E;color:#F6F8F7">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#37D97A">{{ s.num }}</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:600;letter-spacing:-0.01em;line-height:1.2">{{ s.title }}</div>
+          <div style="color:#AFBDBE;font-size:15px;flex:1">{{ s.desc }}</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#8FA3A8">{{ s.tags }}</div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" data-screen-label="Process" style="background:#F6F8F7;color:#0A1014">
+    <div style="max-width:1200px;margin:0 auto;padding:104px 32px">
+      <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:end;margin-bottom:56px">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#08662F;text-transform:uppercase">02 / {{ t.nav.process }}</div>
+          <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,4vw,48px);line-height:1.05;font-weight:500;letter-spacing:-0.025em;margin:0;text-wrap:pretty">{{ t.process.title }}</h2>
+        </div>
+        <p style="margin:0;color:#3D4A4F;font-size:18px;max-width:520px;text-wrap:pretty">{{ t.process.sub }}</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px">
+        <sc-for list="{{ t.process.steps }}" as="p" hint-placeholder-count="4">
+          <div style="display:flex;flex-direction:column;gap:16px;padding-top:20px;border-top:2px solid #0A1014">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:500;letter-spacing:-0.03em;color:#0A1014">{{ p.num }}</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:21px;font-weight:600">{{ p.title }}</div>
+            <div style="color:#3D4A4F;font-size:15px">{{ p.desc }}</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#08662F">→ {{ p.out }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" data-screen-label="Products" style="max-width:1200px;margin:0 auto;padding:104px 32px">
+    <div style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:end;margin-bottom:56px">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;text-transform:uppercase">03 / {{ t.nav.products }}</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,4vw,48px);line-height:1.05;font-weight:500;letter-spacing:-0.025em;margin:0;text-wrap:pretty">{{ t.products.title }}</h2>
+      </div>
+      <p style="margin:0;color:#AFBDBE;font-size:18px;max-width:520px;text-wrap:pretty">{{ t.products.sub }}</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+      <sc-for list="{{ t.products.items }}" as="pr" hint-placeholder-count="6">
+        <a href="{{ pr.url }}" target="_blank" rel="noopener" style="background:#111A1E;border:1px solid #1E272C;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;color:#F6F8F7" style-hover="border-color:#0FA347;color:#F6F8F7">
+          <div style="height:160px;background:#0E1519;border-bottom:1px solid #1E272C;display:flex;align-items:center;justify-content:center;padding:20px">
+            <div style="width:100%;max-width:220px;background:#0A1014;border:1px solid #1E272C;border-radius:6px;overflow:hidden">
+              <div style="display:flex;gap:5px;padding:7px 9px;border-bottom:1px solid #1E272C"><span style="width:6px;height:6px;border-radius:50%;background:#2A3439;display:block"></span><span style="width:6px;height:6px;border-radius:50%;background:#2A3439;display:block"></span><span style="width:6px;height:6px;border-radius:50%;background:#2A3439;display:block"></span></div>
+              <div style="padding:10px;display:flex;flex-direction:column;gap:6px"><div style="height:6px;width:55%;background:#1E272C;border-radius:2px"></div><div style="height:6px;width:80%;background:#1E272C;border-radius:2px"></div><div style="height:22px;width:100%;background:#141C21;border-radius:3px;margin-top:4px;position:relative;overflow:hidden"><div style="position:absolute;left:0;top:0;bottom:0;width:{{ pr.bar }};background:#0FA347"></div></div></div>
+            </div>
+          </div>
+          <div style="padding:22px 24px;display:flex;flex-direction:column;gap:8px;flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600">{{ pr.name }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:{{ pr.statusColor }};border:1px solid {{ pr.statusBorder }};border-radius:999px;padding:3px 8px;white-space:nowrap">{{ pr.status }}</div></div>
+            <div style="color:#AFBDBE;font-size:15px;flex:1">{{ pr.desc }}</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8FA3A8;padding-top:6px">{{ pr.domain }} ↗</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" data-screen-label="About" style="border-top:1px solid #1A2227">
+    <div style="max-width:1200px;margin:0 auto;padding:104px 32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center">
+      <div style="aspect-ratio:4/3;background:repeating-linear-gradient(135deg,#141C21 0 8px,#111A1E 8px 16px);border:1px solid #1E272C;border-radius:16px;display:flex;align-items:center;justify-content:center">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#8FA3A8;border:1px dashed #2A3439;padding:12px 18px;border-radius:6px;text-align:center;line-height:1.7">{{ t.about.photo }}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;text-transform:uppercase">04 / {{ t.nav.about }}</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,4vw,48px);line-height:1.05;font-weight:500;letter-spacing:-0.025em;margin:0;text-wrap:pretty">{{ t.about.title }}</h2>
+        <p style="margin:0;color:#AFBDBE;font-size:18px;text-wrap:pretty">{{ t.about.p1 }}</p>
+        <p style="margin:0;color:#AFBDBE;font-size:17px;text-wrap:pretty">{{ t.about.p2 }}</p>
+        <div style="display:flex;gap:28px;flex-wrap:wrap;padding-top:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#8FA3A8"><span>PONTA DELGADA · AZORES</span><span>WORKING GLOBALLY</span><span>EN · PT</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" data-screen-label="CTA" style="max-width:1200px;margin:0 auto;padding:0 32px 104px">
+    <div style="background:#0FA347;border-radius:20px;padding:72px 64px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:center;color:#0A1014;position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(45deg,#0A1014 0 2px,transparent 2px 14px);opacity:0.08;pointer-events:none"></div>
+      <div style="display:flex;flex-direction:column;gap:18px;position:relative">
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,4.4vw,52px);line-height:1.02;font-weight:500;letter-spacing:-0.03em;margin:0;text-wrap:pretty">{{ t.contact.title }}</h2>
+        <p style="margin:0;font-size:18px;color:#08361C;max-width:520px;text-wrap:pretty">{{ t.contact.sub }}</p>
+      </div>
+      <form style="background:#0A1014;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:12px;position:relative;color:#F6F8F7">
+        <input placeholder="{{ t.contact.name }}" style="background:#111A1E;border:1px solid #2A3439;border-radius:8px;padding:13px 14px;color:#F6F8F7;font-family:'IBM Plex Sans',sans-serif;font-size:15px;outline:none">
+        <input placeholder="{{ t.contact.email }}" style="background:#111A1E;border:1px solid #2A3439;border-radius:8px;padding:13px 14px;color:#F6F8F7;font-family:'IBM Plex Sans',sans-serif;font-size:15px;outline:none">
+        <textarea placeholder="{{ t.contact.msg }}" rows="3" style="background:#111A1E;border:1px solid #2A3439;border-radius:8px;padding:13px 14px;color:#F6F8F7;font-family:'IBM Plex Sans',sans-serif;font-size:15px;resize:vertical;outline:none"></textarea>
+        <button type="button" style="background:#0FA347;color:#0A1014;border:0;border-radius:8px;padding:14px;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;cursor:pointer;margin-top:4px">{{ t.cta }}</button>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#8FA3A8;text-align:center">{{ t.contact.note }}</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer data-screen-label="Footer" style="border-top:1px solid #1A2227">
+    <div style="max-width:1200px;margin:0 auto;padding:56px 32px 40px;display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));gap:40px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:12px"><svg viewBox="0 0 120 120" width="30" height="30"><path d="M58 20 L26 52 L58 84" fill="none" stroke="#F6F8F7" strokeWidth="16" strokeLinejoin="miter"></path><path d="M62 36 L94 68 L62 100" fill="none" stroke="#0FA347" strokeWidth="16" strokeLinejoin="miter"></path></svg><span style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:500;letter-spacing:0.02em">Sousa <span style="font-weight:700;color:#0FA347">Dev</span></span></div>
+        <div style="color:#8FA3A8;font-size:14px;max-width:300px">{{ t.footer.tag }}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#5C6F77">© 2026 SOUSA DEV · NIF 000 000 000</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8;margin-bottom:6px">{{ t.footer.company }}</div><a href="#services" style="color:#AFBDBE">{{ t.nav.services }}</a><a href="#process" style="color:#AFBDBE">{{ t.nav.process }}</a><a href="#about" style="color:#AFBDBE">{{ t.nav.about }}</a><a href="#" style="color:#AFBDBE">{{ t.nav.insights }}</a></div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8;margin-bottom:6px">{{ t.nav.products }}</div><a href="https://saomiguelbus.com" style="color:#AFBDBE">São Miguel Bus</a><a href="https://yourgenlab.com" style="color:#AFBDBE">Your GenLab</a><a href="https://djast.dev" style="color:#AFBDBE">djast.dev</a><a href="https://bskycopilot.com" style="color:#AFBDBE">Bluesky Copilot</a></div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:14px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8;margin-bottom:6px">{{ t.footer.contact }}</div><a href="mailto:hello@sousadev.com" style="color:#AFBDBE">hello@sousadev.com</a><a href="https://www.linkedin.com/in/henriquecsousa/" style="color:#AFBDBE">LinkedIn</a><a href="https://github.com/sousa-dev" style="color:#AFBDBE">GitHub</a><a href="#" style="color:#AFBDBE">{{ t.footer.privacy }}</a></div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;en&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;pt&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = { lang: (this.props.lang ?? "en"), step: 0 };
+  componentDidMount() {
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { this.setState({ step: 3 }); return; }
+    this._timer = setInterval(() => this.setState(st => ({ step: (st.step + 1) % 5 })), 1800);
+  }
+  componentWillUnmount() { clearInterval(this._timer); }
+  componentDidUpdate(prev) { if (prev.lang !== this.props.lang && this.props.lang) this.setState({ lang: this.props.lang }); }
+  renderVals() {
+    const lang = this.state.lang;
+    const products = [
+      { name: "São Miguel Bus", url: "https://saomiguelbus.com", domain: "saomiguelbus.com", en: "Live bus routes and timetables for São Miguel island.", pt: "Rotas e horários de autocarro em tempo real para São Miguel.", live: true, bar: "72%" },
+      { name: "Your GenLab", url: "https://yourgenlab.com", domain: "yourgenlab.com", en: "Generative-AI tooling for teams that ship.", pt: "Ferramentas de IA generativa para equipas que entregam.", live: true, bar: "58%" },
+      { name: "djast.dev", url: "https://djast.dev", domain: "djast.dev", en: "Developer utilities, fast and free.", pt: "Utilitários para developers, rápidos e gratuitos.", live: true, bar: "40%" },
+      { name: "Bluesky Copilot", url: "https://bskycopilot.com", domain: "bskycopilot.com", en: "Scheduling and analytics for Bluesky.", pt: "Agendamento e analytics para o Bluesky.", live: true, bar: "64%" },
+      { name: "Kunopilot", url: "https://kunopilot.com", domain: "kunopilot.com", en: "Draft, schedule and post across Bluesky, Threads and X from one composer, with an AI copilot grounded in your own history.", pt: "Escreva, agende e publique no Bluesky, Threads e X a partir de um só compositor, com um copiloto de IA baseado no seu histórico.", live: false, bar: "24%" },
+      { name: "AIssue", url: "https://aissue.yourgenlab.com", domain: "aissue.yourgenlab.com", en: "AI error resolution: turns stack traces into root causes and fixes in seconds, with a one-line integration.", pt: "Resolução de erros com IA: transforma stack traces em causas e correções em segundos, com integração de uma linha.", live: false, bar: "16%" }
+    ];
+    const T = {
+      en: {
+        nav: { services: "Services", process: "How we work", products: "Products", about: "About", insights: "Insights" },
+        cta: "Request a proposal",
+        hero: { eyebrow: "Software engineering · Consulting · Systems architecture", title1: "Software your business can", title2: "depend on.", sub: "Sousa Dev designs, builds, deploys and runs the systems companies depend on. Custom software, architecture and IT consulting, end to end, with direct access to the engineer building it.", secondary: "See our products", stat1: "PRODUCTS IN PRODUCTION", stat2: "BASED · WORKING", stat3: "OWNERSHIP", diagramLabel: "HOW A PROJECT RUNS", covers: ["DEVELOPMENT", "DEPLOYMENT", "HOSTING", "MANAGEMENT"], steps: [
+          { title: "Meet and analyse", tag: "DISCOVERY", desc: "We sit down with you, understand the problem and what it costs you today." },
+          { title: "Propose solutions", tag: "ARCHITECTURE", desc: "Options with trade-offs, a recommended path and a fixed quote." },
+          { title: "Build", tag: "DEVELOPMENT", desc: "Working software on staging, reviewed with you as it grows." },
+          { title: "Deliver end to end", tag: "OPERATE", desc: "Deployment, hosting and ongoing management. You get one accountable partner." } ] },
+        logos: "TRUSTED BY",
+        services: { title: "Four things we focus on.", sub: "If what you need isn't here, we'll tell you, or find someone who does it well.", items: [
+          { num: "01", title: "Custom Software Solutions", desc: "Internal tools, platforms and integrations built to your process, not the other way around.", tags: "WEB · API · AUTOMATION" },
+          { num: "02", title: "IT Consulting", desc: "Independent technical advice: audits, vendor selection, roadmaps and due diligence.", tags: "AUDIT · ROADMAP · DUE DILIGENCE" },
+          { num: "03", title: "Systems Architecture", desc: "Designing systems that scale and survive: data models, infrastructure, security and cost.", tags: "CLOUD · DATA · SECURITY" },
+          { num: "04", title: "Website Development", desc: "Fast, accessible, maintainable company sites and web apps. Measured, not guessed.", tags: "ASTRO · PERFORMANCE · SEO" } ] },
+        process: { title: "A process you can hold us to.", sub: "Every engagement follows the same four steps. You know the deliverable and the price before we write a line, and you talk to the engineer doing the work.", steps: [
+          { num: "01", title: "Discovery", desc: "We map the problem, the constraints and what success looks like in numbers.", out: "Scope & fixed quote" },
+          { num: "02", title: "Architecture", desc: "Data model, integrations, infrastructure and risks, reviewed with your team.", out: "Technical design doc" },
+          { num: "03", title: "Build", desc: "Regular demos on a staging environment. No surprises at the end.", out: "Working software" },
+          { num: "04", title: "Run", desc: "Deployment, hosting and management. Documentation and training if you'd rather take over.", out: "Deploy, host, manage" } ] },
+        products: { title: "We run our own products too.", sub: "The people who build for you also ship and operate software with real users. That's how we know what breaks.", items: products.map(p => ({ ...p, desc: p.en, status: p.live ? "LIVE" : "IN DEVELOPMENT", statusColor: p.live ? "#37D97A" : "#C4881B", statusBorder: p.live ? "#1E4D2F" : "#4A3A14" })) },
+        about: { photo: "TEAM / WORKSPACE PHOTO\ndesaturated · cool cast", title: "Built in the Azores. Working globally.", p1: "Sousa Dev is an engineering company founded by Henrique Sousa. Wherever you are, you get a direct relationship with the people behind your project, starting with the founder and lead engineer himself.", p2: "No account managers, no hand-offs. The person who scopes your project is the one you call when something matters." },
+        contact: { title: "Tell us what you need to build.", sub: "Send a few lines about the problem. Your message goes straight to the lead engineer, not to a sales inbox.", name: "Name", email: "Work email", msg: "What are you building?", note: "DIRECT LINE TO THE LEAD ENGINEER · NDA ON REQUEST" },
+        footer: { tag: "Custom software, consulting and systems architecture, built, deployed and run end to end.", company: "COMPANY", contact: "CONTACT", privacy: "Privacy" }
+      },
+      pt: {
+        nav: { services: "Serviços", process: "Como trabalhamos", products: "Produtos", about: "Sobre", insights: "Insights" },
+        cta: "Pedir proposta",
+        hero: { eyebrow: "Engenharia de software · Consultoria · Arquitetura de sistemas", title1: "Software em que a sua empresa pode", title2: "confiar.", sub: "A Sousa Dev desenha, constrói, implementa e opera os sistemas de que as empresas dependem. Software à medida, arquitetura e consultoria informática, de ponta a ponta, com acesso direto ao engenheiro que o constrói.", secondary: "Ver produtos", stat1: "PRODUTOS EM PRODUÇÃO", stat2: "SEDE · ATUAÇÃO", stat3: "RESPONSABILIDADE", diagramLabel: "COMO DECORRE UM PROJETO", covers: ["DESENVOLVIMENTO", "DEPLOYMENT", "ALOJAMENTO", "GESTÃO"], steps: [
+          { title: "Reunir e analisar", tag: "DESCOBERTA", desc: "Sentamo-nos consigo, percebemos o problema e o que lhe custa hoje." },
+          { title: "Propor soluções", tag: "ARQUITETURA", desc: "Opções com trade-offs, um caminho recomendado e um orçamento fixo." },
+          { title: "Construir", tag: "DESENVOLVIMENTO", desc: "Software a funcionar em staging, revisto consigo à medida que cresce." },
+          { title: "Entregar de ponta a ponta", tag: "OPERAR", desc: "Deployment, alojamento e gestão contínua. Um único parceiro responsável." } ] },
+        logos: "CONFIAM EM NÓS",
+        services: { title: "Quatro áreas em que nos focamos.", sub: "Se o que precisa não está aqui, dizemos-lhe, ou encontramos quem o faça bem.", items: [
+          { num: "01", title: "Custom Software Solutions", desc: "Ferramentas internas, plataformas e integrações construídas à medida do seu processo.", tags: "WEB · API · AUTOMAÇÃO" },
+          { num: "02", title: "Consultoria Informática", desc: "Aconselhamento técnico independente: auditorias, seleção de fornecedores, roadmaps e due diligence.", tags: "AUDITORIA · ROADMAP · DUE DILIGENCE" },
+          { num: "03", title: "Arquitetura de Sistemas", desc: "Sistemas que escalam e sobrevivem: modelos de dados, infraestrutura, segurança e custo.", tags: "CLOUD · DADOS · SEGURANÇA" },
+          { num: "04", title: "Desenvolvimento de Websites", desc: "Sites e web apps rápidos, acessíveis e fáceis de manter. Medidos, não adivinhados.", tags: "ASTRO · PERFORMANCE · SEO" } ] },
+        process: { title: "Um processo pelo qual nos pode responsabilizar.", sub: "Todos os projetos seguem os mesmos quatro passos. Sabe o entregável e o preço antes de escrevermos uma linha, e fala com o engenheiro que faz o trabalho.", steps: [
+          { num: "01", title: "Descoberta", desc: "Mapeamos o problema, as restrições e o que é sucesso, em números.", out: "Âmbito e orçamento fixo" },
+          { num: "02", title: "Arquitetura", desc: "Modelo de dados, integrações, infraestrutura e riscos, revistos com a sua equipa.", out: "Documento técnico" },
+          { num: "03", title: "Construção", desc: "Demos regulares em ambiente de staging. Sem surpresas no fim.", out: "Software a funcionar" },
+          { num: "04", title: "Operação", desc: "Deployment, alojamento e gestão. Documentação e formação se preferir assumir.", out: "Deploy, alojar, gerir" } ] },
+        products: { title: "Também operamos os nossos próprios produtos.", sub: "Quem constrói para si também lança e opera software com utilizadores reais. É assim que sabemos o que falha.", items: products.map(p => ({ ...p, desc: p.pt, status: p.live ? "ATIVO" : "EM DESENVOLVIMENTO", statusColor: p.live ? "#37D97A" : "#C4881B", statusBorder: p.live ? "#1E4D2F" : "#4A3A14" })) },
+        about: { photo: "FOTO EQUIPA / ESPAÇO\ndessaturada · tom frio", title: "Feita nos Açores. A trabalhar globalmente.", p1: "A Sousa Dev é uma empresa de engenharia fundada por Henrique Sousa. Onde quer que esteja, tem uma relação direta com as pessoas por trás do seu projeto, a começar pelo próprio fundador e engenheiro principal.", p2: "Sem gestores de conta, sem passagens de testemunho. Quem define o âmbito do projeto é quem atende quando algo importa." },
+        contact: { title: "Diga-nos o que precisa de construir.", sub: "Envie algumas linhas sobre o problema. A sua mensagem vai diretamente para o engenheiro principal, não para uma caixa comercial.", name: "Nome", email: "Email profissional", msg: "O que está a construir?", note: "LINHA DIRETA COM O ENGENHEIRO PRINCIPAL · NDA A PEDIDO" },
+        footer: { tag: "Software à medida, consultoria e arquitetura de sistemas, construídos, implementados e operados de ponta a ponta.", company: "EMPRESA", contact: "CONTACTO", privacy: "Privacidade" }
+      }
+    };
+    const step = Math.min(this.state.step, 3);
+    const heroSteps = T[lang].hero.steps.map((x, i) => {
+      const done = i < step, active = i === step, last = i === 3;
+      return { ...x,
+        dotBorder: done || active ? "#0FA347" : "#2A3439",
+        dotFill: done ? "#0FA347" : active ? "#0A1014" : "#111A1E",
+        lineColor: last ? "transparent" : (done ? "#0FA347" : "#2A3439"),
+        opacity: done || active ? 1 : 0.45,
+        titleColor: active ? "#37D97A" : "#F6F8F7",
+        tagColor: active ? "#37D97A" : "#8FA3A8" };
+    });
+    return {
+      t: T[lang],
+      heroSteps,
+      stepCounter: "0" + (step + 1) + " / 04",
+      langLabel: lang === "en" ? "EN · PT" : "PT · EN",
+      toggleLang: () => this.setState({ lang: lang === "en" ? "pt" : "en" }),
+      clientSlots: ["CLIENT LOGO", "CLIENT LOGO", "CLIENT LOGO", "CLIENT LOGO", "CLIENT LOGO", "CLIENT LOGO"]
+    };
+  }
+}
+</script>
+</body>
+</html>

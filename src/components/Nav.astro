@@ -1,0 +1,261 @@
+---
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+import LangSwitch from './LangSwitch.astro';
+import { useTranslations, type Locale } from '../lib/i18n';
+import { NAV_KEYS, path, type RouteKey } from '../lib/routes';
+
+interface Props {
+  locale: Locale;
+  active?: RouteKey;
+  langHref: string;
+}
+
+const { locale, active, langHref } = Astro.props;
+const t = useTranslations(locale);
+const links = NAV_KEYS.map((key) => ({
+  key,
+  href: path(locale, key),
+  label: t.nav[key],
+  current: key === active,
+}));
+---
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href={path(locale, 'home')} aria-label={t.nav.homeLabel}>
+      <Logo height={34} interactive class="nav__logo" />
+    </a>
+
+    <nav class="nav__links" aria-label={t.nav.primary}>
+      {
+        links.map((link) => (
+          <a href={link.href} class:list={['nav__link', link.current && 'is-current']} aria-current={link.current ? 'page' : undefined}>
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="nav__actions">
+      <LangSwitch locale={locale} href={langHref} class="nav__lang" />
+      <Button href={path(locale, 'contact')} class="nav__cta">{t.cta}</Button>
+    </div>
+
+    <!--
+      Native <details> disclosure: the mobile menu opens, closes and is keyboard
+      operable with no JavaScript at all. The script below only adds Esc, focus
+      return and scroll locking.
+    -->
+    <details class="menu" data-menu>
+      <summary class="menu__toggle" aria-label={t.nav.openMenu}>
+        <span class="menu__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </summary>
+      <div class="menu__panel">
+        <nav class="menu__links" aria-label={t.nav.menu}>
+          {
+            links.map((link) => (
+              <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>
+            ))
+          }
+        </nav>
+        <div class="menu__foot">
+          <LangSwitch locale={locale} href={langHref} />
+          <Button href={path(locale, 'contact')} size="lg" block>{t.cta}</Button>
+        </div>
+      </div>
+    </details>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /*
+   * The translucent blurred bar lives on a pseudo-element rather than on .nav
+   * itself. backdrop-filter makes an element a containing block for its
+   * position:fixed descendants, and .menu__panel is one: applied to .nav, the
+   * panel's `inset: var(--nav-h-mobile) 0 0 0` resolved against the 56px header
+   * instead of the viewport, so the open mobile menu collapsed to its own
+   * padding and showed only the first link. On a pseudo-element the blur looks
+   * identical and the panel keeps the viewport as its containing block.
+   */
+  .nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(10, 16, 20, 0.88);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav__inner {
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-6);
+  }
+
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+  }
+
+  .nav__links {
+    display: flex;
+    gap: var(--s-7);
+    font-size: var(--text-ui);
+    font-weight: 500;
+  }
+
+  .nav__link {
+    color: var(--body-dark);
+    padding-block: 4px;
+    transition: color var(--dur-fast) var(--ease-brand);
+  }
+  .nav__link:hover { color: var(--text-on-ink); }
+  .nav__link.is-current {
+    color: var(--text-on-ink);
+    box-shadow: inset 0 -2px 0 0 var(--green);
+    padding-bottom: 6px;
+  }
+
+  .nav__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+    flex: 0 0 auto;
+  }
+
+  /* ---------- mobile menu ---------- */
+  .menu { display: none; }
+
+  .menu__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--tap-min);
+    height: var(--tap-min);
+    margin-right: calc(var(--s-3) * -1);
+    cursor: pointer;
+    list-style: none;
+    border-radius: var(--r-sm);
+  }
+  .menu__toggle::-webkit-details-marker { display: none; }
+
+  .menu__bars {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 22px;
+  }
+  .menu__bars span {
+    height: 1.5px;
+    background: var(--text-on-ink);
+    transition: transform var(--dur-fast) var(--ease-brand), opacity var(--dur-fast) var(--ease-brand);
+  }
+  .menu[open] .menu__bars span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .menu[open] .menu__bars span:nth-child(2) { opacity: 0; }
+  .menu[open] .menu__bars span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /*
+   * A closed <details> keeps its content in the box tree in current Chromium,
+   * which lets the fixed panel widen the document. Hiding it explicitly keeps
+   * the page free of horizontal overflow at mobile widths.
+   */
+  .menu:not([open]) .menu__panel { display: none; }
+
+  .menu__panel {
+    position: fixed;
+    inset: var(--nav-h-mobile) 0 0 0;
+    background: var(--ink);
+    padding: var(--s-7) var(--gutter-mobile) var(--s-8);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--s-8);
+    overflow-y: auto;
+  }
+
+  .menu__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+  }
+  .menu__links a {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 500;
+    color: var(--text-on-ink);
+    padding: var(--s-3) 0;
+    min-height: var(--tap-min);
+    border-bottom: 1px solid var(--rule);
+  }
+  .menu__links a[aria-current='page'] { color: var(--signal); }
+
+  .menu__foot {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s-4);
+  }
+
+  @media (max-width: 1023px) {
+    .nav__links,
+    .nav__actions { display: none; }
+    .menu { display: block; }
+    .nav__inner { height: var(--nav-h-mobile); }
+  }
+</style>
+
+<script>
+  // Progressive enhancement over the native <details> menu: Esc to close, focus
+  // moved into and back out of the panel, and a scroll lock while it is open.
+  const menu = document.querySelector<HTMLDetailsElement>('[data-menu]');
+  if (menu) {
+    const toggle = menu.querySelector('summary');
+    const panel = menu.querySelector<HTMLElement>('.menu__panel');
+
+    const focusable = () =>
+      panel ? Array.from(panel.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')) : [];
+
+    menu.addEventListener('toggle', () => {
+      document.documentElement.style.overflow = menu.open ? 'hidden' : '';
+      if (menu.open) focusable()[0]?.focus();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (!menu.open) return;
+      if (event.key === 'Escape') {
+        menu.open = false;
+        toggle?.focus();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const items = [toggle as HTMLElement, ...focusable()].filter(Boolean);
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    // A same-page link (an in-page anchor) does not reload, so close explicitly.
+    panel?.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('a')) menu.open = false;
+    });
+  }
+</script>

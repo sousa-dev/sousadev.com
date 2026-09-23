@@ -1,0 +1,121 @@
+---
+import { render } from 'astro:content';
+import CTABlock from '../CTABlock.astro';
+import Eyebrow from '../Eyebrow.astro';
+import { useTranslations, formatDate, fill, otherLocale, type Locale } from '../../lib/i18n';
+import { path } from '../../lib/routes';
+import { readingMinutes, type Article } from '../../lib/blog';
+
+interface Props {
+  locale: Locale;
+  article: Article;
+  /** True when no translation of this article exists yet. */
+  untranslated?: boolean;
+}
+
+const { locale, article, untranslated = false } = Astro.props;
+const t = useTranslations(locale);
+const other = otherLocale(locale);
+const { Content } = await render(article);
+const minutes = readingMinutes(article.body ?? '');
+---
+
+<article class="article">
+  <div class="container article__inner">
+    <header class="article__head">
+      <Eyebrow>{t.blog.eyebrow}</Eyebrow>
+      <h1>{article.data.title}</h1>
+      <p class="lead">{article.data.description}</p>
+      <p class="article__meta label label--sm">
+        <time datetime={article.data.pubDate.toISOString()}>
+          {formatDate(article.data.pubDate, locale)}
+        </time>
+        <span aria-hidden="true">·</span>
+        <span>{fill(t.blog.readingTime, { n: minutes })}</span>
+      </p>
+      {
+        untranslated && (
+          <p class="article__note">
+            {t.blog.notTranslated} <a href={path(other, 'blog')}>{t.blog.backToIndex}</a>
+          </p>
+        )
+      }
+    </header>
+
+    <div class="article__body measure">
+      <Content />
+    </div>
+
+    <p class="article__back">
+      <a href={path(locale, 'blog')}>← {t.blog.backToIndex}</a>
+    </p>
+  </div>
+</article>
+
+<CTABlock locale={locale} />
+
+<style>
+  .article__inner {
+    padding-block: var(--s-9);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-7);
+  }
+  .article__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+    max-width: 900px;
+  }
+  .article__meta {
+    display: flex;
+    gap: var(--s-2);
+    color: var(--label-dark);
+  }
+  .article__note {
+    border: 1px solid var(--status-dev-border);
+    border-radius: var(--r-md);
+    padding: var(--s-3) var(--s-4);
+    font-size: var(--text-ui);
+    color: var(--body-dark);
+  }
+  .article__note a { color: var(--signal); }
+
+  .article__body { display: flex; flex-direction: column; gap: var(--s-5); color: var(--body-dark); }
+  .article__body :global(h2) {
+    color: var(--text-on-ink);
+    font-size: var(--text-h3);
+    font-weight: 600;
+    margin-top: var(--s-4);
+  }
+  .article__body :global(h3) { color: var(--text-on-ink); font-size: var(--text-lead); }
+  .article__body :global(a) { color: var(--signal); text-decoration: underline; }
+  .article__body :global(ul),
+  .article__body :global(ol) { padding-left: var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
+  .article__body :global(code) {
+    font-family: var(--font-mono);
+    font-size: var(--text-small);
+    background: var(--graphite);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    padding: 1px 5px;
+  }
+  .article__body :global(pre) {
+    background: var(--graphite);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: var(--s-5);
+    overflow-x: auto;
+  }
+  .article__body :global(blockquote) {
+    border-left: 2px solid var(--green);
+    padding-left: var(--s-5);
+    color: var(--body-dark);
+  }
+
+  .article__back a { color: var(--signal); font-size: var(--text-ui); }
+
+  @media (max-width: 639px) {
+    .article__inner { padding-block: var(--s-7); }
+  }
+</style>

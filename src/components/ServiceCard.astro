@@ -1,0 +1,67 @@
+---
+import { type Locale } from '../lib/i18n';
+import { path } from '../lib/routes';
+import type { Service } from '../lib/services';
+
+interface Props {
+  locale: Locale;
+  service: Service;
+}
+
+const { locale, service } = Astro.props;
+---
+
+<a class="service" href={path(locale, 'services', service.slug)}>
+  <span class="service__num">{service.num}</span>
+  <span class="service__title">{service.title[locale]}</span>
+  <span class="service__desc">{service.description[locale]}</span>
+  <span class="service__tags label label--sm">{service.tags[locale]}</span>
+</a>
+
+<style>
+  .service {
+    background: var(--ink);
+    padding: var(--s-7) 28px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+    min-height: 300px;
+    color: var(--text-on-ink);
+    transition: background-color var(--dur-fast) var(--ease-brand);
+  }
+  .service:hover { background: var(--graphite); color: var(--text-on-ink); }
+  .service:focus-visible { outline-offset: -4px; }
+
+  .service__num {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: var(--track-label-sm);
+    color: var(--signal);
+  }
+
+  .service__title {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .service__desc {
+    color: var(--body-dark);
+    font-size: var(--text-ui);
+    flex: 1;
+  }
+
+  .service__tags { color: var(--label-dark); }
+
+  @media (max-width: 639px) {
+    .service {
+      padding: var(--s-5);
+      min-height: 0;
+      gap: var(--s-2);
+    }
+    .service__title { font-size: var(--text-card-title); }
+    .service__desc { font-size: var(--text-small); }
+  }
+</style>

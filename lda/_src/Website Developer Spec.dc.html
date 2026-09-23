@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#0A1014"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" fill="#0A1014"/><g transform="translate(60 60) scale(0.6) translate(-60 -60)"><path d="M58 20 L26 52 L58 84" fill="none" stroke="#F6F8F7" stroke-width="16" stroke-linejoin="miter"/><path d="M62 36 L94 68 L62 100" fill="none" stroke="#0FA347" stroke-width="16" stroke-linejoin="miter"/></g></svg></template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#0A1014; }
+  a { color:#37D97A; text-decoration:none; }
+  a:hover { color:#0FA347; text-decoration:underline; }
+  ::selection { background:#0FA347; color:#0A1014; }
+  pre { margin:0; white-space:pre-wrap; word-break:break-word; }
+</style>
+</helmet>
+<div style="background:#0A1014;color:#F6F8F7;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased">
+
+  <div style="position:sticky;top:0;z-index:10;background:rgba(10,16,20,0.92);backdrop-filter:blur(10px);border-bottom:1px solid #1A2227">
+    <div style="max-width:1100px;margin:0 auto;padding:14px 32px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:12px"><svg viewBox="0 0 120 120" width="26" height="26"><path d="M58 20 L26 52 L58 84" fill="none" stroke="#F6F8F7" strokeWidth="16" strokeLinejoin="miter"></path><path d="M62 36 L94 68 L62 100" fill="none" stroke="#0FA347" strokeWidth="16" strokeLinejoin="miter"></path></svg><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#8FA3A8">SOUSADEV.COM · DEVELOPER SPEC · v1.0</span></div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em"><a href="#scope">SCOPE</a><a href="#stack">STACK</a><a href="#tokens">TOKENS</a><a href="#layout">LAYOUT</a><a href="#components">COMPONENTS</a><a href="#pages">PAGES</a><a href="#i18n">I18N</a><a href="#quality">QUALITY</a><a href="#handoff">HANDOFF</a></div>
+    </div>
+  </div>
+
+  <section style="max-width:1100px;margin:0 auto;padding:72px 32px 48px;display:flex;flex-direction:column;gap:20px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347">WEBSITE BUILD BRIEF</div>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(36px,5vw,60px);line-height:1.02;font-weight:500;letter-spacing:-0.03em;margin:0;max-width:820px;text-wrap:pretty">sousadev.com — everything the developer needs to ship it.</h1>
+    <p style="margin:0;font-size:18px;color:#AFBDBE;max-width:720px;text-wrap:pretty">Read alongside the hi-fi designs (<a href="Website Homepage.dc.html">desktop</a>, <a href="Website Homepage Mobile.dc.html">mobile</a>) and the <a href="Sousa Dev Brand Guidelines.dc.html">brand guidelines</a>. Where this document and the design disagree, the design wins; where the design is silent, this document wins.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;padding-top:8px">
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8FA3A8">STACK</div><div style="font-weight:600;margin-top:4px">Astro 4 + vanilla CSS</div></div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8FA3A8">LANGUAGES</div><div style="font-weight:600;margin-top:4px">EN default · PT at /pt/</div></div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8FA3A8">PRIMARY ACTION</div><div style="font-weight:600;margin-top:4px">Request a proposal</div></div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;color:#8FA3A8">PERFORMANCE BUDGET</div><div style="font-weight:600;margin-top:4px">Lighthouse ≥ 95 · LCP under 1.8s</div></div>
+    </div>
+  </section>
+
+  <section id="scope" style="max-width:1100px;margin:0 auto;padding:48px 32px;border-top:1px solid #1A2227">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;margin-bottom:12px">01 — SCOPE &amp; SITEMAP</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:0 0 28px">Seven pages, one action.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:14px;overflow:hidden">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.9;padding:20px 24px;color:#AFBDBE">
+          <div><span style="color:#F6F8F7">/</span> <span style="color:#5C6F77">— Home (designed)</span></div>
+          <div><span style="color:#F6F8F7">/services</span> <span style="color:#5C6F77">— 4 services, one section each</span></div>
+          <div><span style="color:#F6F8F7">/process</span> <span style="color:#5C6F77">— How we work, FAQ</span></div>
+          <div><span style="color:#F6F8F7">/products</span> <span style="color:#5C6F77">— 6 product cards → external</span></div>
+          <div><span style="color:#F6F8F7">/about</span> <span style="color:#5C6F77">— Founder, team, location</span></div>
+          <div><span style="color:#F6F8F7">/insights</span> <span style="color:#5C6F77">— Blog index · /insights/[slug]</span></div>
+          <div><span style="color:#F6F8F7">/contact</span> <span style="color:#5C6F77">— Proposal form (same as home CTA)</span></div>
+          <div><span style="color:#F6F8F7">/privacy</span> <span style="color:#5C6F77">— Legal (RGPD)</span></div>
+          <div style="color:#37D97A;margin-top:8px">/pt/… <span style="color:#5C6F77">— mirror of every route</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;color:#AFBDBE;font-size:15px">
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px"><strong style="color:#F6F8F7">Every page ends with the proposal CTA block.</strong> Same component, same copy. The form posts to a serverless endpoint (Resend or Formspree) and sends to hello@sousadev.com; success state replaces the form inline.</div>
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px"><strong style="color:#F6F8F7">Secondary pages reuse homepage sections.</strong> /services expands the 4 service cards into full sections; /process is the 4 steps plus an FAQ accordion; /products is the 6-card grid with filters (Live / In development). No new visual patterns are needed.</div>
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px"><strong style="color:#F6F8F7">Out of scope for v1:</strong> case studies (no data yet), careers, client portal, dark/light toggle (site is dark-first only, with the Process section in Paper as designed).</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack" style="max-width:1100px;margin:0 auto;padding:48px 32px;border-top:1px solid #1A2227">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;margin-bottom:12px">02 — STACK &amp; PROJECT STRUCTURE</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:0 0 28px">Astro, static output, zero client JS by default.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:14px;padding:22px 24px;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.8;color:#AFBDBE"><pre>src/
+  layouts/Base.astro        head, fonts, nav, footer
+  components/
+    Nav.astro  Footer.astro  Button.astro
+    Eyebrow.astro  SectionHead.astro
+    ServiceCard.astro  ProcessStep.astro
+    ProductCard.astro  LogoRow.astro
+    CTABlock.astro  ProjectFlow.astro
+    LangSwitch.astro
+  content/
+    insights/*.md            blog (content collections)
+    products.json  services.json
+  i18n/en.json  pt.json      all UI strings
+  pages/
+    index.astro  services.astro  …
+    pt/index.astro  pt/…       same components, lang="pt"
+  styles/tokens.css  global.css
+public/
+  logo/*.svg  favicon/*  loader/sousadev-loader.svg
+  og/*.png</pre></div>
+      <div style="display:flex;flex-direction:column;gap:12px;color:#AFBDBE;font-size:15px">
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px"><strong style="color:#F6F8F7">Astro 4, static output.</strong> Deploy to Cloudflare Pages or Vercel. No React/Vue islands unless a component truly needs state — only the FAQ accordion and the mobile nav, both doable with a native details element and a 20-line script.</div>
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px"><strong style="color:#F6F8F7">Fonts self-hosted.</strong> Space Grotesk 500/700, IBM Plex Sans 400/500/600, IBM Plex Mono 400/500 as woff2 (latin + latin-ext for Portuguese). font-display: swap; preload the heading and body files. No Google Fonts request at runtime (RGPD).</div>
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px"><strong style="color:#F6F8F7">CSS: plain, scoped per component, tokens as custom properties.</strong> No Tailwind, no framework — not needed for ~12 components, and it keeps the CSS under 30 KB.</div>
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px"><strong style="color:#F6F8F7">Images:</strong> Astro's Image component with AVIF/WebP and explicit width/height. Client logos as SVG, monochrome #8FA3A8, max-height 28px.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tokens" style="max-width:1100px;margin:0 auto;padding:48px 32px;border-top:1px solid #1A2227">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;margin-bottom:12px">03 — DESIGN TOKENS</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:0 0 28px">Copy this into tokens.css. Don't invent values outside it.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px">
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:14px;padding:22px 24px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.75;color:#AFBDBE"><pre>:root {
+  /* colour */
+  --ink:#0A1014;  --graphite:#111A1E;  --panel:#0E1519;
+  --border:#1E272C;  --border-strong:#2A3439;  --rule:#1A2227;
+  --paper:#F6F8F7;  --mist:#E8EDEB;  --paper-border:#DDE4E2;
+  --green:#0FA347;  --forest:#08662F;  --signal:#37D97A;
+  --green-ink:#08361C;      /* text on green fills */
+  --slate:#5C6F77;          /* labels on paper only */
+  --label-dark:#8FA3A8;     /* labels on ink */
+  --body-dark:#AFBDBE;      /* body on ink */
+  --body-light:#3D4A4F;     /* body on paper */
+  --amber:#C4881B;  --steel:#1F7FC2;
+
+  /* type */
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'IBM Plex Sans',system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --text-display:clamp(44px,5.4vw,76px);
+  --text-h2:clamp(32px,4vw,48px);
+  --text-h3:24px;  --text-lead:20px;  --text-body:17px;
+  --text-ui:15px;  --text-small:14px;  --text-label:12px;
+  --track-label:0.16em;  --track-tight:-0.025em;
+
+  /* space (4px base) */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px;
+  --s-6:24px; --s-7:32px; --s-8:48px; --s-9:64px; --s-10:104px;
+
+  /* shape */
+  --r-sm:6px; --r-md:8px; --r-lg:14px; --r-xl:16px; --r-2xl:20px;
+  --container:1200px;  --gutter:32px;
+  --nav-h:72px;
+}</pre></div>
+      <div style="display:flex;flex-direction:column;gap:12px;color:#AFBDBE;font-size:15px">
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px"><strong style="color:#F6F8F7">Type rules.</strong> Display and H2 use the display font at 500 with tight tracking and line-height 1.0–1.05. H3 (card titles) 600. Body is Plex Sans 400 at 17/1.6; UI text 15px. Mono labels are uppercase, 11–12px, tracking 0.14–0.16em. Never below 12px anywhere.</div>
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px"><strong style="color:#F6F8F7">Colour rules.</strong> Green is for the D chevron, the primary button, eyebrows and one accent per section. Green text on Ink is --signal; on Paper it's --forest. Text on a green fill is --ink or --green-ink, never white. Labels on Ink use --label-dark (Slate fails contrast on dark).</div>
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px"><strong style="color:#F6F8F7">The 45° texture.</strong> repeating-linear-gradient(45deg, var(--green) 0 2px, transparent 2px 14px) at opacity .05 — only on the hero and the CTA block (there with --ink at .08). Nowhere else.</div>
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px"><strong style="color:#F6F8F7">Section rhythm.</strong> Padding --s-10 × --gutter on desktop, --s-8 on mobile. Sections are separated by a 1px --rule or a surface change, never both.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="layout" style="max-width:1100px;margin:0 auto;padding:48px 32px;border-top:1px solid #1A2227">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;margin-bottom:12px">04 — LAYOUT &amp; BREAKPOINTS</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:0 0 28px">One container, three breakpoints.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:24px">
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:12px;padding:20px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8">≥ 1024 · DESKTOP</div><div style="color:#AFBDBE;font-size:15px;margin-top:8px">Container 1200 / gutter 32. Hero 7:5 grid. Services 4 cols. Process 4 cols. Products 3 cols. Footer 2:1:1:1. Nav inline.</div></div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:12px;padding:20px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8">640–1023 · TABLET</div><div style="color:#AFBDBE;font-size:15px;margin-top:8px">Gutter 24. Hero stacks (diagram below text). Services 2×2. Process 2×2. Products 2 cols. Footer 2×2. Nav collapses to menu.</div></div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:12px;padding:20px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8">UNDER 640 · MOBILE</div><div style="color:#AFBDBE;font-size:15px;margin-top:8px">Gutter 20. Everything single column. Products become a horizontal scroll-snap row (see mobile design). Buttons full width, min-height 48px. Display type 40px.</div></div>
+    </div>
+    <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px;color:#AFBDBE;font-size:15px"><strong style="color:#F6F8F7">Nav behaviour.</strong> Sticky, 72px (56px mobile), backdrop blur 12px over rgba(10,16,20,.88). On mobile the hamburger opens a full-screen Ink panel: links at 24px Space Grotesk, language switch and the CTA pinned at the bottom. Close on route change and Esc. Hit targets ≥ 44px.</div>
+  </section>
+
+  <section id="components" style="max-width:1100px;margin:0 auto;padding:48px 32px;border-top:1px solid #1A2227">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;margin-bottom:12px">05 — COMPONENT SPECS</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:0 0 28px">Twelve components. Exact values.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+      <sc-for list="{{ components }}" as="c" hint-placeholder-count="12">
+        <div style="background:#111A1E;border:1px solid #1E272C;border-radius:14px;padding:22px 24px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><div style="font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600">{{ c.name }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;color:#8FA3A8">{{ c.file }}</div></div>
+          <div style="color:#AFBDBE;font-size:14.5px;line-height:1.6">{{ c.spec }}</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#37D97A;line-height:1.7;border-top:1px solid #1E272C;padding-top:10px">{{ c.states }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="pages" style="max-width:1100px;margin:0 auto;padding:48px 32px;border-top:1px solid #1A2227">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;margin-bottom:12px">06 — HOMEPAGE SECTION ORDER</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:0 0 28px">Build in this order; each section is independently shippable.</h2>
+    <div style="display:flex;flex-direction:column;gap:1px;background:#1E272C;border:1px solid #1E272C;border-radius:14px;overflow:hidden">
+      <sc-for list="{{ sections }}" as="s" hint-placeholder-count="9">
+        <div style="background:#0A1014;padding:18px 24px;display:grid;grid-template-columns:44px minmax(0,180px) minmax(0,1fr);gap:20px;align-items:baseline">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#37D97A">{{ s.n }}</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px">{{ s.name }}</div>
+          <div style="color:#AFBDBE;font-size:14.5px">{{ s.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="i18n" style="max-width:1100px;margin:0 auto;padding:48px 32px;border-top:1px solid #1A2227">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;margin-bottom:12px">07 — LANGUAGES</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:0 0 28px">EN at root, PT under /pt/. Static, no runtime detection.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;color:#AFBDBE;font-size:15px">
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px">Strings live in <span style="font-family:'IBM Plex Mono',monospace;color:#F6F8F7">src/i18n/en.json</span> and <span style="font-family:'IBM Plex Mono',monospace;color:#F6F8F7">pt.json</span>; components receive a t object. The full EN and PT copy for the homepage is already in the design file's logic — lift it verbatim.</div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px">Every page emits alternate hreflang links (en, pt, x-default), the html lang attribute, and localised title / description / OG. The switch in the nav links to the same route in the other language, never to the homepage.</div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px">Product names, "Sousa Dev", "Custom Software Solutions" and URLs are never translated. Dates: 22 Set 2026 in PT, 22 Sep 2026 in EN. Phone as +351 968 378 315 in both.</div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:10px;padding:16px 20px;border-color:#4A3A14"><strong style="color:#F6F8F7">Copy rules (all pages).</strong> No em dashes anywhere; use a comma, full stop or slash. No response-time promises (no "48h"); the claim is direct contact with the lead engineer. Never state team size. "Working globally", not a region. Every page makes clear we handle development, deployment, hosting and management.</div>
+    </div>
+  </section>
+
+  <section id="quality" style="max-width:1100px;margin:0 auto;padding:48px 32px;border-top:1px solid #1A2227">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;margin-bottom:12px">08 — QUALITY BAR</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:0 0 28px">Acceptance criteria. The site isn't done until all pass.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:8px;color:#AFBDBE;font-size:14.5px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8;margin-bottom:4px">PERFORMANCE</div><div>— Lighthouse mobile ≥ 95 on all four categories</div><div>— LCP under 1.8s, CLS under 0.05, INP under 200ms on 4G</div><div>— Total JS shipped to the homepage under 15 KB</div><div>— Fonts preloaded, subset, woff2 only</div></div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:8px;color:#AFBDBE;font-size:14.5px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8;margin-bottom:4px">ACCESSIBILITY</div><div>— WCAG 2.2 AA; text contrast ≥ 4.5:1 (already true for the token pairs)</div><div>— Full keyboard nav; visible focus ring 2px solid --signal, offset 2px</div><div>— One h1 per page, landmark regions, alt text on every image, logos carry company names</div><div>— prefers-reduced-motion: disable the loader loop and all transitions</div></div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:8px;color:#AFBDBE;font-size:14.5px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8;margin-bottom:4px">SEO &amp; META</div><div>— Per-page title (≤ 60 chars), description, canonical, hreflang</div><div>— OG image 1200×630 per page from the template in /og (Ink, 45° texture, headline, mark)</div><div>— JSON-LD: Organization on every page, Article on insights, SoftwareApplication on product cards</div><div>— sitemap.xml, robots.txt, 404 page in both languages</div></div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:8px;color:#AFBDBE;font-size:14.5px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8;margin-bottom:4px">PRIVACY &amp; ANALYTICS</div><div>— No third-party fonts, no Google Analytics; use Plausible or Umami (cookie-less, no banner needed)</div><div>— Form: honeypot + server-side rate limit; never log message bodies</div><div>— Privacy page in EN and PT naming the processor and retention</div></div>
+    </div>
+  </section>
+
+  <section id="handoff" style="max-width:1100px;margin:0 auto;padding:48px 32px 96px;border-top:1px solid #1A2227">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#0FA347;margin-bottom:12px">09 — ASSETS &amp; HANDOFF</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:500;letter-spacing:-0.02em;margin:0 0 28px">What you receive, what you deliver.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;color:#AFBDBE;font-size:15px">
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:8px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8;margin-bottom:4px">YOU RECEIVE</div><div>— <span style="font-family:'IBM Plex Mono',monospace;color:#F6F8F7">brand-kit/</span>: all logo SVGs (outlined), favicon set, tokens.css, transparent animated loader</div><div>— Hi-fi homepage (desktop + mobile) with all EN/PT copy in the file</div><div>— Brand guidelines page (colour, type, imagery, voice)</div><div>— Client logo SVGs and team photos: supplied by Sousa Dev before Build step 03</div></div>
+      <div style="background:#111A1E;border:1px solid #1E272C;border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:8px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#8FA3A8;margin-bottom:4px">YOU DELIVER</div><div>— Git repo with README (setup, deploy, how to add a blog post / product)</div><div>— Staging URL with preview deploys per PR</div><div>— Lighthouse report + axe scan attached to the final PR</div><div>— Redirect map from the old site's URLs (all → new routes, 301)</div><div>— Domain cut-over checklist: DNS, HTTPS, www → apex, old favicon purged</div></div>
+      <div style="background:#0FA347;border-radius:12px;padding:20px 22px;color:#0A1014;display:flex;flex-direction:column;gap:8px"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#08361C;margin-bottom:4px">DEFINITION OF DONE</div><div style="font-weight:500">Homepage matches the design at 1440, 1024, 768 and 390 px within 4px; all criteria in section 08 pass; both languages deployed; Henrique can add a product or blog post by editing one JSON/Markdown file without touching components.</div></div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      components: [
+        { name: "Button", file: "Button.astro", spec: "Primary: bg --green, text --ink, 600, 15–16px, padding 11–15px × 20–26px, radius --r-md. Secondary: transparent, 1px --border-strong, text --paper. Mobile: full width, min-height 48px.", states: "hover primary → --signal · hover secondary → border --green · focus ring 2px --signal · disabled 40% opacity" },
+        { name: "Eyebrow", file: "Eyebrow.astro", spec: "Mono 12px, uppercase, tracking .16em. --signal on Ink, --forest on Paper. Optional numeric prefix '01 — '.", states: "no states" },
+        { name: "SectionHead", file: "SectionHead.astro", spec: "Grid 5:7 on desktop, stacked on mobile. Left: eyebrow + H2 (--text-h2, 500, tight). Right: lead paragraph 18px, max-width 520, aligned to the H2 baseline (align-items:end). Margin-bottom 56 / 32 mobile.", states: "variant: ink | paper" },
+        { name: "Nav", file: "Nav.astro", spec: "Sticky 72px, blur backdrop, 1px --rule bottom. Mark 34px + wordmark 20px. Links 15px 500 --body-dark. Right: LangSwitch + primary Button. Mobile: 56px, hamburger 44px hit area, full-screen Ink panel.", states: "logo hover → mark rotates 180° and the two chevrons swap colours (S → --green, D → --paper), .6s cubic-bezier(.65,0,.35,1); off under reduced-motion · link hover → --paper · active route → --paper with 2px --green underline offset 6px" },
+        { name: "LangSwitch", file: "LangSwitch.astro", spec: "Pill 1px --border-strong, radius --r-sm, mono 12px 'EN · PT'. Links to the equivalent route in the other language.", states: "hover → border --green · current language in --paper, other in --label-dark" },
+        { name: "LogoRow", file: "LogoRow.astro", spec: "1px --rule top/bottom, padding 36px. 'TRUSTED BY' mono label + logos in a flex-wrap row, gap 40. Logos monochrome --label-dark, height 28, SVG. Wrap to 3-col grid on mobile.", states: "logo hover → --paper (optional) · empty: hide the whole section" },
+        { name: "ServiceCard", file: "ServiceCard.astro", spec: "Cells of a 1px --border grid (gap 1px, background --border, radius --r-xl, overflow hidden). Cell bg --ink, padding 32 × 28, min-height 300. Number mono --signal, H3 24px 600, body 15px, tags mono 11px --label-dark at the bottom. Whole card links to /services#slug.", states: "hover → bg --graphite · focus ring inside the cell" },
+        { name: "ProcessStep", file: "ProcessStep.astro", spec: "On Paper. 2px --ink top rule, padding-top 20. Number 40px Space Grotesk 500 tight. Title 21px 600, body 15px --body-light, outcome line mono 11px --forest with '→'. No timeline or duration labels. 4 cols → 2 → 1.", states: "no states (static)" },
+        { name: "ProductCard", file: "ProductCard.astro", spec: "bg --graphite, 1px --border, radius --r-xl. Top: 160px --panel preview area with a real screenshot (AVIF, 440×320, object-fit cover). Body padding 22×24: name 20px 600 + status pill (mono 10px; LIVE --signal with #1E4D2F border, IN DEVELOPMENT --amber with #4A3A14), desc 15px, domain mono 11px with '↗'. External link, rel=noopener.", states: "hover → border --green, preview image scale 1.02 (200ms) · reduced-motion: no scale" },
+        { name: "ProjectFlow", file: "ProjectFlow.astro", spec: "Hero right panel, --graphite card, padding 28. Vertical stepper of 4 steps (Meet and analyse / Propose solutions / Build / Deliver end to end): 12px dot + 2px connector in the left 28px column; title 17px 600, tag mono 10px, desc 14px. Header: label 'HOW A PROJECT RUNS' + counter '0n / 04' in --signal. Footer: 4 chips (DEVELOPMENT, DEPLOYMENT, HOSTING, MANAGEMENT), mono 10px, 1px --border-strong, pill.", states: "auto-advances every 1.8s, loops with a 1-step pause at the end: done → dot + connector --green; active → title/tag --signal, hollow green dot; upcoming → 45% opacity. Transitions .4s. Under reduced-motion: static, all four steps done. Pause on hover." },
+        { name: "CTABlock", file: "CTABlock.astro", spec: "bg --green, radius --r-2xl, padding 72×64 (28×22 mobile), 45° --ink texture at .08. Grid 7:5. Left: H2 (--ink, tight) + lead in --green-ink. Right: form card bg --ink, radius --r-lg, padding 28; inputs bg --graphite, 1px --border-strong, radius --r-md, padding 13×14; submit = primary Button; note mono 11px --label-dark reading 'DIRECT LINE TO THE LEAD ENGINEER · NDA ON REQUEST'. Mobile: form becomes a single primary Button linking to /contact.", states: "input focus → border --green · submitting → 'Sending…' · success → replace form with mark + 'Received. It went straight to the lead engineer.' · error → --amber note under the button" },
+        { name: "Footer", file: "Footer.astro", spec: "1px --rule top, padding 56×32→40. Grid 2:1:1:1 (2×2 tablet, 1 col mobile). Col 1: lockup 30px, tagline 14px --label-dark max-width 300, legal line mono 11px --slate. Other cols: mono 11px heading + 14px links --body-dark.", states: "link hover → --signal" }
+      ],
+      sections: [
+        { n: "01", name: "Nav", note: "Sticky. Build the mobile panel from day one; it's the hardest part of the page." },
+        { n: "02", name: "Hero", note: "7:5 grid, 112px top padding, 45° texture at .05. Right panel is ProjectFlow. Stats row uses real numbers only; remove any stat you can't defend." },
+        { n: "03", name: "LogoRow", note: "Hidden until at least 4 client SVGs exist. Never show placeholders in production." },
+        { n: "04", name: "Services", note: "Four cards in a 1px grid; titles and tags come from services.json." },
+        { n: "05", name: "Process", note: "Paper surface (the only light section). Numbers in Space Grotesk, outcomes in mono Deep Forest. Step 4 is 'Run': deployment, hosting, management." },
+        { n: "06", name: "Products", note: "3-col grid from products.json; Live first, In development last. Screenshots supplied by Sousa Dev at 880×640." },
+        { n: "07", name: "About", note: "Photo left (4:3, desaturated), text right. Location / timezone / language line in mono." },
+        { n: "08", name: "CTABlock", note: "Shared with every other page. Form posts to /api/proposal (serverless) → email." },
+        { n: "09", name: "Footer", note: "Legal line needs the real NIF before launch." }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

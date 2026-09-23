@@ -1,0 +1,64 @@
+---
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  num?: string;
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  variant?: 'ink' | 'paper';
+  /** The page owns its single h1; sections use h2 by default. */
+  as?: 'h1' | 'h2';
+  id?: string;
+}
+
+const { num, eyebrow, title, lead, variant = 'ink', as: Heading = 'h2', id } = Astro.props;
+---
+
+<div class="section-head">
+  <div class="section-head__left">
+    <Eyebrow num={num} variant={variant}>{eyebrow}</Eyebrow>
+    <Heading id={id}>{title}</Heading>
+  </div>
+  {lead && <p class="section-head__lead">{lead}</p>}
+</div>
+
+<style>
+  .section-head {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--s-9);
+    align-items: end;
+    margin-bottom: var(--s-section-head);
+  }
+
+  .section-head__left {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .section-head__lead {
+    font-size: var(--text-lead-section);
+    color: var(--body-dark);
+    max-width: 520px;
+  }
+
+  :global(.on-paper) .section-head__lead { color: var(--body-light); }
+
+  @media (max-width: 1023px) {
+    .section-head {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-6);
+      align-items: start;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .section-head {
+      margin-bottom: var(--s-7);
+      gap: var(--s-5);
+    }
+    .section-head__lead { font-size: var(--text-ui); }
+  }
+</style>

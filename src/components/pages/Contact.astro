@@ -1,0 +1,65 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import CTABlock from '../CTABlock.astro';
+import { useTranslations, type Locale } from '../../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<!--
+  The contact route is the one place the CTA block runs in explicit form mode, so
+  the actual form is shown at every width and a mobile visitor is never linked
+  back to the page they are on (audit D09). There is no second CTA block here.
+-->
+<section class="intro">
+  <div class="texture"></div>
+  <div class="container intro__inner">
+    <Eyebrow>{t.contact.pageTitle}</Eyebrow>
+    <h1>{t.contact.title}</h1>
+    <p class="lead">{t.contact.pageSub}</p>
+    <dl class="intro__ways">
+      <dt class="label label--sm">{t.contact.otherWays}</dt>
+      <dd><a href={`mailto:${t.common.email}`}>{t.common.email}</a></dd>
+      <dd>
+        <a href="https://www.linkedin.com/in/henriquecsousa/" target="_blank" rel="noopener">
+          {t.common.linkedin}<span class="visually-hidden"> ({t.common.externalLink})</span>
+        </a>
+      </dd>
+    </dl>
+  </div>
+</section>
+
+<CTABlock locale={locale} mode="form" id="contact-proposal" />
+
+<style>
+  .intro { position: relative; overflow: hidden; }
+  .intro__inner {
+    position: relative;
+    padding-block: var(--s-9) var(--s-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+  }
+  .intro__inner h1 { max-width: 900px; }
+  .intro__inner .lead { max-width: 640px; }
+
+  .intro__ways {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-5);
+    padding-top: var(--s-2);
+  }
+  .intro__ways dd { margin: 0; font-size: var(--text-ui); }
+  .intro__ways a { color: var(--signal); }
+
+  @media (max-width: 639px) {
+    .intro__inner { padding-block: var(--s-7); }
+    .intro__ways { flex-direction: column; align-items: flex-start; gap: var(--s-3); }
+  }
+</style>

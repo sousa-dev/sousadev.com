@@ -1,0 +1,171 @@
+---
+import Eyebrow from '../Eyebrow.astro';
+import ProcessStep from '../ProcessStep.astro';
+import CTABlock from '../CTABlock.astro';
+import SectionHead from '../SectionHead.astro';
+import { useTranslations, type Locale } from '../../lib/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<section class="intro">
+  <div class="texture"></div>
+  <div class="container intro__inner">
+    <Eyebrow>{t.process.eyebrow}</Eyebrow>
+    <h1>{t.process.title}</h1>
+    <p class="lead">{t.process.pageSub}</p>
+  </div>
+</section>
+
+<section class="section on-paper" aria-labelledby="steps-heading">
+  <div class="container">
+    <h2 class="visually-hidden" id="steps-heading">{t.process.pageTitle}</h2>
+    <div class="steps">
+      {
+        t.process.steps.map((step, index) => (
+          <ProcessStep num={step.num} title={step.title} desc={step.desc} out={step.out} first={index === 0} />
+        ))
+      }
+    </div>
+    <div class="details">
+      {
+        t.process.steps.map((step) => (
+          <div class="details__item">
+            <h3 class="details__title">
+              <span class="details__num">{step.num}</span> {step.title}
+            </h3>
+            <p class="details__body">{step.detail}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-heading">
+  <div class="container">
+    <SectionHead eyebrow={t.process.faqEyebrow} title={t.process.faqTitle} id="faq-heading" />
+    <div class="faq">
+      {
+        t.process.faq.map((item) => (
+          <details class="faq__item">
+            <summary>
+              <span>{item.q}</span>
+              <span class="faq__marker" aria-hidden="true"></span>
+            </summary>
+            <p>{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<CTABlock locale={locale} />
+
+<style>
+  .intro { position: relative; overflow: hidden; }
+  .intro__inner {
+    position: relative;
+    padding-block: var(--s-9) var(--s-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-5);
+  }
+  .intro__inner h1 { max-width: 900px; }
+  .intro__inner .lead { max-width: 640px; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--s-6);
+  }
+
+  .details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-7);
+    margin-top: var(--s-9);
+    padding-top: var(--s-7);
+    border-top: 1px solid var(--paper-border);
+  }
+
+  .details__title {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 600;
+    margin-bottom: var(--s-3);
+  }
+  .details__num { color: var(--forest); font-weight: 500; }
+  .details__body { color: var(--body-light); font-size: var(--text-ui); }
+
+  .faq {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--rule);
+  }
+
+  .faq__item { border-bottom: 1px solid var(--rule); }
+
+  .faq__item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding: var(--s-5) 0;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    list-style: none;
+    min-height: var(--tap-min);
+  }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__item summary:hover { color: var(--signal); }
+
+  .faq__marker {
+    position: relative;
+    flex: 0 0 auto;
+    width: 14px;
+    height: 14px;
+  }
+  .faq__marker::before,
+  .faq__marker::after {
+    content: '';
+    position: absolute;
+    background: var(--green);
+    inset: 6px 0 auto 0;
+    height: 2px;
+  }
+  .faq__marker::after {
+    inset: 0 6px auto auto;
+    width: 2px;
+    height: 14px;
+    transition: transform var(--dur-fast) var(--ease-brand);
+  }
+  .faq__item[open] .faq__marker::after { transform: scaleY(0); }
+
+  .faq__item p {
+    color: var(--body-dark);
+    font-size: var(--text-ui);
+    max-width: 760px;
+    padding-bottom: var(--s-6);
+  }
+
+  @media (max-width: 1023px) {
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-7); }
+  }
+
+  @media (max-width: 639px) {
+    .intro__inner { padding-block: var(--s-7); }
+    .steps { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .details { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); margin-top: var(--s-7); }
+    .faq__item summary { font-size: var(--text-lead); }
+  }
+</style>

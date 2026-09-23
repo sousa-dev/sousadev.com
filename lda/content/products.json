@@ -1,0 +1,62 @@
+[
+  {
+    "name": "São Miguel Bus",
+    "url": "https://saomiguelbus.com",
+    "domain": "saomiguelbus.com",
+    "status": "live",
+    "description": {
+      "en": "Live bus routes and timetables for São Miguel island.",
+      "pt": "Rotas e horários de autocarro em tempo real para São Miguel."
+    }
+  },
+  {
+    "name": "Your GenLab",
+    "url": "https://yourgenlab.com",
+    "domain": "yourgenlab.com",
+    "status": "live",
+    "description": {
+      "en": "Generative-AI tooling for teams that ship.",
+      "pt": "Ferramentas de IA generativa para equipas que entregam."
+    }
+  },
+  {
+    "name": "djast.dev",
+    "url": "https://djast.dev",
+    "domain": "djast.dev",
+    "status": "live",
+    "description": {
+      "en": "Developer utilities, fast and free.",
+      "pt": "Utilitários para developers, rápidos e gratuitos."
+    }
+  },
+  {
+    "name": "Bluesky Copilot",
+    "url": "https://bskycopilot.com",
+    "domain": "bskycopilot.com",
+    "status": "live",
+    "description": {
+      "en": "Scheduling and analytics for Bluesky.",
+      "pt": "Agendamento e analytics para o Bluesky."
+    }
+  },
+  {
+    "name": "Kunopilot",
+    "url": "https://kunopilot.com",
+    "domain": "kunopilot.com",
+    "status": "in-development",
+    "description": {
+      "en": "Draft, schedule and post across Bluesky, Threads and X from one composer, with an AI copilot grounded in your own history.",
+      "pt": "Escreva, agende e publique no Bluesky, Threads e X a partir de um só compositor, com um copiloto de IA baseado no seu histórico."
+    }
+  },
+  {
+    "name": "AIssue",
+    "url": "https://aissue.yourgenlab.com",
+    "domain": "aissue.yourgenlab.com",
+    "status": "in-development",
+    "description": {
+      "en": "AI error resolution: turns stack traces into root causes and fixes in seconds, with a one-line integration.",
+      "pt": "Resolução de erros com IA: transforma stack traces em causas e correções em segundos, com integração de uma linha."
+    }
+  }
+]

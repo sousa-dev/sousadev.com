@@ -1,0 +1,348 @@
+{
+  "meta": {
+    "localeName": "Português",
+    "otherLocaleName": "Inglês",
+    "htmlLang": "pt-PT"
+  },
+  "nav": {
+    "services": "Serviços",
+    "process": "Como trabalhamos",
+    "products": "Produtos",
+    "about": "Sobre",
+    "blog": "Artigos",
+    "menu": "Menu",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "primary": "Principal",
+    "skipToContent": "Saltar para o conteúdo",
+    "home": "Início",
+    "homeLabel": "Sousa Dev, início"
+  },
+  "cta": "Pedir proposta",
+  "lang": {
+    "label": "Idioma",
+    "switchTo": "Ver em inglês",
+    "current": "PT",
+    "other": "EN"
+  },
+  "hero": {
+    "eyebrow": "Engenharia de software · Consultoria · Arquitetura de sistemas",
+    "title1": "Software em que a sua empresa pode",
+    "title2": "confiar.",
+    "sub": "A Equipa Sousa Dev desenvolve software à medida e acompanha cada projeto, da primeira ideia à colocação em produção, ao alojamento e à gestão diária. Tem contacto direto com o engenheiro responsável pelo seu sistema.",
+    "secondary": "Ver produtos",
+    "stat1": "PRODUTOS EM PRODUÇÃO",
+    "stat2": "LOCALIZAÇÃO · ATUAÇÃO",
+    "stat2Value": "PT · Global",
+    "stat3": "RESPONSABILIDADE",
+    "stat3Value": "Do início ao fim",
+    "diagramLabel": "COMO DECORRE UM PROJETO",
+    "covers": [
+      "DESENVOLVIMENTO",
+      "IMPLEMENTAÇÃO",
+      "ALOJAMENTO",
+      "GESTÃO"
+    ],
+    "flowRegion": "Como decorre um projeto, quatro passos",
+    "flowPause": "Pausar a sequência",
+    "flowPlay": "Retomar a sequência",
+    "flowPauseShort": "PAUSA",
+    "flowPlayShort": "RETOMAR",
+    "flowStepOf": "Passo {n} de 4",
+    "steps": [
+      {
+        "title": "Reunir e analisar",
+        "tag": "ANÁLISE",
+        "desc": "Conversamos consigo para perceber o problema, o seu impacto e o que precisa de mudar."
+      },
+      {
+        "title": "Propor soluções",
+        "tag": "ARQUITETURA",
+        "desc": "Apresentamos as opções, explicamos as vantagens e limitações e propomos uma solução com orçamento fixo."
+      },
+      {
+        "title": "Desenvolver",
+        "tag": "DESENVOLVIMENTO",
+        "desc": "Acompanha o desenvolvimento e experimenta o software num ambiente de testes."
+      },
+      {
+        "title": "Lançar e acompanhar",
+        "tag": "OPERAÇÃO",
+        "desc": "Colocamos o sistema em produção e asseguramos o alojamento e a gestão contínua."
+      }
+    ]
+  },
+  "logos": {
+    "label": "Confiam em nós",
+    "region": "Confiam em nós, em movimento",
+    "pause": "Parar os logótipos em movimento",
+    "play": "Retomar os logótipos em movimento",
+    "pauseShort": "PAUSA",
+    "playShort": "RETOMAR"
+  },
+  "services": {
+    "eyebrow": "Serviços",
+    "title": "Quatro áreas de especialização.",
+    "sub": "Escolhemos consigo a abordagem certa para o seu projeto. Se precisar de algo fora destas áreas, ajudamos a encontrar a solução.",
+    "readMore": "Conhecer o serviço",
+    "pageTitle": "Serviços",
+    "pageHeading": "Desenvolvimento, implementação, alojamento e gestão.",
+    "pageSub": "Um único parceiro para acompanhar o seu sistema. Planeamos e desenvolvemos a solução, colocamo-la em produção e asseguramos o alojamento e a gestão.",
+    "includesLabel": "O QUE INCLUI",
+    "deliverablesLabel": "O QUE RECEBE",
+    "runsLabel": "DEPOIS DO LANÇAMENTO",
+    "runsCopy": "Depois do desenvolvimento, podemos tratar da colocação em produção, do alojamento e da gestão contínua do sistema, com o mesmo engenheiro responsável."
+  },
+  "process": {
+    "eyebrow": "Como trabalhamos",
+    "title": "Um processo claro, em cada etapa.",
+    "sub": "Sabe o que vai receber e quanto vai custar antes de começarmos a desenvolver. Ao longo do projeto, fala diretamente com o engenheiro responsável.",
+    "pageTitle": "Como trabalhamos",
+    "pageSub": "Da primeira conversa à gestão do sistema em produção, cada projeto passa por quatro etapas.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Análise",
+        "desc": "Percebemos o problema, identificamos as limitações e definimos como avaliar os resultados.",
+        "out": "Âmbito e orçamento fixo",
+        "detail": "Analisamos como trabalha hoje, os custos envolvidos e os sistemas que já utiliza. Definimos por escrito o que é preciso fazer e apresentamos um orçamento fixo para a etapa seguinte."
+      },
+      {
+        "num": "02",
+        "title": "Arquitetura",
+        "desc": "Modelo de dados, integrações, infraestrutura e riscos, revistos com a sua equipa.",
+        "out": "Documento técnico",
+        "detail": "Definimos o modelo de dados, as integrações e a infraestrutura, e identificamos os riscos. Explicamos as vantagens e limitações de cada opção para que possa decidir com a sua equipa."
+      },
+      {
+        "num": "03",
+        "title": "Desenvolvimento",
+        "desc": "Demonstrações regulares num ambiente de testes, para acompanhar o trabalho e dar a sua opinião.",
+        "out": "Software a funcionar",
+        "detail": "Disponibilizamos o software num ambiente de testes desde as primeiras versões. Pode experimentar as funcionalidades e pedir ajustes ao longo do desenvolvimento."
+      },
+      {
+        "num": "04",
+        "title": "Operação",
+        "desc": "Colocação em produção, alojamento e gestão. Se preferir gerir o sistema internamente, recebe documentação e formação.",
+        "out": "Sistema em produção",
+        "detail": "Colocamos o sistema em produção e tratamos do alojamento, da monitorização, das atualizações e das cópias de segurança. Se preferir assumir a gestão, preparamos a documentação e transmitimos os conhecimentos necessários."
+      }
+    ],
+    "faqTitle": "Perguntas frequentes",
+    "faqEyebrow": "Dúvidas",
+    "faq": [
+      {
+        "q": "Com quem vou falar?",
+        "a": "Com Henrique Sousa, fundador e engenheiro principal. Desde a primeira conversa, tem contacto direto com quem acompanha as decisões técnicas e o desenvolvimento do projeto."
+      },
+      {
+        "q": "Trabalham com empresas fora de Portugal?",
+        "a": "Sim. A Equipa Sousa Dev está em Ponta Delgada, nos Açores, e trabalha com empresas em qualquer parte do mundo. Comunicamos em português e em inglês."
+      },
+      {
+        "q": "Como é definido o preço de um projeto?",
+        "a": "Depois da análise inicial, definimos por escrito o trabalho a realizar e apresentamos um orçamento fixo. Assim, sabe o que vai receber e quanto vai custar antes de começarmos. O alojamento e a gestão contínua têm um orçamento separado."
+      },
+      {
+        "q": "Podem assumir um sistema desenvolvido por outra empresa?",
+        "a": "Em muitos casos, sim. Primeiro, analisamos o código, a infraestrutura e a forma como o sistema é colocado em produção. Depois, explicamos o que pode ser mantido, o que precisa de mudar e quais as responsabilidades que podemos assumir."
+      },
+      {
+        "q": "Também tratam do alojamento?",
+        "a": "Sim. Tratamos da colocação em produção, do alojamento e da gestão, numa infraestrutura adequada ao seu sistema. Se preferir gerir tudo internamente, entregamos a documentação e transmitimos os conhecimentos necessários."
+      },
+      {
+        "q": "E se já soubermos o que precisamos?",
+        "a": "Confirmamos consigo os requisitos e registamos o trabalho a realizar. Quando o projeto já está bem definido, esta etapa é mais simples e ajuda a evitar mal-entendidos durante o desenvolvimento."
+      },
+      {
+        "q": "O código fica na nossa posse?",
+        "a": "Sim. O código e a configuração da infraestrutura são seus e podem ficar nos seus repositórios e contas, se assim o preferir."
+      },
+      {
+        "q": "Assinam acordos de confidencialidade?",
+        "a": "Sim. Podemos assinar um acordo de confidencialidade (NDA) antes de partilhar informações sobre o projeto."
+      }
+    ]
+  },
+  "products": {
+    "eyebrow": "Produtos",
+    "title": "Também desenvolvemos os nossos próprios produtos.",
+    "sub": "Criamos e gerimos software usado por pessoas reais. Essa experiência ajuda-nos a antecipar problemas nos projetos dos nossos clientes.",
+    "pageTitle": "Produtos",
+    "pageSub": "Produtos que desenvolvemos, colocamos em produção, alojamos e gerimos. Aplicamos aos projetos dos nossos clientes o mesmo cuidado e a mesma experiência.",
+    "statusLive": "ATIVO",
+    "statusDev": "EM DESENVOLVIMENTO",
+    "filterLabel": "Filtrar produtos por estado",
+    "filterAll": "Todos",
+    "filterLive": "Ativos",
+    "filterDev": "Em desenvolvimento",
+    "countAll": "{n} produtos",
+    "countLive": "{n} ativos",
+    "countDev": "{n} em desenvolvimento",
+    "visit": "Abre num novo separador",
+    "carouselLabel": "Produtos",
+    "empty": "Nenhum produto corresponde a este filtro."
+  },
+  "about": {
+    "eyebrow": "Sobre",
+    "title": "Nos Açores. A trabalhar globalmente.",
+    "p1": "A Equipa Sousa Dev desenvolve software à medida a partir de Ponta Delgada, nos Açores, para empresas em qualquer parte do mundo. Henrique Sousa, fundador e engenheiro principal, acompanha cada projeto de perto.",
+    "p2": "Desde a definição do projeto até à gestão do sistema, fala diretamente com quem conhece o seu negócio e toma as decisões técnicas.",
+    "meta": [
+      "PONTA DELGADA · AÇORES",
+      "A TRABALHAR GLOBALMENTE",
+      "EN · PT"
+    ],
+    "pageTitle": "Sobre a Equipa Sousa Dev",
+    "pageSub": "Acompanhamos o seu software durante o desenvolvimento e depois do lançamento.",
+    "howTitle": "Como é trabalhar connosco",
+    "how": [
+      {
+        "title": "Um único parceiro responsável",
+        "desc": "O desenvolvimento, a implementação, o alojamento e a gestão têm um único responsável. Quando precisa de apoio, sabe a quem recorrer."
+      },
+      {
+        "title": "Contacto direto com o engenheiro",
+        "desc": "Fala diretamente com o fundador e engenheiro principal para definir o projeto, avaliar opções técnicas e resolver problemas."
+      },
+      {
+        "title": "Tudo definido antes de começar",
+        "desc": "O trabalho a realizar, a arquitetura e o preço ficam registados e acordados antes do desenvolvimento. Se as necessidades mudarem, revemos o plano consigo."
+      },
+      {
+        "title": "O seu código, a sua infraestrutura",
+        "desc": "O código e a configuração são seus. Se quiser assumir a gestão do sistema, recebe a documentação e os conhecimentos necessários para o fazer."
+      }
+    ],
+    "founderTitle": "Fundador e engenheiro principal",
+    "founderName": "Henrique Sousa",
+    "founderCopy": "Henrique Sousa é o fundador da empresa e lidera o trabalho de engenharia da Equipa Sousa Dev. Desenvolve e gere também os produtos próprios, trazendo essa experiência para os projetos dos clientes."
+  },
+  "blog": {
+    "eyebrow": "Artigos",
+    "title": "Artigos",
+    "pageSub": "Artigos sobre desenvolvimento, lançamento e gestão de software, escritos a partir da nossa experiência.",
+    "empty": "Ainda não publicámos artigos. Os próximos estarão disponíveis aqui.",
+    "emptyCta": "Entretanto, fale-nos do seu projeto.",
+    "readingTime": "{n} min de leitura",
+    "publishedOn": "Publicado",
+    "updatedOn": "Atualizado",
+    "backToIndex": "Todos os artigos",
+    "notTranslated": "Este artigo só está disponível em português."
+  },
+  "contact": {
+    "title": "Diga-nos de que precisa.",
+    "sub": "Fale-nos do problema que quer resolver. A sua mensagem chega diretamente ao engenheiro principal.",
+    "name": "Nome",
+    "email": "Correio eletrónico profissional",
+    "msg": "De que precisa?",
+    "note": "LINHA DIRETA COM O ENGENHEIRO PRINCIPAL · ACORDO DE CONFIDENCIALIDADE A PEDIDO",
+    "pageTitle": "Pedir proposta",
+    "pageSub": "Quer desenvolver uma solução, lançar um projeto ou garantir a gestão de um sistema existente? Fale com a Equipa Sousa Dev.",
+    "mobileCta": "Pedir proposta",
+    "company": "Empresa",
+    "companyOptional": "Empresa (opcional)",
+    "namePlaceholder": "O seu nome",
+    "emailPlaceholder": "nome@empresa.com",
+    "msgPlaceholder": "Descreva o problema, o sistema envolvido e os prazos que tem em mente.",
+    "submit": "Pedir proposta",
+    "sending": "A enviar",
+    "required": "Obrigatório",
+    "errName": "Diga-nos o seu nome.",
+    "errEmail": "Introduza um endereço de correio eletrónico profissional válido.",
+    "errMsg": "Descreva brevemente o que pretende.",
+    "errGeneric": "Verifique os campos assinalados antes de enviar.",
+    "errServer": "Não conseguimos enviar a sua mensagem. Tente novamente ou escreva diretamente para hello@sousadev.com.",
+    "errThrottled": "Recebemos demasiadas tentativas de envio num curto espaço de tempo. Aguarde um pouco e tente novamente, ou escreva para hello@sousadev.com.",
+    "errUnconfigured": "O envio pelo formulário ainda não está disponível. A sua mensagem não foi enviada. Escreva-nos para hello@sousadev.com.",
+    "successTitle": "Mensagem recebida.",
+    "successBody": "A sua mensagem foi enviada diretamente ao engenheiro principal.",
+    "directEmail": "Ou escreva-nos diretamente",
+    "otherWays": "OUTRAS FORMAS DE CONTACTO"
+  },
+  "footer": {
+    "tag": "Software à medida, consultoria e arquitetura de sistemas. Tratamos do desenvolvimento, da colocação em produção, do alojamento e da gestão.",
+    "company": "EMPRESA",
+    "contact": "CONTACTO",
+    "privacy": "Privacidade",
+    "products": "PRODUTOS",
+    "rights": "© {year} Sousa Dev"
+  },
+  "privacy": {
+    "title": "Privacidade",
+    "sub": "Como este site e o nosso formulário de proposta tratam os seus dados.",
+    "pending": "A política de privacidade final da Sousa Dev, em português e inglês, ainda não foi fornecida. O resumo abaixo descreve apenas o que este site faz hoje e não substitui essa política.",
+    "sections": [
+      {
+        "title": "O que este site recolhe",
+        "body": "O site serve páginas estáticas. Não define cookies, não carrega tipos de letra de terceiros e não executa scripts de publicidade ou de análise de tráfego. Se escolher um idioma no botão de idioma, essa escolha fica guardada no armazenamento local do seu navegador, apenas para lhe mostrar o site nesse idioma."
+      },
+      {
+        "title": "O formulário de proposta",
+        "body": "Se enviar o formulário de proposta, o nome, o endereço de correio eletrónico, o nome da empresa (opcional) e a mensagem que escrever são usados para lhe responder. O formulário é submetido no nosso próprio endereço de processamento e encaminhado para hello@sousadev.com."
+      },
+      {
+        "title": "Os seus direitos",
+        "body": "Pode pedir que lhe digamos o que temos sobre si, pedir a sua correção ou pedir a sua eliminação, escrevendo para hello@sousadev.com."
+      }
+    ],
+    "processorsTitle": "Subcontratantes e retenção",
+    "processorsPending": "O fornecedor de alojamento, o fornecedor de envio de correio eletrónico e o prazo de retenção ainda não estão definidos, por isso não são nomeados aqui. Serão nomeados nesta política antes do lançamento.",
+    "otherDocs": "Outros documentos neste domínio"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Esta página não existe.",
+    "sub": "A ligação pode estar desatualizada ou o endereço pode estar incorreto. Encontre abaixo a página que procura.",
+    "home": "Ir para a página inicial"
+  },
+  "seo": {
+    "siteName": "Sousa Dev",
+    "home": {
+      "title": "Sousa Dev | software desenvolvido, implementado, alojado e gerido",
+      "description": "A Equipa Sousa Dev desenvolve software à medida e assegura a colocação em produção, o alojamento e a gestão, com contacto direto com o engenheiro responsável."
+    },
+    "services": {
+      "title": "Serviços, Sousa Dev",
+      "description": "Software à medida, consultoria informática, arquitetura de sistemas e sites. Da definição do projeto à colocação em produção, ao alojamento e à gestão."
+    },
+    "process": {
+      "title": "Como trabalhamos, Sousa Dev",
+      "description": "Análise, arquitetura, desenvolvimento e operação. Conheça as quatro etapas de um projeto com a Equipa Sousa Dev e esclareça as suas dúvidas."
+    },
+    "products": {
+      "title": "Produtos, Sousa Dev",
+      "description": "Conheça os produtos da Equipa Sousa Dev, desde o software em utilização aos projetos em desenvolvimento."
+    },
+    "about": {
+      "title": "Sobre, Sousa Dev",
+      "description": "Conheça a Equipa Sousa Dev, em Ponta Delgada, nos Açores, a trabalhar globalmente e com contacto direto entre os clientes e o engenheiro responsável."
+    },
+    "blog": {
+      "title": "Artigos, Sousa Dev",
+      "description": "Artigos sobre desenvolvimento, lançamento e gestão de software, escritos a partir da experiência da Equipa Sousa Dev."
+    },
+    "contact": {
+      "title": "Pedir proposta, Sousa Dev",
+      "description": "Fale com a Equipa Sousa Dev sobre o software de que precisa. A sua mensagem chega diretamente ao engenheiro principal."
+    },
+    "privacy": {
+      "title": "Privacidade, Sousa Dev",
+      "description": "Como o site e o formulário de proposta da Sousa Dev tratam os seus dados."
+    },
+    "notFound": {
+      "title": "Página não encontrada, Sousa Dev",
+      "description": "Esta página não existe em sousadev.com."
+    }
+  },
+  "common": {
+    "location": "Ponta Delgada, Açores",
+    "global": "A trabalhar globalmente",
+    "email": "hello@sousadev.com",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "externalLink": "Abre num novo separador"
+  }
+}

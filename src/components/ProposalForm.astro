@@ -1,0 +1,340 @@
+---
+import Button from './Button.astro';
+import Logo from './Logo.astro';
+import { useTranslations, type Locale } from '../lib/i18n';
+
+interface Props {
+  locale: Locale;
+  /** Unique per page: the contact page and a CTA block never share ids. */
+  id?: string;
+  variant?: 'card' | 'page';
+}
+
+const { locale, id = 'proposal', variant = 'card' } = Astro.props;
+const t = useTranslations(locale);
+const f = (name: string) => `${id}-${name}`;
+
+// Localised strings the progressive-enhancement script needs. No UI string is
+// hardcoded in English in the script itself.
+const formStrings = JSON.stringify({
+  sending: t.contact.sending,
+  errName: t.contact.errName,
+  errEmail: t.contact.errEmail,
+  errMessage: t.contact.errMsg,
+  errMsg: t.contact.errMsg,
+  errGeneric: t.contact.errGeneric,
+  errServer: t.contact.errServer,
+  errThrottled: t.contact.errThrottled,
+  errUnconfigured: t.contact.errUnconfigured,
+});
+---
+
+<form
+  class:list={['form', `form--${variant}`]}
+  id={id}
+  method="post"
+  action="/api/proposal"
+  novalidate
+  data-proposal-form
+  data-locale={locale}
+  data-strings={formStrings}
+>
+  <input type="hidden" name="locale" value={locale} />
+  <!-- Honeypot. Real people never see it; the server rejects a filled one. -->
+  <div class="form__trap" aria-hidden="true">
+    <label for={f('website')}>Website</label>
+    <input id={f('website')} name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <p class="form__error form__error--summary" data-form-summary hidden></p>
+
+  <div class="form__field">
+    <label for={f('name')}>{t.contact.name}</label>
+    <input
+      id={f('name')}
+      name="name"
+      type="text"
+      required
+      autocomplete="name"
+      maxlength="120"
+      placeholder={t.contact.namePlaceholder}
+      aria-describedby={f('name-error')}
+    />
+    <p class="form__error" id={f('name-error')} data-error-for="name"></p>
+  </div>
+
+  <div class="form__field">
+    <label for={f('email')}>{t.contact.email}</label>
+    <input
+      id={f('email')}
+      name="email"
+      type="email"
+      required
+      autocomplete="email"
+      maxlength="200"
+      placeholder={t.contact.emailPlaceholder}
+      aria-describedby={f('email-error')}
+    />
+    <p class="form__error" id={f('email-error')} data-error-for="email"></p>
+  </div>
+
+  <div class="form__field">
+    <label for={f('company')}>{t.contact.companyOptional}</label>
+    <input
+      id={f('company')}
+      name="company"
+      type="text"
+      autocomplete="organization"
+      maxlength="120"
+    />
+  </div>
+
+  <div class="form__field">
+    <label for={f('message')}>{t.contact.msg}</label>
+    <textarea
+      id={f('message')}
+      name="message"
+      required
+      rows={variant === 'page' ? 6 : 3}
+      maxlength="4000"
+      placeholder={t.contact.msgPlaceholder}
+      aria-describedby={f('message-error')}></textarea>
+    <p class="form__error" id={f('message-error')} data-error-for="message"></p>
+  </div>
+
+  <Button type="submit" size="lg" block class="form__submit">{t.contact.submit}</Button>
+
+  <p class="form__note label label--sm">{t.contact.note}</p>
+
+  <!-- Announced once, after the server confirms delivery. Never pre-rendered. -->
+  <div class="form__status" role="status" aria-live="polite" data-form-status></div>
+</form>
+
+<template data-success-template>
+  <div class="form__success">
+    <Logo height={40} variant="mark" />
+    <p class="form__success-title">{t.contact.successTitle}</p>
+    <p class="form__success-body">{t.contact.successBody}</p>
+  </div>
+</template>
+
+<style>
+  .form {
+    background: var(--ink);
+    border-radius: var(--r-lg);
+    padding: var(--s-7);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    color: var(--text-on-ink);
+  }
+
+  .form--page {
+    border: 1px solid var(--border);
+    gap: var(--s-4);
+  }
+
+  .form__trap {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form__field label {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    letter-spacing: var(--track-label-sm);
+    text-transform: uppercase;
+    color: var(--label-dark);
+  }
+
+  input,
+  textarea {
+    background: var(--graphite);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-md);
+    padding: 13px 14px;
+    color: var(--text-on-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-ui);
+    min-height: var(--tap-min);
+  }
+
+  textarea { resize: vertical; }
+
+  input:focus-visible,
+  textarea:focus-visible {
+    border-color: var(--green);
+    outline: var(--focus-ring-width) solid var(--signal);
+    outline-offset: 1px;
+  }
+
+  input[aria-invalid='true'],
+  textarea[aria-invalid='true'] { border-color: var(--amber-on-ink); }
+
+  .form__error {
+    color: var(--amber-on-ink);
+    font-size: var(--text-small);
+    line-height: 1.4;
+  }
+  .form__error:empty { display: none; }
+  .form__error--summary[hidden] { display: none; }
+
+  .form__note {
+    color: var(--label-dark);
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  .form__status:empty { display: none; }
+
+  .form__success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s-3);
+    text-align: center;
+    padding: var(--s-6) 0;
+  }
+  .form__success-title {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 600;
+  }
+  .form__success-body { color: var(--body-dark); font-size: var(--text-ui); }
+
+  @media (max-width: 639px) {
+    .form { padding: var(--s-5); }
+  }
+</style>
+
+<script>
+  // Client-side form states. The page is fully usable without this script: the
+  // form posts normally and the endpoint answers with a localised HTML page.
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  document.querySelectorAll<HTMLFormElement>('[data-proposal-form]').forEach((form) => {
+    const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const status = form.querySelector<HTMLElement>('[data-form-status]');
+    const summary = form.querySelector<HTMLElement>('[data-form-summary]');
+    const template = form.parentElement?.querySelector<HTMLTemplateElement>('[data-success-template]');
+    const strings = JSON.parse(form.dataset.strings ?? '{}') as Record<string, string>;
+    const submitLabel = submit?.textContent ?? '';
+    let sending = false;
+
+    const fieldError = (name: string) =>
+      form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
+
+    function setError(name: string, message: string) {
+      const input = form.elements.namedItem(name) as HTMLInputElement | null;
+      const target = fieldError(name);
+      if (target) target.textContent = message;
+      if (input) input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    }
+
+    function clearErrors() {
+      ['name', 'email', 'message'].forEach((name) => setError(name, ''));
+      if (summary) {
+        summary.textContent = '';
+        summary.hidden = true;
+      }
+    }
+
+    function validate() {
+      const data = new FormData(form);
+      const problems: string[] = [];
+      if (!String(data.get('name') ?? '').trim()) {
+        setError('name', strings.errName);
+        problems.push('name');
+      }
+      const email = String(data.get('email') ?? '').trim();
+      if (!EMAIL.test(email)) {
+        setError('email', strings.errEmail);
+        problems.push('email');
+      }
+      if (String(data.get('message') ?? '').trim().length < 10) {
+        setError('message', strings.errMsg);
+        problems.push('message');
+      }
+      return problems;
+    }
+
+    function fail(message: string) {
+      if (!summary) return;
+      summary.textContent = message;
+      summary.hidden = false;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (sending) return;
+      clearErrors();
+
+      const problems = validate();
+      if (problems.length > 0) {
+        fail(strings.errGeneric);
+        (form.elements.namedItem(problems[0]) as HTMLElement | null)?.focus();
+        return;
+      }
+
+      sending = true;
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = `${strings.sending}…`;
+      }
+
+      let response: Response | undefined;
+      try {
+        response = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+      } catch {
+        response = undefined;
+      }
+
+      sending = false;
+      if (submit) {
+        submit.disabled = false;
+        submit.textContent = submitLabel;
+      }
+
+      if (response?.ok) {
+        // Only replace the form once the endpoint confirms delivery.
+        const success = template?.content.cloneNode(true);
+        if (success && status) {
+          form.querySelectorAll('.form__field, .form__submit, .form__note').forEach((node) => node.remove());
+          status.appendChild(success);
+        }
+        return;
+      }
+
+      if (response?.status === 429) fail(strings.errThrottled);
+      else if (response?.status === 503) fail(strings.errUnconfigured);
+      else if (response?.status === 422) {
+        let problemFields: string[] = [];
+        try {
+          const body = (await response.json()) as { fields?: string[] };
+          problemFields = body.fields ?? [];
+        } catch {
+          problemFields = [];
+        }
+        problemFields.forEach((name) => {
+          const key = `err${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+          setError(name, strings[key] ?? strings.errGeneric);
+        });
+        fail(strings.errGeneric);
+      } else fail(strings.errServer);
+    });
+  });
+</script>

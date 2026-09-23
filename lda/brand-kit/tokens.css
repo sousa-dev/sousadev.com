@@ -1,0 +1,7 @@
+:root{
+  --sd-green:#0FA347; --sd-forest:#08662F; --sd-signal:#37D97A;
+  --sd-ink:#0A1014; --sd-graphite:#111A1E; --sd-border:#1E272C; --sd-slate:#5C6F77; --sd-label-dark:#8FA3A8; --sd-body-dark:#AFBDBE;
+  --sd-paper:#F6F8F7; --sd-mist:#E8EDEB; --sd-body-light:#3D4A4F;
+  --sd-steel:#1F7FC2; --sd-amber:#C4881B;
+  --sd-font-display:'Space Grotesk',sans-serif; --sd-font-body:'IBM Plex Sans',system-ui,sans-serif; --sd-font-mono:'IBM Plex Mono',monospace;
+}

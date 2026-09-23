@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Contact from '../../components/pages/Contact.astro';
+import { useTranslations } from '../../lib/i18n';
+
+const locale = 'pt' as const;
+const t = useTranslations(locale);
+---
+
+<Base
+  locale={locale}
+  route="contact"
+  title={t.seo.contact.title}
+  description={t.seo.contact.description}
+>
+  <Contact locale={locale} />
+</Base>
