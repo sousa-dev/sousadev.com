@@ -11,6 +11,7 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 const year = new Date().getUTCFullYear();
+const phoneDigits = t.common.phone.replace(/\s/g, '');
 
 const companyLinks = FOOTER_KEYS.map((key) => ({
   href: path(locale, key),
@@ -58,6 +59,12 @@ const productLinks = products.filter((product) => product.status === 'live');
       <h2 class="footer__heading label label--sm">{t.footer.contact}</h2>
       <ul>
         <li><a href={`mailto:${t.common.email}`}>{t.common.email}</a></li>
+        <li><a href={`tel:${phoneDigits}`}>{t.common.phone}</a></li>
+        <li>
+          <a href={`https://wa.me/${phoneDigits.slice(1)}`} target="_blank" rel="noopener">
+            {t.common.whatsapp}<span class="visually-hidden"> ({t.common.externalLink})</span>
+          </a>
+        </li>
         <li>
           <a href="https://www.linkedin.com/in/henriquecsousa/" target="_blank" rel="noopener">
             {t.common.linkedin}<span class="visually-hidden"> ({t.common.externalLink})</span>

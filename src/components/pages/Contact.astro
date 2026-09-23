@@ -9,6 +9,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
+const phoneDigits = t.common.phone.replace(/\s/g, '');
 ---
 
 <!--
@@ -25,6 +26,12 @@ const t = useTranslations(locale);
     <dl class="intro__ways">
       <dt class="label label--sm">{t.contact.otherWays}</dt>
       <dd><a href={`mailto:${t.common.email}`}>{t.common.email}</a></dd>
+      <dd><a href={`tel:${phoneDigits}`}>{t.common.phone}</a></dd>
+      <dd>
+        <a href={`https://wa.me/${phoneDigits.slice(1)}`} target="_blank" rel="noopener">
+          {t.common.whatsapp}<span class="visually-hidden"> ({t.common.externalLink})</span>
+        </a>
+      </dd>
       <dd>
         <a href="https://www.linkedin.com/in/henriquecsousa/" target="_blank" rel="noopener">
           {t.common.linkedin}<span class="visually-hidden"> ({t.common.externalLink})</span>
