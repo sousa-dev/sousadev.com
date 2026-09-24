@@ -1,0 +1,16 @@
+# Deploys sousadev.com when main moves (scripts/auto-deploy.sh). Started every
+# minute by sousadev-autodeploy.timer. Installed by scripts/deploy.sh.
+# Logs: journalctl -u sousadev-autodeploy
+[Unit]
+Description=Deploy sousadev.com when main changes
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/sousadev.com
+Environment="GIT_SSH_COMMAND=ssh -o BatchMode=yes"
+ExecStart=/home/ubuntu/sousadev.com/scripts/auto-deploy.sh
+TimeoutStartSec=25min
+Nice=10

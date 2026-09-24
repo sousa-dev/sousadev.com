@@ -19,7 +19,6 @@ const LEGACY = [
   'cloud-identifier-privacy-policy.html',
   'cloud-identifier-tos.html',
   'app-ads.txt',
-  'CNAME',
 ];
 
 await mkdir(dist, { recursive: true });

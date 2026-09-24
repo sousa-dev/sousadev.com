@@ -1,0 +1,16 @@
+# Full rebuild and redeploy of sousadev.com even when nothing changed.
+# Started by sousadev-nightly-deploy.timer. Installed by scripts/deploy.sh.
+# Logs: journalctl -u sousadev-nightly-deploy
+[Unit]
+Description=Nightly redeploy of sousadev.com
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/sousadev.com
+Environment="GIT_SSH_COMMAND=ssh -o BatchMode=yes"
+ExecStart=/home/ubuntu/sousadev.com/scripts/auto-deploy.sh --force
+TimeoutStartSec=25min
+Nice=10

@@ -13,8 +13,8 @@ These dependencies come from the handoff and repository audit. The website itsel
 | Product status and claims | Data supplied, not externally verified; Henrique | Confirm four live/two in development and specific claims before launch; derive counts |
 | Privacy copy EN/PT | New policy not supplied; Henrique | `/privacy` and `/pt/privacy` carry an explicit interim notice, a factual description of what the site does today and links to the preserved legacy documents. Replace `privacy.*` in both dictionaries with the reviewed policy, and name the processors once they are chosen |
 | Secondary copy, FAQ and articles | Only homepage copy supplied | Draft from known facts; flag factual gaps. No invented testimonials, delivery commitments or blog posts |
-| Hosting | **Chosen: self-hosted.** Caddy and a systemd service on one Ubuntu machine; see Deployment in the README. Release deployed to `/srv/sousadev`, waiting for DNS | Point `sousadev.com` and `www` at the machine, reload Caddy, and verify HTTPS. The Cloudflare Pages and Vercel adapters are unused and can be deleted |
-| Email delivery | Credentials set in `/etc/sousadev/proposal.env` on the server; sender `noreply@sousadev.com` | Verify `sousadev.com` as a sending domain in Resend (SPF/DKIM records), then prove one delivery with test data. Until the domain is verified, sends fail and the form tells the visitor nothing was sent |
+| Hosting | **Live, self-hosted since 2026-09-24.** Caddy and a systemd service on one Ubuntu machine; DNS for `sousadev.com` and `www` points at it and Let's Encrypt certificates are issued. See Deployment in the README | The Cloudflare Pages and Vercel adapters are unused and can be deleted. Remove the custom domain from the repository's GitHub Pages settings |
+| Email delivery | **Live.** Credentials in `/etc/sousadev/proposal.env` on the server, sender `noreply@sousadev.com`, `sousadev.com` verified in Resend. One production delivery proven with test data on 2026-09-24 | None |
 | Analytics | Plausible or Umami suggested, no choice recorded | Optional integration until selected; avoid bringing forward Google Analytics. Privacy wording must match actual configuration |
 | Production fonts/licenses | **Resolved for development, confirm before launch.** Space Grotesk and IBM Plex are both SIL Open Font License 1.1. The WOFF2 files are taken from the `@fontsource` packages by `npm run fonts`, latin and latin-ext, Space Grotesk 500/600/700 and IBM Plex Sans 400/500/600 and Mono 400/500, with each licence copied to `public/fonts/*-LICENSE.txt` | Confirm the owner is content to use the OFL builds rather than a purchased package, and keep the licence files in the deploy |
 | OG images, ICO and web manifest | **Resolved.** `public/favicon.ico` is built from the supplied 16/32/48 PNGs, `public/site.webmanifest` exists, and `npm run og` generates 16 social images at 1200x630 from brand assets and page headings | Regenerate the social images with `npm run og` after any heading change |
@@ -58,17 +58,17 @@ Legacy homepage section IDs include `top`, `services`, `free-quote`, `about`, `p
 - [x] No fake logos, screenshots, placeholder photo labels, placeholder NIF or design-only copy; enforced by `npm run check:copy` and `npm run check:output`.
 - [ ] Final EN/PT policy and verified legal identity supplied.
 - [x] Product screenshots captured from the live products and shown on every card.
-- [ ] Real form delivery tested on staging with non-customer data; server validation, rate limits, honeypot and failure recovery checked.
-- [ ] Missing form configuration cannot simulate success in production.
+- [x] Real form delivery tested in production with test data on 2026-09-24; server validation, rate limits, honeypot, body size limit and failure recovery checked through the Caddy proxy.
+- [x] Missing form configuration cannot simulate success in production: without credentials the endpoint answers 503 (checked through the proxy).
 - [x] Desktop and mobile comparisons made at 1440/1024/768/390 in both languages; deviations recorded in AUDIT.md. An owner review of those deviations is still outstanding.
 - [x] Keyboard, focus, contrast and reduced motion checked; axe report saved to `reports/axe.json` with no violations. A manual screen reader pass has not been done.
 - [x] Byte budgets measured and Lighthouse reports saved locally, environment recorded in AUDIT.md. Re-run against the preview deployment before launch.
 - [x] Localized metadata, social images, structured data, sitemap and robots checked in the build. 404 behaviour still depends on host configuration.
-- [x] All four legal documents and `CNAME` are copied into `dist/` at their original URLs and verified by `npm run check:output`.
+- [x] All four legal documents and `app-ads.txt` are copied into `dist/` at their original URLs and verified by `npm run check:output`. `CNAME` was removed with the move off GitHub Pages.
 - [x] Only selected production assets ship; the output check fails on any handoff bundle, preview runtime, third-party font request, analytics script or legacy template script.
-- [ ] Actual deployment source and custom-domain settings confirmed; `CNAME` alone is not proof of hosting configuration.
-- [ ] Preview deployment reviewed; DNS/HTTPS and www-to-apex behavior prepared for the selected host.
-- [x] Rollback target and deployment procedure recorded before cutover: `scripts/deploy.sh rollback`, and GitHub Pages keeps serving the legacy site until DNS moves.
+- [x] Actual deployment source and custom-domain settings confirmed: self-hosted, DNS A records for `@` and `www` point at the machine.
+- [x] DNS/HTTPS and www-to-apex behavior verified on the live host. There was no separate preview deployment.
+- [x] Rollback procedure recorded: `scripts/deploy.sh rollback` switches to the previous release.
 - [ ] Domain and favicon cache behavior verified after an authorized release.
 
-The new site is deployed on the self-hosted machine, but no DNS change, form submission or external service configuration has been made. The legacy site is still in place at the repository root and GitHub Pages is still what the domain serves.
+The new site is live on the self-hosted machine and deploys automatically from `main` (see Deployment in the README). The legacy site files are still in the repository root but are no longer served.

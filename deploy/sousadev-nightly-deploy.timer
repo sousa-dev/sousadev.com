@@ -1,0 +1,11 @@
+# Every day at 03:00 Azores time. Persistent catches up a run missed while the
+# machine was off.
+[Unit]
+Description=Redeploy sousadev.com every night at 03:00 (Atlantic/Azores)
+
+[Timer]
+OnCalendar=*-*-* 03:00:00 Atlantic/Azores
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -2,7 +2,7 @@
 
 Sousa Dev is a software engineering company founded by Henrique Sousa in Ponta Delgada, Azores, working globally. We deliver development, deployment, hosting and management with direct access to the lead engineer.
 
-This repository holds the rebuilt company website: an Astro static site in `src/` and `public/`, rendered in English at `/` and Portuguese at `/pt/`. The legacy site (`index.html`, `assets/`, `vendor/`) is still in place at the repository root and is still what the domain serves (GitHub Pages) until DNS is switched. The new site is deployed on the self-hosted machine described under [Deployment](#deployment), waiting for that DNS change.
+This repository holds the rebuilt company website: an Astro static site in `src/` and `public/`, rendered in English at `/` and Portuguese at `/pt/`. The legacy site (`index.html`, `assets/`, `vendor/`) is still in the repository root but is no longer served. The new site is live at <https://sousadev.com> on the self-hosted machine described under [Deployment](#deployment), and every push to `main` deploys automatically.
 
 ## Start here
 
@@ -77,14 +77,16 @@ The site is self-hosted on one Ubuntu machine. Caddy serves `dist/` with automat
 | `scripts/deploy.sh --no-pull` | Publish the working tree as it is |
 | `scripts/deploy.sh rollback` | Switch back to the previous release and delete the current one |
 
-Each release is copied to `/srv/sousadev/releases/<time>-<commit>` and `/srv/sousadev/current` is switched atomically; the last five are kept. If the endpoint does not answer after a switch, the script restores the previous release. `deploy/Caddyfile` and `deploy/sousadev-proposal.service` are reinstalled on every run, so edit them in the repository, never on the server.
+Deploys are automatic. `sousadev-autodeploy.timer` runs `scripts/auto-deploy.sh` a minute after each check finishes: it fetches `origin/main` and, if it moved, runs `scripts/deploy.sh`, so a push is live within about two minutes plus the build. A commit that fails to deploy leaves the live site unchanged and is not retried until the next push. `sousadev-nightly-deploy.timer` also rebuilds and redeploys every night at 03:00 Azores time, whether or not anything changed. Only one deploy runs at a time. Keep the checkout on the server clean: a local edit there makes the pull fail, and auto-deploy stops until it is removed.
+
+Each release is copied to `/srv/sousadev/releases/<time>-<commit>` and `/srv/sousadev/current` is switched atomically; the last five are kept. If the endpoint does not answer after a switch, the script restores the previous release. `deploy/Caddyfile` and the systemd units in `deploy/` are reinstalled on every run, so edit them in the repository, never on the server.
 
 Secrets live in `/etc/sousadev/proposal.env` (root-only, format as in `.env.example`) and are read by systemd. After changing it, run `sudo systemctl restart sousadev-proposal`.
 
-Useful checks: `systemctl status caddy sousadev-proposal`, `journalctl -u caddy -f`, `journalctl -u sousadev-proposal -f`.
+Useful checks: `systemctl status caddy sousadev-proposal`, `systemctl list-timers 'sousadev*'`, `journalctl -u sousadev-autodeploy -u sousadev-nightly-deploy` for deploy logs, `journalctl -u caddy -f`, `journalctl -u sousadev-proposal -f`.
 
-Cutover: point the `A` records for `sousadev.com` and `www.sousadev.com` at this machine (and remove any `AAAA` records that point elsewhere), then run `sudo systemctl reload caddy` so it retries the certificates immediately instead of waiting out its backoff.
+DNS: the `A` records for `sousadev.com` and `www.sousadev.com` point at this machine. Caddy renews the certificates itself.
 
 ## Status
 
-The site is built and verified locally, and it is not ready to launch. Real product screenshots, approved photography, client logos, the final privacy text, verified legal identity, the DNS cutover and a verified Resend sender domain are still outstanding. [LAUNCH.md](docs/brand-revamp/LAUNCH.md) tracks all of them.
+The site is live. Approved photography, client logos, the final privacy text and verified legal identity are still outstanding. [LAUNCH.md](docs/brand-revamp/LAUNCH.md) tracks all of them.

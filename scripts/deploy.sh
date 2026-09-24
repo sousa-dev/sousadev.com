@@ -5,6 +5,9 @@
 #   scripts/deploy.sh --no-pull   publish the working tree as it is
 #   scripts/deploy.sh rollback    switch back to the previous release
 #
+# scripts/auto-deploy.sh calls this from the systemd timers in deploy/: on every
+# push to main, and once a night.
+#
 # Each release lives in /srv/sousadev/releases/<time>-<commit> and
 # /srv/sousadev/current points at the live one, so a switch is atomic and a
 # failed build never touches the running site. The server config in deploy/ is
@@ -18,6 +21,10 @@ ENV_FILE=/etc/sousadev/proposal.env
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 log() { printf '\n==> %s\n' "$*"; }
+
+# One deploy at a time, whether started by hand or by a timer.
+exec 9>/run/lock/sousadev-deploy.lock
+flock -w 1200 9 || { echo "another deploy is still running" >&2; exit 1; }
 
 activate() {
   sudo ln -sfn "$1" "$BASE/current.next"
@@ -75,9 +82,12 @@ sudo chmod -R a+rX "$release"
 log "Installing server config"
 out=$(sudo caddy validate --config deploy/Caddyfile --adapter caddyfile 2>&1) || { echo "$out" >&2; exit 1; }
 sudo install -m 644 deploy/Caddyfile /etc/caddy/Caddyfile
-sudo install -m 644 deploy/sousadev-proposal.service /etc/systemd/system/sousadev-proposal.service
+for unit in deploy/*.service deploy/*.timer; do
+  sudo install -m 644 "$unit" "/etc/systemd/system/$(basename "$unit")"
+done
 sudo systemctl daemon-reload
 sudo systemctl enable --quiet sousadev-proposal
+sudo systemctl enable --quiet --now sousadev-autodeploy.timer sousadev-nightly-deploy.timer
 
 log "Switching to the new release"
 previous=$(readlink -f "$BASE/current" 2>/dev/null || true)

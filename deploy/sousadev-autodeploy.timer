@@ -1,0 +1,11 @@
+# Checks GitHub for new commits on main one minute after each check finishes.
+[Unit]
+Description=Check sousadev.com main for new commits every minute
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=1min
+AccuracySec=5s
+
+[Install]
+WantedBy=timers.target
