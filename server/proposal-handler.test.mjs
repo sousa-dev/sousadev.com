@@ -121,3 +121,93 @@ test('submitted values are escaped rather than reflected into the HTML answer', 
   const html = await response.text();
   assert.doesNotMatch(html, /<script>alert/);
 });
+
+const turnstileEnv = { TURNSTILE_SECRET_KEY: 'secret' };
+const verified = { success: true, action: 'contact', hostname: 'sousadev.com' };
+
+async function withFetch(impl, run) {
+  const original = globalThis.fetch;
+  const calls = [];
+  globalThis.fetch = async (url, init) => {
+    calls.push({ url: String(url), init });
+    return impl(String(url), init);
+  };
+  try {
+    return await run(calls);
+  } finally {
+    globalThis.fetch = original;
+  }
+}
+
+test('with Turnstile configured, a submission without a token is rejected', async () => {
+  const response = await withFetch(
+    () => assert.fail('no verification call without a token'),
+    () => handleProposal(post(valid, { ip: '203.0.113.10' }), turnstileEnv),
+  );
+  assert.equal(response.status, 400);
+  assert.equal((await response.json()).error, 'captcha');
+});
+
+test('with Turnstile configured, a token Cloudflare refuses is rejected', async () => {
+  const response = await withFetch(
+    () => new Response(JSON.stringify({ success: false }), { status: 200 }),
+    () => handleProposal(post({ ...valid, 'cf-turnstile-response': 'bad' }, { ip: '203.0.113.11' }), turnstileEnv),
+  );
+  assert.equal(response.status, 400);
+  assert.equal((await response.json()).error, 'captcha');
+});
+
+test('Turnstile fails closed when the verification service is unreachable', async () => {
+  const response = await withFetch(
+    () => {
+      throw new Error('offline');
+    },
+    () => handleProposal(post({ ...valid, 'cf-turnstile-response': 'tok' }, { ip: '203.0.113.12' }), turnstileEnv),
+  );
+  assert.equal(response.status, 400);
+});
+
+test('a verified Turnstile token lets the submission continue to delivery', async () => {
+  const response = await withFetch(
+    () => new Response(JSON.stringify(verified), { status: 200 }),
+    async (calls) => {
+      const result = await handleProposal(
+        post({ ...valid, 'cf-turnstile-response': 'good' }, { ip: '203.0.113.13' }),
+        turnstileEnv,
+      );
+      assert.equal(calls.length, 1);
+      assert.match(calls[0].url, /turnstile\/v0\/siteverify$/);
+      assert.equal(calls[0].init.body.get('secret'), 'secret');
+      assert.equal(calls[0].init.body.get('response'), 'good');
+      assert.equal(calls[0].init.body.get('remoteip'), '203.0.113.13');
+      return result;
+    },
+  );
+  // Past the bot check, an unconfigured provider is what answers.
+  assert.equal(response.status, 503);
+});
+
+test('a valid token for another action or hostname is rejected', async () => {
+  for (const result of [
+    { ...verified, action: 'login' },
+    { ...verified, hostname: 'evil.example' },
+  ]) {
+    const response = await withFetch(
+      () => new Response(JSON.stringify(result), { status: 200 }),
+      () => handleProposal(post({ ...valid, 'cf-turnstile-response': 'tok' }, { ip: '203.0.113.14' }), turnstileEnv),
+    );
+    assert.equal(response.status, 400);
+  }
+});
+
+test('TURNSTILE_HOSTNAMES overrides the default hostnames', async () => {
+  const response = await withFetch(
+    () => new Response(JSON.stringify({ ...verified, hostname: 'localhost' }), { status: 200 }),
+    () =>
+      handleProposal(post({ ...valid, 'cf-turnstile-response': 'tok' }, { ip: '203.0.113.15' }), {
+        ...turnstileEnv,
+        TURNSTILE_HOSTNAMES: 'localhost',
+      }),
+  );
+  assert.equal(response.status, 503);
+});

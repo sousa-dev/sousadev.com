@@ -7,7 +7,8 @@
  *
  * Rules this file exists to enforce:
  *   - server-side validation of the same contract the browser validates;
- *   - a honeypot field and a rate limit;
+ *   - a honeypot field, a rate limit and, when configured, a Cloudflare
+ *     Turnstile check;
  *   - no credentials in client code, and no message bodies in logs;
  *   - when no delivery provider is configured it answers 503 and says nothing
  *     was sent. It never reports success it cannot prove.
@@ -16,7 +17,17 @@
  *   RESEND_API_KEY   API key, server side only
  *   PROPOSAL_TO      recipient, hello@sousadev.com
  *   PROPOSAL_FROM    verified sender for the domain
+ *
+ * Optional bot check (Cloudflare Turnstile). When set, every submission must
+ * carry a token that Cloudflare confirms; the check fails closed.
+ *   TURNSTILE_SECRET_KEY   secret key, server side only
+ *   TURNSTILE_HOSTNAMES    optional, comma separated hostnames the widget may
+ *                          have been solved on (default: sousadev.com and www)
  */
+
+const TURNSTILE_VERIFY = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+const TURNSTILE_ACTION = 'contact';
+const TURNSTILE_HOSTNAMES = ['sousadev.com', 'www.sousadev.com'];
 
 const MAX = { name: 120, email: 200, company: 120, message: 4000 };
 const MIN_MESSAGE = 10;
@@ -88,6 +99,7 @@ const COPY = {
       malformed: 'The submission could not be read.',
       rejected: 'The submission was rejected.',
       throttled: 'Too many messages. Please try again shortly.',
+      captcha: 'The spam check did not pass. Please go back and try again.',
       invalid: 'Some fields need fixing.',
       undelivered: 'The message was not sent. Please email hello@sousadev.com directly.',
     },
@@ -103,6 +115,7 @@ const COPY = {
       malformed: 'Não foi possível ler os dados enviados.',
       rejected: 'O envio foi recusado.',
       throttled: 'Recebemos demasiadas tentativas de envio. Aguarde um pouco e tente novamente.',
+      captcha: 'A verificação anti-spam falhou. Volte atrás e tente novamente.',
       invalid: 'Verifique os campos do formulário.',
       undelivered: 'A mensagem não foi enviada. Escreva-nos diretamente para hello@sousadev.com.',
     },
@@ -150,6 +163,32 @@ function jsonResponse(status, payload) {
     status,
     headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
   });
+}
+
+/** Returns true only when Cloudflare confirms the token. Any failure is a no. */
+async function verifyTurnstile(token, ip, env) {
+  if (typeof token !== 'string' || !token || token.length > 2048) return false;
+  const body = new URLSearchParams({ secret: env.TURNSTILE_SECRET_KEY, response: token });
+  if (ip && ip !== 'unknown') body.set('remoteip', ip);
+  try {
+    const response = await fetch(TURNSTILE_VERIFY, {
+      method: 'POST',
+      body,
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!response.ok) return false;
+    const result = await response.json();
+    const hostnames = env.TURNSTILE_HOSTNAMES
+      ? env.TURNSTILE_HOSTNAMES.split(',').map((host) => host.trim())
+      : TURNSTILE_HOSTNAMES;
+    return (
+      result.success === true &&
+      result.action === TURNSTILE_ACTION &&
+      hostnames.includes(result.hostname)
+    );
+  } catch {
+    return false;
+  }
 }
 
 async function deliver(data, env) {
@@ -226,6 +265,14 @@ export async function handleProposal(request, env = {}) {
     return wantsJson
       ? jsonResponse(422, { error: 'invalid', fields: problems })
       : htmlResponse({ status: 422, locale: data.locale, ok: false, detail: COPY[data.locale].errors.invalid });
+  }
+
+  if (env.TURNSTILE_SECRET_KEY) {
+    const passed = await verifyTurnstile(fields['cf-turnstile-response'], clientKey(request), env);
+    if (!passed) {
+      console.log('proposal rejected: turnstile');
+      return fail(400, 'captcha', data.locale);
+    }
   }
 
   const result = await deliver(data, env);

@@ -65,7 +65,7 @@ No component changes are needed for routine content work.
 
 ## The proposal form
 
-The site is static; delivery is a separate function in `server/proposal-handler.mjs`, served by a plain Node server (`server/node-server.mjs`) on the self-hosted machine, with unused adapters kept for Cloudflare Pages (`functions/api/proposal.js`) and Vercel (`api/proposal.mjs`). It validates the same contract the browser validates, checks a honeypot, rate limits per client, and sends through Resend when `RESEND_API_KEY`, `PROPOSAL_TO` and `PROPOSAL_FROM` are set. With no provider configured it answers 503 and the form says nothing was sent. It never reports a delivery it cannot prove, and it never logs message bodies. See `.env.example`.
+The site is static; delivery is a separate function in `server/proposal-handler.mjs`, served by a plain Node server (`server/node-server.mjs`) on the self-hosted machine, with unused adapters kept for Cloudflare Pages (`functions/api/proposal.js`) and Vercel (`api/proposal.mjs`). It validates the same contract the browser validates, checks a honeypot, rate limits per client, optionally verifies a Cloudflare Turnstile token (`PUBLIC_TURNSTILE_SITE_KEY` at build time, `TURNSTILE_SECRET_KEY` on the server), and sends through Resend when `RESEND_API_KEY`, `PROPOSAL_TO` and `PROPOSAL_FROM` are set. With no provider configured it answers 503 and the form says nothing was sent. It never reports a delivery it cannot prove, and it never logs message bodies. See `.env.example`.
 
 ## Deployment
 

@@ -256,6 +256,7 @@
     "errGeneric": "Something in the form needs fixing. Please check the fields marked below.",
     "errServer": "We could not send your message. Please try again, or email hello@sousadev.com directly.",
     "errThrottled": "That is a lot of messages in a short time. Please wait a moment and try again, or email hello@sousadev.com.",
+    "errCaptcha": "The spam check did not pass. Please reload the page and try again, or email hello@sousadev.com.",
     "errUnconfigured": "The form is not connected to a delivery service on this deployment, so nothing was sent. Please email hello@sousadev.com directly.",
     "successTitle": "Received.",
     "successBody": "It went straight to the lead engineer.",

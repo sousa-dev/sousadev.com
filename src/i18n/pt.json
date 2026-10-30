@@ -256,6 +256,7 @@
     "errGeneric": "Verifique os campos assinalados antes de enviar.",
     "errServer": "Não conseguimos enviar a sua mensagem. Tente novamente ou escreva diretamente para hello@sousadev.com.",
     "errThrottled": "Recebemos demasiadas tentativas de envio num curto espaço de tempo. Aguarde um pouco e tente novamente, ou escreva para hello@sousadev.com.",
+    "errCaptcha": "A verificação anti-spam falhou. Recarregue a página e tente novamente, ou escreva para hello@sousadev.com.",
     "errUnconfigured": "O envio pelo formulário ainda não está disponível. A sua mensagem não foi enviada. Escreva-nos para hello@sousadev.com.",
     "successTitle": "Mensagem recebida.",
     "successBody": "A sua mensagem foi enviada diretamente ao engenheiro principal.",

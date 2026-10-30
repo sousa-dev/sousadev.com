@@ -13,6 +13,9 @@ interface Props {
 const { locale, id = 'proposal', variant = 'card' } = Astro.props;
 const t = useTranslations(locale);
 const f = (name: string) => `${id}-${name}`;
+// Public by design; set in .env at build time. Without it the widget is
+// omitted and the server must not have TURNSTILE_SECRET_KEY either.
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
 // Localised strings the progressive-enhancement script needs. No UI string is
 // hardcoded in English in the script itself.
@@ -25,6 +28,7 @@ const formStrings = JSON.stringify({
   errGeneric: t.contact.errGeneric,
   errServer: t.contact.errServer,
   errThrottled: t.contact.errThrottled,
+  errCaptcha: t.contact.errCaptcha,
   errUnconfigured: t.contact.errUnconfigured,
 });
 ---
@@ -102,6 +106,16 @@ const formStrings = JSON.stringify({
     <p class="form__error" id={f('message-error')} data-error-for="message"></p>
   </div>
 
+  {turnstileSiteKey && (
+    <div
+      class="cf-turnstile form__turnstile"
+      data-sitekey={turnstileSiteKey}
+      data-action="contact"
+      data-theme="dark"
+      data-language={locale === 'pt' ? 'pt-br' : 'en'}
+    />
+  )}
+
   <Button type="submit" size="lg" block class="form__submit">{t.contact.submit}</Button>
 
   <p class="form__note label label--sm">{t.contact.note}</p>
@@ -142,6 +156,8 @@ const formStrings = JSON.stringify({
     clip-path: inset(50%);
     white-space: nowrap;
   }
+
+  .form__turnstile:empty { display: none; }
 
   .form__field {
     display: flex;
@@ -222,6 +238,18 @@ const formStrings = JSON.stringify({
   // form posts normally and the endpoint answers with a localised HTML page.
   const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+  // Cloudflare's script is only fetched once someone starts using a form, so
+  // it costs nothing for visitors who never do.
+  let turnstileLoaded = false;
+  function loadTurnstile() {
+    if (turnstileLoaded || !document.querySelector('.cf-turnstile')) return;
+    turnstileLoaded = true;
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    script.async = true;
+    document.head.appendChild(script);
+  }
+
   document.querySelectorAll<HTMLFormElement>('[data-proposal-form]').forEach((form) => {
     const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     const status = form.querySelector<HTMLElement>('[data-form-status]');
@@ -230,6 +258,16 @@ const formStrings = JSON.stringify({
     const strings = JSON.parse(form.dataset.strings ?? '{}') as Record<string, string>;
     const submitLabel = submit?.textContent ?? '';
     let sending = false;
+
+    form.addEventListener('focusin', loadTurnstile, { once: true });
+    form.addEventListener('pointerdown', loadTurnstile, { once: true });
+
+    // A Turnstile token is single use: get a fresh one after every attempt.
+    const resetTurnstile = () => {
+      (window as unknown as { turnstile?: { reset: (el: Element) => void } }).turnstile?.reset(
+        form.querySelector('.cf-turnstile') ?? form,
+      );
+    };
 
     const fieldError = (name: string) =>
       form.querySelector<HTMLElement>(`[data-error-for="${name}"]`);
@@ -319,8 +357,11 @@ const formStrings = JSON.stringify({
         return;
       }
 
+      if (!response?.ok) resetTurnstile();
+
       if (response?.status === 429) fail(strings.errThrottled);
       else if (response?.status === 503) fail(strings.errUnconfigured);
+      else if (response?.status === 400) fail(strings.errCaptcha);
       else if (response?.status === 422) {
         let problemFields: string[] = [];
         try {
