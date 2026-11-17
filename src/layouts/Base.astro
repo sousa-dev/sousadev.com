@@ -133,6 +133,18 @@ const ptHref = locale === 'en' && detectLocale ? ptAlternate : undefined;
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
 
     <!--
+      Self-hosted Umami analytics (deploy/Caddyfile, /srv/umami): cookieless,
+      deferred, and limited to the production domain so local builds and
+      previews are not counted.
+    -->
+    <script
+      is:inline
+      defer
+      src="https://umami.sousadev.com/script.js"
+      data-website-id="5c7061d7-fc63-4837-88eb-d545e91db324"
+      data-domains="sousadev.com"></script>
+
+    <!--
       Runs before paint so a Portuguese visitor never sees the English page
       flash first. Progressive enhancement: with JavaScript off, every page is
       still reachable through the language switch and the hreflang links.

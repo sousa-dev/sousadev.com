@@ -278,7 +278,7 @@
     "sections": [
       {
         "title": "What this website collects",
-        "body": "The website serves static pages. It sets no cookies, loads no third-party fonts and runs no advertising or analytics scripts. If you pick a language with the language switch, that choice is kept in your browser's local storage, only so the site can show you that language."
+        "body": "The website serves static pages. It sets no cookies and loads no third-party fonts or advertising scripts. To count visits, it runs Umami, a privacy-focused analytics tool that we host ourselves, so no data about your visit is sent to a third party. Umami uses no cookies and does not store your IP address. It records the page you visited, the site that linked you here, your browser, operating system, device type and approximate country. If you pick a language with the language switch, that choice is kept in your browser's local storage, only so the site can show you that language."
       },
       {
         "title": "The proposal form",

@@ -278,7 +278,7 @@
     "sections": [
       {
         "title": "O que este site recolhe",
-        "body": "O site serve páginas estáticas. Não define cookies, não carrega tipos de letra de terceiros e não executa scripts de publicidade ou de análise de tráfego. Se escolher um idioma no botão de idioma, essa escolha fica guardada no armazenamento local do seu navegador, apenas para lhe mostrar o site nesse idioma."
+        "body": "O site serve páginas estáticas. Não define cookies e não carrega tipos de letra nem scripts de publicidade de terceiros. Para contar visitas, usa o Umami, uma ferramenta de análise de tráfego focada na privacidade que alojamos nós próprios, por isso nenhum dado sobre a sua visita é enviado a terceiros. O Umami não usa cookies e não guarda o seu endereço IP. Regista a página que visitou, o site que o trouxe até aqui, o seu navegador, sistema operativo, tipo de dispositivo e país aproximado. Se escolher um idioma no botão de idioma, essa escolha fica guardada no armazenamento local do seu navegador, apenas para lhe mostrar o site nesse idioma."
       },
       {
         "title": "O formulário de proposta",
