@@ -8,6 +8,18 @@ www.sousadev.com {
 	redir https://sousadev.com{uri} 308
 }
 
+# Umami analytics: Docker Compose stack in /srv/umami, bound to localhost.
+umami.sousadev.com {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+	reverse_proxy 127.0.0.1:3000
+}
+
 sousadev.com {
 	root * /srv/sousadev/current/public
 	encode zstd gzip
