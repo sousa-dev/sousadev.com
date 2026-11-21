@@ -13,7 +13,7 @@ This repository holds the rebuilt company website: an Astro static site in `src/
 
 ## Commands
 
-Node 22.12+ (required by Astro 7). Install once with `npm install`.
+Node 22.23.4+ (required by Astro 7.4.6 and later; the `astro` CLI refuses to run on older Node 22 releases). Install once with `npm install`.
 
 | Command | What it does |
 | --- | --- |
