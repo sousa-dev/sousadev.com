@@ -29,6 +29,12 @@ const ptServiceTitles = new Map([
   ['website-development', 'Desenvolvimento de Sites'],
 ]);
 
+// Owner-approved changes made after the handoff. The lda/ files stay untouched;
+// the production copy is expected to match these values instead.
+const ownerUpdates = new Map([
+  ['AIssue', { url: 'https://aissue.dev', domain: 'aissue.dev', status: 'live' }],
+]);
+
 const problems = [];
 const warnings = [];
 
@@ -93,7 +99,8 @@ for (const service of services) {
 const STATUSES = new Set(['live', 'in-development']);
 if (products.length !== handoffProducts.length) problems.push('products.json no longer has the six supplied products');
 for (const product of products) {
-  const supplied = handoffProducts.find((item) => item.name === product.name);
+  const handoff = handoffProducts.find((item) => item.name === product.name);
+  const supplied = handoff && { ...handoff, ...ownerUpdates.get(product.name) };
   if (!supplied) {
     problems.push(`product ${product.name} is not in the supplied handoff data`);
     continue;

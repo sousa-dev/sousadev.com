@@ -62,7 +62,7 @@ The 67 files comprise 5 Markdown, 11 HTML, 1 JSX, 1 JS, 19 PNG, 23 SVG, 2 CSS an
 | djast.dev | djast.dev | live |
 | Bluesky Copilot | bskycopilot.com | live |
 | Kunopilot | kunopilot.com | in-development |
-| AIssue | aissue.yourgenlab.com | in-development |
+| AIssue | aissue.yourgenlab.com | in-development (now live at aissue.dev; see `src/content/products.json`) |
 
 Statuses and product claims above describe the handoff data, not independently verified product availability. Preserve the supplied names and URLs; confirm claims before publication.
 

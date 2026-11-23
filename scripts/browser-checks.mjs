@@ -453,7 +453,7 @@ try {
     const allVisible = await page.locator('.catalogue__item:not([hidden])').count();
     record(
       'product filter matches the data counts',
-      total === 6 && liveVisible === 4 && devVisible === 2 && allVisible === 6,
+      total === 6 && liveVisible === 5 && devVisible === 1 && allVisible === 6,
       `total ${total}, live ${liveVisible}, dev ${devVisible}`,
     );
 
