@@ -19,7 +19,8 @@
  * of trimming the bottom. Change TARGET and re-run if the card geometry
  * changes or a larger product preview is introduced.
  *
- * Run: npm run shots
+ * Run: npm run shots            (all products)
+ *      npm run shots -- AIssue  (only the named products)
  */
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -39,7 +40,12 @@ const SETTLE_MS = 3500;
 /** Stable file name per product, derived from its own domain. */
 const fileFor = (product) => `${product.domain.replace(/\./g, '-')}.webp`;
 
-const products = JSON.parse(await readFile(dataPath, 'utf8'));
+// Optional product names on the command line limit the run, so one changed
+// landing page can be recaptured without touching the others.
+const only = process.argv.slice(2).map((name) => name.toLowerCase());
+const products = JSON.parse(await readFile(dataPath, 'utf8')).filter(
+  (product) => only.length === 0 || only.includes(product.name.toLowerCase()),
+);
 await mkdir(outDir, { recursive: true });
 
 const browser = await launch();
