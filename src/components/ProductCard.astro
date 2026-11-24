@@ -56,7 +56,10 @@ const statusLabel = isLive ? t.products.statusLive : t.products.statusDev;
   <div class="product__body">
     <div class="product__head">
       <Heading class="product__name">{product.name}</Heading>
-      <span class:list={['product__status', isLive ? 'is-live' : 'is-dev']}>{statusLabel}</span>
+      <span class="product__tags">
+        {product.isNew && <span class="product__status is-new">{t.products.badgeNew}</span>}
+        <span class:list={['product__status', isLive ? 'is-live' : 'is-dev']}>{statusLabel}</span>
+      </span>
     </div>
     <p class="product__desc">{product.description[locale]}</p>
     <p class="product__domain label label--sm">
@@ -130,6 +133,13 @@ const statusLabel = isLive ? t.products.statusLive : t.products.statusDev;
     letter-spacing: -0.01em;
   }
 
+  .product__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
   .product__status {
     font-family: var(--font-mono);
     font-size: var(--text-label-sm);
@@ -139,6 +149,7 @@ const statusLabel = isLive ? t.products.statusLive : t.products.statusDev;
     white-space: nowrap;
   }
   .product__status.is-live { color: var(--signal); border: 1px solid var(--status-live-border); }
+  .product__status.is-new { background: var(--green); color: var(--text-on-green); border: 1px solid var(--green); }
   .product__status.is-dev { color: var(--amber-on-ink); border: 1px solid var(--status-dev-border); }
 
   .product__desc {

@@ -174,6 +174,7 @@
     "pageSub": "Software we build, deploy, host and manage ourselves. Same process, same accountability as client work.",
     "statusLive": "LIVE",
     "statusDev": "IN DEVELOPMENT",
+    "badgeNew": "NEW",
     "filterLabel": "Filter products by status",
     "filterAll": "All",
     "filterLive": "Live",

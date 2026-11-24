@@ -1,5 +1,21 @@
 [
   {
+    "name": "AIssue",
+    "url": "https://aissue.dev",
+    "domain": "aissue.dev",
+    "status": "live",
+    "isNew": true,
+    "description": {
+      "en": "AI error resolution: turns stack traces into root causes and fixes in seconds, with a one-line integration.",
+      "pt": "Resolução de erros com IA: analisa rastos de execução, identifica a origem dos problemas e sugere correções. Integração com uma linha de código."
+    },
+    "image": "/images/products/aissue-dev.webp",
+    "alt": {
+      "en": "Screenshot of the AIssue landing page",
+      "pt": "Captura de ecrã da página inicial do AIssue"
+    }
+  },
+  {
     "name": "São Miguel Bus",
     "url": "https://saomiguelbus.com",
     "domain": "saomiguelbus.com",
@@ -72,21 +88,6 @@
     "alt": {
       "en": "Screenshot of the Kunopilot landing page",
       "pt": "Captura de ecrã da página inicial do Kunopilot"
-    }
-  },
-  {
-    "name": "AIssue",
-    "url": "https://aissue.dev",
-    "domain": "aissue.dev",
-    "status": "live",
-    "description": {
-      "en": "AI error resolution: turns stack traces into root causes and fixes in seconds, with a one-line integration.",
-      "pt": "Resolução de erros com IA: analisa rastos de execução, identifica a origem dos problemas e sugere correções. Integração com uma linha de código."
-    },
-    "image": "/images/products/aissue-dev.webp",
-    "alt": {
-      "en": "Screenshot of the AIssue landing page",
-      "pt": "Captura de ecrã da página inicial do AIssue"
     }
   }
 ]

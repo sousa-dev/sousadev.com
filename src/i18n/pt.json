@@ -174,6 +174,7 @@
     "pageSub": "Produtos que desenvolvemos, colocamos em produção, alojamos e gerimos. Aplicamos aos projetos dos nossos clientes o mesmo cuidado e a mesma experiência.",
     "statusLive": "ATIVO",
     "statusDev": "EM DESENVOLVIMENTO",
+    "badgeNew": "NOVO",
     "filterLabel": "Filtrar produtos por estado",
     "filterAll": "Todos",
     "filterLive": "Ativos",

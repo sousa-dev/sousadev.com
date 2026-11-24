@@ -8,6 +8,8 @@ export interface Product {
   url: string;
   domain: string;
   status: ProductStatus;
+  /** Shows a "New" badge on the card. Set by the owner for a recent launch. */
+  isNew?: boolean;
   description: Record<Locale, string>;
   /** Screenshot in `src/images/products/`. Null until a real one is supplied. */
   image: string | null;
@@ -16,7 +18,7 @@ export interface Product {
 
 const STATUS_ORDER: Record<ProductStatus, number> = { live: 0, 'in-development': 1 };
 
-/** Supplied order, live first. Names, URLs and statuses come from the data file. */
+/** Supplied order (the data file's order), live first. Names, URLs and statuses come from the data file. */
 export const products: Product[] = [...(productsData as Product[])].sort(
   (a, b) => STATUS_ORDER[a.status] - STATUS_ORDER[b.status],
 );
