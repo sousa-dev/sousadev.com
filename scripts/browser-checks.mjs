@@ -408,18 +408,31 @@ try {
   }
 
   // ---------- logo hover ----------
+  // Hovering the nav brand swaps the static mark for the animated loader
+  // (src/components/Logo.astro); reduced motion keeps the static mark.
   {
+    const logoState = (page) =>
+      page.evaluate(() => {
+        const mark = document.querySelector('.nav__logo .lockup__mark');
+        const loader = document.querySelector('.nav__logo .logo__loader');
+        const loaderStyle = getComputedStyle(loader);
+        return {
+          mark: Number(getComputedStyle(mark).opacity),
+          loader: loaderStyle.display === 'none' ? 0 : Number(loaderStyle.opacity),
+        };
+      });
+
     const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
     await page.goto(`${server.origin}/`);
-    const before = await page.evaluate(
-      () => getComputedStyle(document.querySelector('.nav__logo .lockup__mark')).transform,
-    );
+    const before = await logoState(page);
     await page.locator('.nav__brand').hover();
     await page.waitForTimeout(900);
-    const after = await page.evaluate(
-      () => getComputedStyle(document.querySelector('.nav__logo .lockup__mark')).transform,
+    const after = await logoState(page);
+    record(
+      'logo hover swaps the mark for the loader',
+      before.mark === 1 && before.loader === 0 && after.mark === 0 && after.loader === 1,
+      `mark ${before.mark} -> ${after.mark}, loader ${before.loader} -> ${after.loader}`,
     );
-    record('logo mark rotates on hover', before !== after, `${before} then ${after}`);
 
     const reduced = await browser.newPage({
       viewport: { width: 1440, height: 900 },
@@ -428,13 +441,11 @@ try {
     await reduced.goto(`${server.origin}/`);
     await reduced.locator('.nav__brand').hover();
     await reduced.waitForTimeout(700);
-    const reducedTransform = await reduced.evaluate(
-      () => getComputedStyle(document.querySelector('.nav__logo .lockup__mark')).transform,
-    );
+    const reducedState = await logoState(reduced);
     record(
-      'logo hover rotation is off under reduced motion',
-      reducedTransform === 'none' || reducedTransform === 'matrix(1, 0, 0, 1, 0, 0)',
-      reducedTransform,
+      'logo hover animation is off under reduced motion',
+      reducedState.mark === 1 && reducedState.loader === 0,
+      `mark ${reducedState.mark}, loader ${reducedState.loader}`,
     );
     await reduced.close();
     await page.close();
