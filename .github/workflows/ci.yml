@@ -1,9 +1,10 @@
 name: CI
 
+# Automatic runs are disabled: the site deploys from the server
+# (scripts/auto-deploy.sh), not GitHub Pages or Cloudflare. Run it by hand
+# from the Actions tab when wanted.
 on:
-  push:
-    branches: [main]
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   verify:

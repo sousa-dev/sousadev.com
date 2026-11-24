@@ -60,7 +60,7 @@ scripts/                             fonts, assets, social images, checks
 
 Service and product records are plain JSON imported through `src/lib/`, so they stay out of the content collection. Product and founder imagery is still missing, so no image pipeline is wired yet: `ProductCard` renders a brand plate when `image` is null and switches to the real screenshot when one is supplied. No legacy asset was copied into `public/`.
 
-The commands, the `package-lock.json`, the generated-file ignores and the GitHub Actions workflow in `.github/workflows/ci.yml` are in place. Every script the workflow runs is installed in the project.
+The commands, the `package-lock.json`, the generated-file ignores and the GitHub Actions workflow in `.github/workflows/ci.yml` (manual runs only; deploys run on the server) are in place. Every script the workflow runs is installed in the project.
 
 ## Shared contracts
 
