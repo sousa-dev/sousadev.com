@@ -44,7 +44,14 @@ const productLinks = products.filter((product) => product.status === 'live');
         {
           productLinks.map((product) => (
             <li>
-              <a href={product.url} target="_blank" rel="noopener">
+              <a
+                href={product.url}
+                target="_blank"
+                rel="noopener"
+                data-umami-event="product-click"
+                data-umami-event-product={product.name}
+                data-umami-event-location="footer"
+              >
                 {product.name}
                 <span class="visually-hidden"> ({t.common.externalLink})</span>
               </a>
@@ -58,20 +65,20 @@ const productLinks = products.filter((product) => product.status === 'live');
     <div class="footer__col footer__col--contact">
       <h2 class="footer__heading label label--sm">{t.footer.contact}</h2>
       <ul>
-        <li><a href={`mailto:${t.common.email}`}>{t.common.email}</a></li>
-        <li><a href={`tel:${phoneDigits}`}>{t.common.phone}</a></li>
+        <li><a href={`mailto:${t.common.email}`} data-umami-event="contact-click" data-umami-event-method="email" data-umami-event-location="footer">{t.common.email}</a></li>
+        <li><a href={`tel:${phoneDigits}`} data-umami-event="contact-click" data-umami-event-method="phone" data-umami-event-location="footer">{t.common.phone}</a></li>
         <li>
-          <a href={`https://wa.me/${phoneDigits.slice(1)}`} target="_blank" rel="noopener">
+          <a href={`https://wa.me/${phoneDigits.slice(1)}`} target="_blank" rel="noopener" data-umami-event="contact-click" data-umami-event-method="whatsapp" data-umami-event-location="footer">
             {t.common.whatsapp}<span class="visually-hidden"> ({t.common.externalLink})</span>
           </a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/henriquecsousa/" target="_blank" rel="noopener">
+          <a href="https://www.linkedin.com/in/henriquecsousa/" target="_blank" rel="noopener" data-umami-event="contact-click" data-umami-event-method="linkedin" data-umami-event-location="footer">
             {t.common.linkedin}<span class="visually-hidden"> ({t.common.externalLink})</span>
           </a>
         </li>
         <li>
-          <a href="https://github.com/sousa-dev" target="_blank" rel="noopener">
+          <a href="https://github.com/sousa-dev" target="_blank" rel="noopener" data-umami-event="contact-click" data-umami-event-method="github" data-umami-event-location="footer">
             {t.common.github}<span class="visually-hidden"> ({t.common.externalLink})</span>
           </a>
         </li>

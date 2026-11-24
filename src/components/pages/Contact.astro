@@ -25,15 +25,15 @@ const phoneDigits = t.common.phone.replace(/\s/g, '');
     <p class="lead">{t.contact.pageSub}</p>
     <dl class="intro__ways">
       <dt class="label label--sm">{t.contact.otherWays}</dt>
-      <dd><a href={`mailto:${t.common.email}`}>{t.common.email}</a></dd>
-      <dd><a href={`tel:${phoneDigits}`}>{t.common.phone}</a></dd>
+      <dd><a href={`mailto:${t.common.email}`} data-umami-event="contact-click" data-umami-event-method="email" data-umami-event-location="contact">{t.common.email}</a></dd>
+      <dd><a href={`tel:${phoneDigits}`} data-umami-event="contact-click" data-umami-event-method="phone" data-umami-event-location="contact">{t.common.phone}</a></dd>
       <dd>
-        <a href={`https://wa.me/${phoneDigits.slice(1)}`} target="_blank" rel="noopener">
+        <a href={`https://wa.me/${phoneDigits.slice(1)}`} target="_blank" rel="noopener" data-umami-event="contact-click" data-umami-event-method="whatsapp" data-umami-event-location="contact">
           {t.common.whatsapp}<span class="visually-hidden"> ({t.common.externalLink})</span>
         </a>
       </dd>
       <dd>
-        <a href="https://www.linkedin.com/in/henriquecsousa/" target="_blank" rel="noopener">
+        <a href="https://www.linkedin.com/in/henriquecsousa/" target="_blank" rel="noopener" data-umami-event="contact-click" data-umami-event-method="linkedin" data-umami-event-location="contact">
           {t.common.linkedin}<span class="visually-hidden"> ({t.common.externalLink})</span>
         </a>
       </dd>

@@ -23,6 +23,9 @@ const statusLabel = isLive ? t.products.statusLive : t.products.statusDev;
   target="_blank"
   rel="noopener"
   data-status={product.status}
+  data-umami-event="product-click"
+  data-umami-event-product={product.name}
+  data-umami-event-location="card"
 >
   <div class="product__preview">
     {

@@ -39,7 +39,7 @@ const links = NAV_KEYS.map((key) => ({
 
     <div class="nav__actions">
       <LangSwitch locale={locale} href={langHref} class="nav__lang" />
-      <Button href={path(locale, 'contact')} class="nav__cta">{t.cta}</Button>
+      <Button href={path(locale, 'contact')} class="nav__cta" data-umami-event="proposal-cta" data-umami-event-location="nav">{t.cta}</Button>
     </div>
 
     <!--
@@ -61,7 +61,7 @@ const links = NAV_KEYS.map((key) => ({
         </nav>
         <div class="menu__foot">
           <LangSwitch locale={locale} href={langHref} />
-          <Button href={path(locale, 'contact')} size="lg" block>{t.cta}</Button>
+          <Button href={path(locale, 'contact')} size="lg" block data-umami-event="proposal-cta" data-umami-event-location="nav-menu">{t.cta}</Button>
         </div>
       </div>
     </details>

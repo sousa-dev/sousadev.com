@@ -40,8 +40,14 @@ const stats = [
       </h1>
       <p class="hero__sub lead">{t.hero.sub}</p>
       <div class="hero__actions">
-        <Button href={path(locale, 'contact')} size="lg">{t.cta}</Button>
-        <Button href={path(locale, 'products')} variant="secondary" size="lg">
+        <Button href={path(locale, 'contact')} size="lg" data-umami-event="proposal-cta" data-umami-event-location="hero">{t.cta}</Button>
+        <Button
+          href={path(locale, 'products')}
+          variant="secondary"
+          size="lg"
+          data-umami-event="products-cta"
+          data-umami-event-location="hero"
+        >
           {t.hero.secondary}
         </Button>
       </div>

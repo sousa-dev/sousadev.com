@@ -34,7 +34,14 @@ const headingId = `${id}-heading`;
       {
         mode === 'auto' && (
           <div class="cta__link">
-            <Button href={path(locale, 'contact')} variant="on-green" size="lg" block>
+            <Button
+              href={path(locale, 'contact')}
+              variant="on-green"
+              size="lg"
+              block
+              data-umami-event="proposal-cta"
+              data-umami-event-location="cta-block"
+            >
               {t.contact.mobileCta}
             </Button>
           </div>

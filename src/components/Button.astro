@@ -10,6 +10,7 @@ interface Props {
   class?: string;
   'aria-label'?: string;
   'data-testid'?: string;
+  [key: `data-${string}`]: string | undefined;
 }
 
 const {

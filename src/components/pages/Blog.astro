@@ -33,7 +33,7 @@ const articles = await getArticles(locale);
         <div class="empty">
           <p class="empty__text">{t.blog.empty}</p>
           <p class="empty__cta">{t.blog.emptyCta}</p>
-          <Button href={path(locale, 'contact')} size="lg">{t.cta}</Button>
+          <Button href={path(locale, 'contact')} size="lg" data-umami-event="proposal-cta" data-umami-event-location="blog">{t.cta}</Button>
         </div>
       ) : (
         <ul class="list">

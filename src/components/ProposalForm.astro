@@ -238,6 +238,11 @@ const formStrings = JSON.stringify({
   // form posts normally and the endpoint answers with a localised HTML page.
   const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+  // Umami analytics events. A no-op when the tracker is blocked or not loaded.
+  function track(event: string, data?: Record<string, string | number>) {
+    (window as unknown as { umami?: { track: (e: string, d?: object) => void } }).umami?.track(event, data);
+  }
+
   // Cloudflare's script is only fetched once someone starts using a form, so
   // it costs nothing for visitors who never do.
   let turnstileLoaded = false;
@@ -260,6 +265,7 @@ const formStrings = JSON.stringify({
     let sending = false;
 
     form.addEventListener('focusin', loadTurnstile, { once: true });
+    form.addEventListener('focusin', () => track('proposal-started'), { once: true });
     form.addEventListener('pointerdown', loadTurnstile, { once: true });
 
     // A Turnstile token is single use: get a fresh one after every attempt.
@@ -348,6 +354,7 @@ const formStrings = JSON.stringify({
       }
 
       if (response?.ok) {
+        track('proposal-sent');
         // Only replace the form once the endpoint confirms delivery.
         const success = template?.content.cloneNode(true);
         if (success && status) {
@@ -358,6 +365,7 @@ const formStrings = JSON.stringify({
       }
 
       if (!response?.ok) resetTurnstile();
+      track('proposal-failed', { status: response?.status ?? 'network' });
 
       if (response?.status === 429) fail(strings.errThrottled);
       else if (response?.status === 503) fail(strings.errUnconfigured);
